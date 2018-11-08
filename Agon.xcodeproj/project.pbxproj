@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2A007C923ACA1167442702DD /* Pods_AgonUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD9B167BF04C0848A8E4A62A /* Pods_AgonUITests.framework */; };
+		8B7B10DF2191C160005308CC /* CheckLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B7B10DE2191C160005308CC /* CheckLoginViewController.swift */; };
 		8BDC2EDC218C8F5600A7B4A2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BDC2EDB218C8F5600A7B4A2 /* AppDelegate.swift */; };
 		8BDC2EDE218C8F5600A7B4A2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BDC2EDD218C8F5600A7B4A2 /* ViewController.swift */; };
 		8BDC2EE1218C8F5600A7B4A2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8BDC2EDF218C8F5600A7B4A2 /* Main.storyboard */; };
@@ -14,6 +16,8 @@
 		8BDC2EE6218C8F5700A7B4A2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8BDC2EE4218C8F5700A7B4A2 /* LaunchScreen.storyboard */; };
 		8BDC2EF1218C8F5700A7B4A2 /* AgonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BDC2EF0218C8F5700A7B4A2 /* AgonTests.swift */; };
 		8BDC2EFC218C8F5700A7B4A2 /* AgonUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BDC2EFB218C8F5700A7B4A2 /* AgonUITests.swift */; };
+		BD74B9BC2D9ADA6A225DA7D8 /* Pods_AgonTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCC0634A7DBEE0CFE26EB398 /* Pods_AgonTests.framework */; };
+		FAE44C81240E8809B652B92B /* Pods_Agon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07FA020758ED65DC54559303 /* Pods_Agon.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,6 +38,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		07FA020758ED65DC54559303 /* Pods_Agon.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Agon.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8B7B10DE2191C160005308CC /* CheckLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckLoginViewController.swift; sourceTree = "<group>"; };
 		8BDC2ED8218C8F5600A7B4A2 /* Agon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Agon.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8BDC2EDB218C8F5600A7B4A2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8BDC2EDD218C8F5600A7B4A2 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -47,6 +53,14 @@
 		8BDC2EF7218C8F5700A7B4A2 /* AgonUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AgonUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8BDC2EFB218C8F5700A7B4A2 /* AgonUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgonUITests.swift; sourceTree = "<group>"; };
 		8BDC2EFD218C8F5700A7B4A2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9546D991DC59F7D5E7672322 /* Pods-AgonUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AgonUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AgonUITests/Pods-AgonUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		9A28C3BC8F5DD246426CFB8B /* Pods-Agon.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Agon.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Agon/Pods-Agon.debug.xcconfig"; sourceTree = "<group>"; };
+		B93017B52BCEED8B1A5EA9AE /* Pods-Agon.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Agon.release.xcconfig"; path = "Pods/Target Support Files/Pods-Agon/Pods-Agon.release.xcconfig"; sourceTree = "<group>"; };
+		C131F4B1076EEE1EA118E15B /* Pods-AgonUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AgonUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-AgonUITests/Pods-AgonUITests.release.xcconfig"; sourceTree = "<group>"; };
+		E1A23E10CEA6F1A4C2A000C8 /* Pods-AgonTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AgonTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-AgonTests/Pods-AgonTests.release.xcconfig"; sourceTree = "<group>"; };
+		E6F12994235032A757587AC1 /* Pods-AgonTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AgonTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AgonTests/Pods-AgonTests.debug.xcconfig"; sourceTree = "<group>"; };
+		FCC0634A7DBEE0CFE26EB398 /* Pods_AgonTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AgonTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FD9B167BF04C0848A8E4A62A /* Pods_AgonUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AgonUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +68,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FAE44C81240E8809B652B92B /* Pods_Agon.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -61,6 +76,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BD74B9BC2D9ADA6A225DA7D8 /* Pods_AgonTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -68,6 +84,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2A007C923ACA1167442702DD /* Pods_AgonUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -81,6 +98,8 @@
 				8BDC2EEF218C8F5700A7B4A2 /* AgonTests */,
 				8BDC2EFA218C8F5700A7B4A2 /* AgonUITests */,
 				8BDC2ED9218C8F5600A7B4A2 /* Products */,
+				A1779D30AC11E8A3ADB518CF /* Pods */,
+				D9F4E0676E569FEC1F754794 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -100,6 +119,7 @@
 				8BDC2EDB218C8F5600A7B4A2 /* AppDelegate.swift */,
 				8BDC2EDD218C8F5600A7B4A2 /* ViewController.swift */,
 				8BDC2EDF218C8F5600A7B4A2 /* Main.storyboard */,
+				8B7B10DE2191C160005308CC /* CheckLoginViewController.swift */,
 				8BDC2EE2218C8F5700A7B4A2 /* Assets.xcassets */,
 				8BDC2EE4218C8F5700A7B4A2 /* LaunchScreen.storyboard */,
 				8BDC2EE7218C8F5700A7B4A2 /* Info.plist */,
@@ -125,6 +145,29 @@
 			path = AgonUITests;
 			sourceTree = "<group>";
 		};
+		A1779D30AC11E8A3ADB518CF /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				9A28C3BC8F5DD246426CFB8B /* Pods-Agon.debug.xcconfig */,
+				B93017B52BCEED8B1A5EA9AE /* Pods-Agon.release.xcconfig */,
+				E6F12994235032A757587AC1 /* Pods-AgonTests.debug.xcconfig */,
+				E1A23E10CEA6F1A4C2A000C8 /* Pods-AgonTests.release.xcconfig */,
+				9546D991DC59F7D5E7672322 /* Pods-AgonUITests.debug.xcconfig */,
+				C131F4B1076EEE1EA118E15B /* Pods-AgonUITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		D9F4E0676E569FEC1F754794 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				07FA020758ED65DC54559303 /* Pods_Agon.framework */,
+				FCC0634A7DBEE0CFE26EB398 /* Pods_AgonTests.framework */,
+				FD9B167BF04C0848A8E4A62A /* Pods_AgonUITests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -132,9 +175,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8BDC2F00218C8F5700A7B4A2 /* Build configuration list for PBXNativeTarget "Agon" */;
 			buildPhases = (
+				D55E6B71FD6C6522B62D1CF9 /* [CP] Check Pods Manifest.lock */,
 				8BDC2ED4218C8F5600A7B4A2 /* Sources */,
 				8BDC2ED5218C8F5600A7B4A2 /* Frameworks */,
 				8BDC2ED6218C8F5600A7B4A2 /* Resources */,
+				D1CA309F698E8C43CACBAECD /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -149,9 +194,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8BDC2F03218C8F5700A7B4A2 /* Build configuration list for PBXNativeTarget "AgonTests" */;
 			buildPhases = (
+				6DABB4FF56A39D501E421C60 /* [CP] Check Pods Manifest.lock */,
 				8BDC2EE8218C8F5700A7B4A2 /* Sources */,
 				8BDC2EE9218C8F5700A7B4A2 /* Frameworks */,
 				8BDC2EEA218C8F5700A7B4A2 /* Resources */,
+				EC43C431C68D79BBD225EDD2 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -167,9 +214,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8BDC2F06218C8F5700A7B4A2 /* Build configuration list for PBXNativeTarget "AgonUITests" */;
 			buildPhases = (
+				B9739C05D5EF25B553990AE6 /* [CP] Check Pods Manifest.lock */,
 				8BDC2EF3218C8F5700A7B4A2 /* Sources */,
 				8BDC2EF4218C8F5700A7B4A2 /* Frameworks */,
 				8BDC2EF5218C8F5700A7B4A2 /* Resources */,
+				E38C184AF2164B846177AE6F /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -251,6 +300,147 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		6DABB4FF56A39D501E421C60 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-AgonTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B9739C05D5EF25B553990AE6 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-AgonUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D1CA309F698E8C43CACBAECD /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Agon/Pods-Agon-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
+				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Agon/Pods-Agon-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D55E6B71FD6C6522B62D1CF9 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Agon-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E38C184AF2164B846177AE6F /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-AgonUITests/Pods-AgonUITests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
+				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AgonUITests/Pods-AgonUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		EC43C431C68D79BBD225EDD2 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-AgonTests/Pods-AgonTests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
+				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AgonTests/Pods-AgonTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		8BDC2ED4218C8F5600A7B4A2 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -258,6 +448,7 @@
 			files = (
 				8BDC2EDE218C8F5600A7B4A2 /* ViewController.swift in Sources */,
 				8BDC2EDC218C8F5600A7B4A2 /* AppDelegate.swift in Sources */,
+				8B7B10DF2191C160005308CC /* CheckLoginViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -428,6 +619,7 @@
 		};
 		8BDC2F01218C8F5700A7B4A2 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9A28C3BC8F5DD246426CFB8B /* Pods-Agon.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -446,6 +638,7 @@
 		};
 		8BDC2F02218C8F5700A7B4A2 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B93017B52BCEED8B1A5EA9AE /* Pods-Agon.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -464,6 +657,7 @@
 		};
 		8BDC2F04218C8F5700A7B4A2 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E6F12994235032A757587AC1 /* Pods-AgonTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -485,6 +679,7 @@
 		};
 		8BDC2F05218C8F5700A7B4A2 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E1A23E10CEA6F1A4C2A000C8 /* Pods-AgonTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -506,6 +701,7 @@
 		};
 		8BDC2F07218C8F5700A7B4A2 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9546D991DC59F7D5E7672322 /* Pods-AgonUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -526,6 +722,7 @@
 		};
 		8BDC2F08218C8F5700A7B4A2 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C131F4B1076EEE1EA118E15B /* Pods-AgonUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;

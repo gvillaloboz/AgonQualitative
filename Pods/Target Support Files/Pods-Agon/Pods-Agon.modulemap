@@ -1,0 +1,6 @@
+framework module Pods_Agon {
+  umbrella header "Pods-Agon-umbrella.h"
+
+  export *
+  module * { export * }
+}
