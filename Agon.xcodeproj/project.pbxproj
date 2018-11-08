@@ -242,13 +242,16 @@
 				TargetAttributes = {
 					8BDC2ED7218C8F5600A7B4A2 = {
 						CreatedOnToolsVersion = 9.4.1;
+						LastSwiftMigration = 1010;
 					};
 					8BDC2EEB218C8F5700A7B4A2 = {
 						CreatedOnToolsVersion = 9.4.1;
+						LastSwiftMigration = 1010;
 						TestTargetID = 8BDC2ED7218C8F5600A7B4A2;
 					};
 					8BDC2EF6218C8F5700A7B4A2 = {
 						CreatedOnToolsVersion = 9.4.1;
+						LastSwiftMigration = 1010;
 						TestTargetID = 8BDC2ED7218C8F5600A7B4A2;
 					};
 				};
@@ -631,7 +634,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.unil;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -650,7 +653,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.unil;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
@@ -671,7 +674,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.unil.AgonTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Agon.app/Agon";
 			};
@@ -693,7 +696,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.unil.AgonTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Agon.app/Agon";
 			};
@@ -714,7 +717,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.unil.AgonUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = Agon;
 			};
@@ -735,7 +738,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.unil.AgonUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = Agon;
 			};

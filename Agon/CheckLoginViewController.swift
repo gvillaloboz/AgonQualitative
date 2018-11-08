@@ -13,6 +13,6 @@ class CheckLoginViewController : UIViewController{
     
     //Check if user is already created on disk
     override func viewDidAppear(_ animated: Bool) {
-        <#code#>
+        
     }
 }
