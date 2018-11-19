@@ -16,8 +16,11 @@
 		8BDC2EE6218C8F5700A7B4A2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8BDC2EE4218C8F5700A7B4A2 /* LaunchScreen.storyboard */; };
 		8BDC2EF1218C8F5700A7B4A2 /* AgonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BDC2EF0218C8F5700A7B4A2 /* AgonTests.swift */; };
 		8BDC2EFC218C8F5700A7B4A2 /* AgonUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BDC2EFB218C8F5700A7B4A2 /* AgonUITests.swift */; };
-		8BF31D4F2194A518005A526A /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF31D4E2194A518005A526A /* User.swift */; };
+		8BF31D4F2194A518005A526A /* RealmUserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF31D4E2194A518005A526A /* RealmUserModel.swift */; };
 		8BF31D512194A55A005A526A /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF31D502194A55A005A526A /* LoginViewController.swift */; };
+		8BF31D532195A86B005A526A /* HomeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF31D522195A86B005A526A /* HomeModel.swift */; };
+		8BF31D55219ACB4B005A526A /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF31D54219ACB4B005A526A /* UserModel.swift */; };
+		8BF31D58219B158C005A526A /* UserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF31D57219B158C005A526A /* UserController.swift */; };
 		BD74B9BC2D9ADA6A225DA7D8 /* Pods_AgonTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCC0634A7DBEE0CFE26EB398 /* Pods_AgonTests.framework */; };
 		FAE44C81240E8809B652B92B /* Pods_Agon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07FA020758ED65DC54559303 /* Pods_Agon.framework */; };
 /* End PBXBuildFile section */
@@ -55,8 +58,11 @@
 		8BDC2EF7218C8F5700A7B4A2 /* AgonUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AgonUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8BDC2EFB218C8F5700A7B4A2 /* AgonUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgonUITests.swift; sourceTree = "<group>"; };
 		8BDC2EFD218C8F5700A7B4A2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		8BF31D4E2194A518005A526A /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		8BF31D4E2194A518005A526A /* RealmUserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmUserModel.swift; sourceTree = "<group>"; };
 		8BF31D502194A55A005A526A /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		8BF31D522195A86B005A526A /* HomeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeModel.swift; sourceTree = "<group>"; };
+		8BF31D54219ACB4B005A526A /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
+		8BF31D57219B158C005A526A /* UserController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserController.swift; sourceTree = "<group>"; };
 		9546D991DC59F7D5E7672322 /* Pods-AgonUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AgonUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AgonUITests/Pods-AgonUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		9A28C3BC8F5DD246426CFB8B /* Pods-Agon.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Agon.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Agon/Pods-Agon.debug.xcconfig"; sourceTree = "<group>"; };
 		B93017B52BCEED8B1A5EA9AE /* Pods-Agon.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Agon.release.xcconfig"; path = "Pods/Target Support Files/Pods-Agon/Pods-Agon.release.xcconfig"; sourceTree = "<group>"; };
@@ -120,6 +126,7 @@
 		8BDC2EDA218C8F5600A7B4A2 /* Agon */ = {
 			isa = PBXGroup;
 			children = (
+				8BF31D56219B155E005A526A /* Controllers */,
 				8BF31D4D2194A4F9005A526A /* ViewControllers */,
 				8BF31D4C2194A4E5005A526A /* Models */,
 				8BDC2EDB218C8F5600A7B4A2 /* AppDelegate.swift */,
@@ -152,7 +159,9 @@
 		8BF31D4C2194A4E5005A526A /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				8BF31D4E2194A518005A526A /* User.swift */,
+				8BF31D4E2194A518005A526A /* RealmUserModel.swift */,
+				8BF31D522195A86B005A526A /* HomeModel.swift */,
+				8BF31D54219ACB4B005A526A /* UserModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -165,6 +174,14 @@
 				8BF31D502194A55A005A526A /* LoginViewController.swift */,
 			);
 			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		8BF31D56219B155E005A526A /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				8BF31D57219B158C005A526A /* UserController.swift */,
+			);
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 		A1779D30AC11E8A3ADB518CF /* Pods */ = {
@@ -471,8 +488,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8BF31D4F2194A518005A526A /* User.swift in Sources */,
+				8BF31D4F2194A518005A526A /* RealmUserModel.swift in Sources */,
+				8BF31D55219ACB4B005A526A /* UserModel.swift in Sources */,
+				8BF31D58219B158C005A526A /* UserController.swift in Sources */,
 				8BDC2EDE218C8F5600A7B4A2 /* ViewController.swift in Sources */,
+				8BF31D532195A86B005A526A /* HomeModel.swift in Sources */,
 				8BDC2EDC218C8F5600A7B4A2 /* AppDelegate.swift in Sources */,
 				8BF31D512194A55A005A526A /* LoginViewController.swift in Sources */,
 				8B7B10DF2191C160005308CC /* CheckLoginViewController.swift in Sources */,

@@ -25,21 +25,18 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ky9-TR-1hb">
-                                <rect key="frame" x="158" y="391" width="46" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <connections>
-                                    <segue destination="jhX-IF-XSh" kind="show" id="tS7-6L-yBz"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <connections>
+                        <segue destination="XGg-Eu-ZXh" kind="show" identifier="splashToMainSegue" id="xRp-zo-g9w"/>
+                        <segue destination="jhX-IF-XSh" kind="show" identifier="splashToLoginSegue" id="6U5-GG-9Jy"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="-50" y="27"/>
         </scene>
         <!--LoginViewController-->
         <scene sceneID="0ik-S8-P84">
@@ -72,6 +69,13 @@
                                     <action selector="startButtonPress:" destination="zM9-m3-a2f" eventType="touchUpInside" id="vJa-JF-I3c"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YrQ-SD-VDy">
+                                <rect key="frame" x="105" y="246" width="243" height="28"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -88,13 +92,42 @@
                     </view>
                     <connections>
                         <outlet property="emailTextField" destination="77H-qx-oEi" id="e19-mt-Xrf"/>
+                        <outlet property="messageLabel" destination="YrQ-SD-VDy" id="qpg-xF-s9N"/>
                         <outlet property="pseudonymTextField" destination="ThG-eR-Caj" id="2vj-7z-yHe"/>
+                        <segue destination="XGg-Eu-ZXh" kind="presentation" identifier="loginToMainScreenSegue" id="TMG-O9-tgY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hPe-bR-mXe" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="zM9-m3-a2f" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1354" y="27"/>
+            <point key="canvasLocation" x="798" y="-418"/>
+        </scene>
+        <!--Main View Controller-->
+        <scene sceneID="hNQ-29-4W5">
+            <objects>
+                <viewController id="XGg-Eu-ZXh" customClass="MainViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="t0f-4m-Gvb">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Main Screen" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dx9-kH-8ka">
+                                <rect key="frame" x="166" y="290" width="95" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="BGa-Sm-cgH"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="M7F-c0-DRK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="798" y="519"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="xRp-zo-g9w"/>
+    </inferredMetricsTieBreakers>
 </document>

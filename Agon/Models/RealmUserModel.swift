@@ -1,5 +1,5 @@
 //
-//  User.swift
+//  RealmUserModel.swift
 //  Agon
 //
 //  Created by Gabriela Villalobos on 08.11.18.
@@ -9,7 +9,7 @@
 import Foundation
 import RealmSwift
 
-class User : Object{
+class RealmUserModel : Object{
     // Properties
     @objc dynamic var id = ""
     @objc dynamic var name = ""
@@ -20,5 +20,9 @@ class User : Object{
     // Init
     convenience init(email: String) {
         self.init()
+    }
+    
+    override static func primaryKey() ->String? {
+        return "id"
     }
 }
