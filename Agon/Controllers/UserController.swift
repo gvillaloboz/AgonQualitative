@@ -116,4 +116,18 @@ class UserController: NSObject, URLSessionDataDelegate {
         self.pseudonym = pseudonym
     }
     
+    
+    /// Checks if the user data is already stored in the device disk
+    ///
+    /// - Returns: true if the user exists on device disk, false otherwise
+    func checkIfUserExistsLocally() -> Bool{
+        let realm = try! Realm()
+        var matchedUsers = realm.objects(RealmUserModel.self)
+        if (!matchedUsers.isEmpty){
+            return true
+        }
+        else{
+            return false
+        }
+    }
 }
