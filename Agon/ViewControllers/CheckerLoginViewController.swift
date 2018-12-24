@@ -1,5 +1,5 @@
 //
-//  CheckLoginViewController.swift
+//  CheckerLoginViewController.swift
 //  Agon
 //
 //  Created by Gabriela Villalobos on 06.11.18.
@@ -10,32 +10,47 @@ import Foundation
 import UIKit
 import RealmSwift
 
-class CheckLoginViewController : UIViewController{
+class CheckerLoginViewController : UIViewController{
     
     
     // Properties
     @IBOutlet weak var messageTextView: UITextView!
     let userController = UserController()
+    let healthKitSetupAssistant = HealthKitSetupAssistant()
     
-    //    //Check if user is already created on disk
-//    override func viewDidAppear(_ animated: Bool) {
-//        let realm = try! Realm()
-//        var matchedUsers = realm.objects(RealmUserModel.self)
-//        if (!matchedUsers.isEmpty){
-//        //print("User already logged in!!!!")
-//            performSegue(withIdentifier: "splashToMainSegue", sender: self)
-//            print(matchedUsers[0])
-//        }
-//        else{
-//            performSegue(withIdentifier: "splashToLoginSegue", sender: self)
-//        }
-//    }
     
-    override func viewDidAppear(_ animated: Bool) {
-    //override func viewDidLoad(){
-        HealthKitSetupAssistant.getHeartRateData()
+    override func viewDidAppear(_ animated: Bool) { //override func viewDidLoad(){
+        super.viewDidAppear(animated)
+        print("Checker View did appear")
+//        healthKitSetupAssistant.requestAccessWithCompletion(){ success, error in
+//            if success{
+//                print("HelathKit access granted from Checker View Controller") // check if this is really true and is not just that access was requested but no guarantee of granted
+//            }
+//            else{
+//                print("Error requesting access to HealthKit: \(error)")
+//            }
+//        }
+        
+//        healthKitSetupAssistant.authorizeHealthKit { (authorized , error) in
+//            guard authorized else {
+//
+//                let baseMessage = "HealthKit Authorization Failed from App Delegate"
+//
+//                if let error = error {
+//                    print("\(baseMessage). Reason: \(error.localizedDescription)")
+//                } else {
+//                    print(baseMessage)
+//                }
+//                return
+//            }
+//
+//            print("HealthKit Successfully Authorized from Checker View Controller.")
+//
+//        }
+        
+        
         // Checks if already requested access to steps data from HK
-        if(HealthKitSetupAssistant.checkHealthKitAuthorization()){
+        //if(HealthKitSetupAssistant.checkHealthKitAuthorization()){
            
             if(userController.checkIfUserExistsLocally()){
                 performSegue(withIdentifier: "splashToMainSegue", sender: self)
@@ -44,19 +59,19 @@ class CheckLoginViewController : UIViewController{
                 performSegue(withIdentifier: "splashToLoginSegue", sender: self)
             }
             
-        }
-        else{
-            messageTextView.text = "We need your permission to access your steps data and to send you a notification once in a while."
-            // var button   = UIButton.buttonWithType(UIButtonType.System) as UIButton
-            let button = UIButton(type: .system) // let preferred over var here
-            button.frame = CGRect(x: 100, y: 100, width: 100, height: 50)
-            button.backgroundColor = UIColor.blue
-            button.setTitle("Accept", for: UIControl.State.normal)
-            button.addTarget(self, action: #selector (buttonAction), for: UIControl.Event.touchUpInside)
-            button.tag = 1
-            self.view.addSubview(button)
-            
-        }
+        //}
+//        else{
+//            messageTextView.text = "We need your permission to access your steps data and to send you a notification once in a while."
+//            // var button   = UIButton.buttonWithType(UIButtonType.System) as UIButton
+//            let button = UIButton(type: .system) // let preferred over var here
+//            button.frame = CGRect(x: 100, y: 100, width: 100, height: 50)
+//            button.backgroundColor = UIColor.blue
+//            button.setTitle("Accept", for: UIControl.State.normal)
+//            button.addTarget(self, action: #selector (buttonAction), for: UIControl.Event.touchUpInside)
+//            button.tag = 1
+//            self.view.addSubview(button)
+//
+//        }
     }
     
     @objc func buttonAction(sender: UIButton!) {
@@ -64,7 +79,7 @@ class CheckLoginViewController : UIViewController{
         group.enter()
         
         DispatchQueue.main.async {
-            self.authorizeHealthKit()
+            self.authorizeHealthKitButtonCall()
             group.leave()
         }
         
@@ -82,8 +97,8 @@ class CheckLoginViewController : UIViewController{
     }
     
     
-    private func authorizeHealthKit() {
-        HealthKitSetupAssistant.authorizeHealthKit { (authorized, error) in
+    private func authorizeHealthKitButtonCall() {
+        healthKitSetupAssistant.authorizeHealthKit { (authorized, error) in
             
             guard authorized else {
                 

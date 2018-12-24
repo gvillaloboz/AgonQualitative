@@ -16,6 +16,8 @@ class RealmUserModel : Object{
     @objc dynamic var lastName = ""
     @objc dynamic var pseudonym = ""
     @objc dynamic var email = ""
+    @objc dynamic var expCondition = ""
+    @objc dynamic var competitionStatus = ""
     
     // Init
     convenience init(email: String) {

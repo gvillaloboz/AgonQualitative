@@ -12,6 +12,9 @@ import RealmSwift
 
 class PermissionRequestViewController : UIViewController {
  
+    // Properties
+    let healthKitSetupAssistant =  HealthKitSetupAssistant()
+    
     // Functions
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,7 +43,8 @@ class PermissionRequestViewController : UIViewController {
         group.enter()
         
         DispatchQueue.main.async {
-            self.authorizeHealthKit()
+            //self.authorizeHealthKit()
+            //HealthKitSetupAssistant.authorizeHealthKit2()
             group.leave()
         }
         
@@ -52,7 +56,8 @@ class PermissionRequestViewController : UIViewController {
     
     
     private func authorizeHealthKit() {
-        HealthKitSetupAssistant.authorizeHealthKit { (authorized, error) in
+    
+        healthKitSetupAssistant.authorizeHealthKit { (authorized, error) in
             
             guard authorized else {
                 

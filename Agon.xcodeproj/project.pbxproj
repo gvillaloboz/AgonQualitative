@@ -8,13 +8,18 @@
 
 /* Begin PBXBuildFile section */
 		2A007C923ACA1167442702DD /* Pods_AgonUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD9B167BF04C0848A8E4A62A /* Pods_AgonUITests.framework */; };
-		8B7B10DF2191C160005308CC /* CheckLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B7B10DE2191C160005308CC /* CheckLoginViewController.swift */; };
+		8B458D7A21BE44EA0058D93A /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B458D7921BE44EA0058D93A /* Reachability.swift */; };
+		8B458D7C21BE75750058D93A /* RealmCompetitionStatusModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B458D7B21BE75750058D93A /* RealmCompetitionStatusModel.swift */; };
+		8B458D7E21BEA9B50058D93A /* Numerical.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B458D7D21BEA9B50058D93A /* Numerical.swift */; };
+		8B7B10DF2191C160005308CC /* CheckerLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B7B10DE2191C160005308CC /* CheckerLoginViewController.swift */; };
+		8B87EEF721A6B7EF00838A08 /* HealthKitDataRetriever.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B87EEF621A6B7EF00838A08 /* HealthKitDataRetriever.swift */; };
+		8B96CCF221A6B561005B8962 /* MainScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B96CCF121A6B561005B8962 /* MainScreenViewController.swift */; };
 		8B96E50A21A40EB7009174C2 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B96E50921A40EB7009174C2 /* logo.png */; };
 		8BB3484821A4138E00768F1C /* PermissionRequestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB3484721A4138E00768F1C /* PermissionRequestViewController.swift */; };
 		8BB3484A21A41D9900768F1C /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BB3484921A41D9900768F1C /* HealthKit.framework */; };
 		8BB3484D21A44D1900768F1C /* HealthKitSetupAssistant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB3484C21A44D1900768F1C /* HealthKitSetupAssistant.swift */; };
 		8BDC2EDC218C8F5600A7B4A2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BDC2EDB218C8F5600A7B4A2 /* AppDelegate.swift */; };
-		8BDC2EDE218C8F5600A7B4A2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BDC2EDD218C8F5600A7B4A2 /* ViewController.swift */; };
+		8BDC2EDE218C8F5600A7B4A2 /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BDC2EDD218C8F5600A7B4A2 /* DashboardViewController.swift */; };
 		8BDC2EE1218C8F5600A7B4A2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8BDC2EDF218C8F5600A7B4A2 /* Main.storyboard */; };
 		8BDC2EE3218C8F5700A7B4A2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8BDC2EE2218C8F5700A7B4A2 /* Assets.xcassets */; };
 		8BDC2EE6218C8F5700A7B4A2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8BDC2EE4218C8F5700A7B4A2 /* LaunchScreen.storyboard */; };
@@ -48,7 +53,12 @@
 
 /* Begin PBXFileReference section */
 		07FA020758ED65DC54559303 /* Pods_Agon.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Agon.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		8B7B10DE2191C160005308CC /* CheckLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckLoginViewController.swift; sourceTree = "<group>"; };
+		8B458D7921BE44EA0058D93A /* Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
+		8B458D7B21BE75750058D93A /* RealmCompetitionStatusModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmCompetitionStatusModel.swift; sourceTree = "<group>"; };
+		8B458D7D21BEA9B50058D93A /* Numerical.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Numerical.swift; sourceTree = "<group>"; };
+		8B7B10DE2191C160005308CC /* CheckerLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckerLoginViewController.swift; sourceTree = "<group>"; };
+		8B87EEF621A6B7EF00838A08 /* HealthKitDataRetriever.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitDataRetriever.swift; sourceTree = "<group>"; };
+		8B96CCF121A6B561005B8962 /* MainScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenViewController.swift; sourceTree = "<group>"; };
 		8B96E50921A40EB7009174C2 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
 		8BB3484721A4138E00768F1C /* PermissionRequestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionRequestViewController.swift; sourceTree = "<group>"; };
 		8BB3484921A41D9900768F1C /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
@@ -56,7 +66,7 @@
 		8BB3484C21A44D1900768F1C /* HealthKitSetupAssistant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitSetupAssistant.swift; sourceTree = "<group>"; };
 		8BDC2ED8218C8F5600A7B4A2 /* Agon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Agon.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8BDC2EDB218C8F5600A7B4A2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		8BDC2EDD218C8F5600A7B4A2 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		8BDC2EDD218C8F5600A7B4A2 /* DashboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
 		8BDC2EE0218C8F5600A7B4A2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		8BDC2EE2218C8F5700A7B4A2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8BDC2EE5218C8F5700A7B4A2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -111,6 +121,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8B458D7821BE44B00058D93A /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				8B458D7921BE44EA0058D93A /* Reachability.swift */,
+				8B458D7D21BEA9B50058D93A /* Numerical.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
 		8B96E50821A40E3C009174C2 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
@@ -123,6 +142,7 @@
 			isa = PBXGroup;
 			children = (
 				8BB3484C21A44D1900768F1C /* HealthKitSetupAssistant.swift */,
+				8B87EEF621A6B7EF00838A08 /* HealthKitDataRetriever.swift */,
 			);
 			path = HealthKit;
 			sourceTree = "<group>";
@@ -130,6 +150,7 @@
 		8BDC2ECF218C8F5600A7B4A2 = {
 			isa = PBXGroup;
 			children = (
+				8B458D7821BE44B00058D93A /* Helpers */,
 				8BB3484E21A45C4B00768F1C /* HealthKit */,
 				8B96E50821A40E3C009174C2 /* Assets */,
 				8BDC2EDA218C8F5600A7B4A2 /* Agon */,
@@ -191,6 +212,7 @@
 				8BF31D4E2194A518005A526A /* RealmUserModel.swift */,
 				8BF31D522195A86B005A526A /* HomeModel.swift */,
 				8BF31D54219ACB4B005A526A /* UserModel.swift */,
+				8B458D7B21BE75750058D93A /* RealmCompetitionStatusModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -198,10 +220,11 @@
 		8BF31D4D2194A4F9005A526A /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				8BDC2EDD218C8F5600A7B4A2 /* ViewController.swift */,
-				8B7B10DE2191C160005308CC /* CheckLoginViewController.swift */,
+				8BDC2EDD218C8F5600A7B4A2 /* DashboardViewController.swift */,
+				8B7B10DE2191C160005308CC /* CheckerLoginViewController.swift */,
 				8BF31D502194A55A005A526A /* LoginViewController.swift */,
 				8BB3484721A4138E00768F1C /* PermissionRequestViewController.swift */,
+				8B96CCF121A6B561005B8962 /* MainScreenViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -314,6 +337,9 @@
 						CreatedOnToolsVersion = 9.4.1;
 						LastSwiftMigration = 1010;
 						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
 							com.apple.HealthKit = {
 								enabled = 1;
 							};
@@ -527,14 +553,19 @@
 			files = (
 				8BF31D4F2194A518005A526A /* RealmUserModel.swift in Sources */,
 				8BF31D55219ACB4B005A526A /* UserModel.swift in Sources */,
+				8B458D7E21BEA9B50058D93A /* Numerical.swift in Sources */,
 				8BF31D58219B158C005A526A /* UserController.swift in Sources */,
-				8BDC2EDE218C8F5600A7B4A2 /* ViewController.swift in Sources */,
+				8B87EEF721A6B7EF00838A08 /* HealthKitDataRetriever.swift in Sources */,
+				8BDC2EDE218C8F5600A7B4A2 /* DashboardViewController.swift in Sources */,
 				8BF31D532195A86B005A526A /* HomeModel.swift in Sources */,
 				8BDC2EDC218C8F5600A7B4A2 /* AppDelegate.swift in Sources */,
+				8B458D7C21BE75750058D93A /* RealmCompetitionStatusModel.swift in Sources */,
 				8BF31D512194A55A005A526A /* LoginViewController.swift in Sources */,
 				8BB3484821A4138E00768F1C /* PermissionRequestViewController.swift in Sources */,
-				8B7B10DF2191C160005308CC /* CheckLoginViewController.swift in Sources */,
+				8B96CCF221A6B561005B8962 /* MainScreenViewController.swift in Sources */,
+				8B7B10DF2191C160005308CC /* CheckerLoginViewController.swift in Sources */,
 				8BB3484D21A44D1900768F1C /* HealthKitSetupAssistant.swift in Sources */,
+				8B458D7A21BE44EA0058D93A /* Reachability.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
