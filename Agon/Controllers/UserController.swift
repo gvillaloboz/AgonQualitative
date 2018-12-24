@@ -97,7 +97,7 @@ class UserController: NSObject, URLSessionDataDelegate {
     /// if yes then stores it locally
     ///
     /// - Parameter data: User data from the server or "0 results" message
-    func storeUserLocally(data : String, pseudonym : String){
+    func storeUserLocally(data : String, pseudonym : String, completion: (Bool) -> Void){
 
         var splitString = [String]()
         splitString = (data.components(separatedBy: " "))
@@ -107,7 +107,10 @@ class UserController: NSObject, URLSessionDataDelegate {
         //let pseudonym = splitString[3]
         let email = splitString[4]
         let expCondition = splitString[5]
-        storeRealmUser(id: id, name: name, lastName: lastName, pseudonym: pseudonym, email: email, expCondition: expCondition)
+        if(storeRealmUser(id: id, name: name, lastName: lastName, pseudonym: pseudonym, email: email, expCondition: expCondition)){
+            completion(true)
+        }
+    
     }
     
     

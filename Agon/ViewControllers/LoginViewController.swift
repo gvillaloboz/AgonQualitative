@@ -71,8 +71,14 @@ class LoginViewController : UIViewController, UserContollerProtocol, UITextField
             messageLabel.text = "Email not registered in the system"
         }
         else{
-            self.performSegue(withIdentifier: "loginToMainScreenSegue", sender: self)
-            userController.storeUserLocally(data: data, pseudonym:  pseudonymTextField.text!)
+            userController.storeUserLocally(data: data, pseudonym:  pseudonymTextField.text!, completion: {
+                status in
+                
+                if(status){
+                    self.performSegue(withIdentifier: "loginToMainScreenSegue", sender: self)
+                }
+            })
+            
         }
     }
     
@@ -126,27 +132,5 @@ class LoginViewController : UIViewController, UserContollerProtocol, UITextField
     func dismissKeyboard(){
         view.endEditing(true)
     }
-    
-    
-    ////// This functions I can remove later ////
-
-//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        // Return the number of feed items
-//        return feedItems.count
-//
-//    }
-//
-//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//
-//        // Retrieve cell
-//        let cellIdentifier: String = "BasicCell"
-//        let myCell: UITableViewCell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier)!
-//        // Get the location to be shown
-//        let item: UserModel = feedItems[indexPath.row] as! UserModel
-//        // Get references to labels of cell
-//        myCell.textLabel!.text = item.name
-//
-//        return myCell
-//    }
     
 }
