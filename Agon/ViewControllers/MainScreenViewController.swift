@@ -39,24 +39,27 @@ class MainScreenViewController : UIViewController, HealthKitDataRetrieverProtoco
         //acceptGoalButton.isHidden = true
         //denyGoalButton.isHidden = true
         
-//        healthkitSetupAssistant.getStepsOnDate(completion: {steps in
-//            print("STEPS: \(steps)")
-//            self.numberOfStepsLabel.text = String(format: "%f", steps)
-//
-//        })
         
         // get the competition status from Realm
         // no running competition 0
         // running competition 1
-        
-        self.competitionStatus = 0
-        
-        switch competitionStatus {
+        let realm = try! Realm()
+        if (!realm.objects(RealmCompetitionModel.self).isEmpty){
+            self.competitionStatus = (realm.objects(RealmCompetitionModel.self).last?.status)!
+        }
+        switch self.competitionStatus {
         case 0:
             print("No running competition")
             forkBasedOnExperimentalCondition()
         case 1:
             print("Running competition")
+            denyGoalButton.isHidden = true
+            acceptGoalButton.isHidden = true
+            
+            // Request today step counts to HK and display
+            healthkitSetupAssistant.getTodayStepCount(completion: {dailySteps in
+                self.instructionsTextField.text = "Steps for today: \(dailySteps)"
+            })
         default:
             print("No valid competition status")
         }
