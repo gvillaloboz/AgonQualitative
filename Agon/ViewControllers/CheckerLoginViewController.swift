@@ -22,36 +22,7 @@ class CheckerLoginViewController : UIViewController{
     override func viewDidAppear(_ animated: Bool) { //override func viewDidLoad(){
         super.viewDidAppear(animated)
         print("Checker View did appear")
-//        healthKitSetupAssistant.requestAccessWithCompletion(){ success, error in
-//            if success{
-//                print("HelathKit access granted from Checker View Controller") // check if this is really true and is not just that access was requested but no guarantee of granted
-//            }
-//            else{
-//                print("Error requesting access to HealthKit: \(error)")
-//            }
-//        }
-        
-//        healthKitSetupAssistant.authorizeHealthKit { (authorized , error) in
-//            guard authorized else {
-//
-//                let baseMessage = "HealthKit Authorization Failed from App Delegate"
-//
-//                if let error = error {
-//                    print("\(baseMessage). Reason: \(error.localizedDescription)")
-//                } else {
-//                    print(baseMessage)
-//                }
-//                return
-//            }
-//
-//            print("HealthKit Successfully Authorized from Checker View Controller.")
-//
-//        }
-        
-        
-        // Checks if already requested access to steps data from HK
-        //if(HealthKitSetupAssistant.checkHealthKitAuthorization()){
-           
+
             if(userController.checkIfUserExistsLocally()){
                 performSegue(withIdentifier: "splashToMainSegue", sender: self)
             }

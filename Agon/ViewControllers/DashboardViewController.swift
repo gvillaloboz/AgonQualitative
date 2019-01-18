@@ -10,21 +10,36 @@ import UIKit
 
 class DashboardViewController: UIViewController, HealthKitSetupAssistantProtocol {
     
-    
-
-    
     // Properties
-    @IBOutlet weak var stepCountLabel: UILabel!
+    
+    @IBOutlet weak var weeklyGoalLabel: UILabel!
+    @IBOutlet weak var dailyGoalLabel: UILabel!
+    @IBOutlet weak var dailyStepsLabel: UILabel!
+    
     let healthkitSetupAssistant = HealthKitSetupAssistant()
-    
     let delegate = UIApplication.shared.delegate as! AppDelegate
-   
+    let dashboardController = DashboardController()
     
+    // Functions
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         print("Dashboard view did load")
+        
+        // Request today step counts to HK and display
+        healthkitSetupAssistant.getTodayStepCount(completion: {dailySteps in
+            print("Steps requested from Dashboard: \(dailySteps)")
+            self.dailyStepsLabel.text = "Steps for today: \(dailySteps)"
+        })
+        
+        /// request to realm the daily goal
+        self.dailyGoalLabel.text = "Daily Goal: 123"
+        self.weeklyGoalLabel.text = "Weekly Goal: 999"
+        
+        // set delegates and initialize controllers
+        //dashboardController.delegate = self
+
 
 //        healthkitSetupAssistant.delegate = self
 //        stepCountLabel.text = String(healthkitSetupAssistant.stepsFromBackground)
@@ -36,16 +51,10 @@ class DashboardViewController: UIViewController, HealthKitSetupAssistantProtocol
     }
     
     /// Functions
-    
     func userStepsRetrieved(steps: Double) {
-        stepCountLabel.text = String(steps)
+        
     }
-    
-//    func setStepCountLabel(stepCountLabel: Double){
-//        self.stepCountLabel.text =  String(stepCountLabel)
-//        //let dashboard = DashboardViewController()
-//        //dashboard.stepCountLabel.text = String(stepCountLabel)
-//    }
+
     
 }
 

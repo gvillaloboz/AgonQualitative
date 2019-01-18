@@ -18,6 +18,7 @@ class RealmCompetitionModel : Object{
     @objc dynamic var status = 0
     @objc dynamic var statusName = ""
     @objc dynamic var weeklyGoal = 0.0
+    @objc dynamic var timeStamp = Date()
     
     // Init
     convenience init(status: Int) {

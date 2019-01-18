@@ -14,7 +14,7 @@ import HealthKit
 import RealmSwift
 
 
-class MainScreenViewController : UIViewController, HealthKitDataRetrieverProtocol {
+class MainScreenViewController : UIViewController  { //HealthKitDataRetrieverProtocol
     
     // Properties
     
@@ -27,7 +27,7 @@ class MainScreenViewController : UIViewController, HealthKitDataRetrieverProtoco
     
     private let healthkitSetupAssistant = HealthKitSetupAssistant()
     private let competitionController = CompetitionController()
-    
+    private let dashboardController = DashboardController()
     
     var competitionStatus = Int()
     var weeklyGoal = Double()
@@ -35,14 +35,16 @@ class MainScreenViewController : UIViewController, HealthKitDataRetrieverProtoco
     
     // Functions
     override func viewDidLoad() {
-        okButton.isHidden = true
-        //acceptGoalButton.isHidden = true
-        //denyGoalButton.isHidden = true
+        hideUIComponents()
+    }
+    
+    override func viewDidAppear(_ animated: Bool){
         
+        //dashboardController.delegate = self
         
-        // get the competition status from Realm
-        // no running competition 0
-        // running competition 1
+        /// get the competition status from Realm
+        /// no running competition 0
+        /// running competition 1
         let realm = try! Realm()
         if (!realm.objects(RealmCompetitionModel.self).isEmpty){
             self.competitionStatus = (realm.objects(RealmCompetitionModel.self).last?.status)!
@@ -55,34 +57,15 @@ class MainScreenViewController : UIViewController, HealthKitDataRetrieverProtoco
             print("Running competition")
             denyGoalButton.isHidden = true
             acceptGoalButton.isHidden = true
+            performSegue(withIdentifier: "mainToDashboardSegue", sender: self)
             
             // Request today step counts to HK and display
-            healthkitSetupAssistant.getTodayStepCount(completion: {dailySteps in
-                self.instructionsTextField.text = "Steps for today: \(dailySteps)"
-            })
+//            healthkitSetupAssistant.getTodayStepCount(completion: {dailySteps in
+//                self.instructionsTextField.text = "Steps for today: \(dailySteps)"
+//            })
         default:
             print("No valid competition status")
         }
-
-        
-        /// get the steps from last month
-//        let monthsToSubstract = -1
-//        let currentDate = Date()
-//
-//        var dateComponent = DateComponents()
-//
-//        dateComponent.month = monthsToSubstract
-//
-//        let pastDate = Calendar.current.date(byAdding: dateComponent, to: currentDate)
-        
-//        print("Current date:  \(currentDate)")
-//        print("Past date: \(pastDate!)")
-//        healthkitSetupAssistant.requestStepsToHKWithCompletion(start: pastDate!, end: Date()) { (steps) in
-//            print ("STEPS FROM LAST MONTH: \(steps)")
-//        }
-        
-        //healthkitSetupAssistant.getNStepsBack(daysBack: 10)
-        
     }
     
     func stepCountsDownloaded(data: String) {
@@ -128,14 +111,17 @@ class MainScreenViewController : UIViewController, HealthKitDataRetrieverProtoco
     
     
     @IBAction func denyGoalButtonAction(_ sender: Any) {
-        instructionsTextField.text = "It is fine! Let's try to keep your average number of steps as the goal for this week, that is 42000 steps."
+        instructionsTextField.text = "It is fine! Let's try to keep your average number of steps as the goal for this week, that is \(self.averageWeeklySteps) steps."
+        
+        self.weeklyGoal = self.averageWeeklySteps
+        self.competitionStatus = 1
         
         denyGoalButton.isHidden = true
         acceptGoalButton.isHidden = true
         okButton.isHidden = false
     }
     
-    @IBAction func okButtonAction(_ sender: Any) {
+    @IBAction func okButtonAction(_ sender: Any) { ///add timestamp to competition status
         //Save competition status (goal) in the realm
         competitionController.storeCompetitionStatusLocally(weeklyGoal: self.weeklyGoal, status : self.competitionStatus, completion: { success in
             print("Competition Status succesfully inserted in local realm")
@@ -150,7 +136,16 @@ class MainScreenViewController : UIViewController, HealthKitDataRetrieverProtoco
         healthkitSetupAssistant.getTodayStepCount(completion: {dailySteps in
             self.instructionsTextField.text = "Steps for today: \(dailySteps)"
         })
+        
+        performSegue(withIdentifier: "mainToDashboardSegue", sender: self)
+        //dashboardController.sendWeeklyGoal(self.weeklyGoal)
     }
-    
+   
+    func hideUIComponents(){
+        okButton.isHidden = true
+        acceptGoalButton.isHidden = true
+        denyGoalButton.isHidden = true
+        instructionsTextField.isHidden = true
+    }
     
 }

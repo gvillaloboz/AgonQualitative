@@ -112,26 +112,35 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DASHBOARD" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="low-q8-okW">
-                                <rect key="frame" x="118" y="372.66666666666669" width="139" height="67"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="139" id="CBd-NY-luK"/>
-                                    <constraint firstAttribute="height" constant="67" id="ysR-bL-pVX"/>
-                                </constraints>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Weekly Goal: " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z67-ca-yFh">
+                                <rect key="frame" x="34" y="74" width="325" height="27"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Daily Goal: " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sgh-gd-owd">
+                                <rect key="frame" x="34" y="116" width="325" height="27"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SUo-4i-QxR">
+                                <rect key="frame" x="34" y="384" width="305" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstItem="low-q8-okW" firstAttribute="centerY" secondItem="zWy-Xe-TPk" secondAttribute="centerY" id="OfT-ta-bcH"/>
-                            <constraint firstItem="low-q8-okW" firstAttribute="centerX" secondItem="zWy-Xe-TPk" secondAttribute="centerX" id="cSg-Ak-MLa"/>
-                        </constraints>
                         <viewLayoutGuide key="safeArea" id="d6Q-JV-bnx"/>
                     </view>
                     <connections>
-                        <outlet property="stepCountLabel" destination="low-q8-okW" id="9YC-7l-UbX"/>
+                        <outlet property="dailyGoalLabel" destination="Sgh-gd-owd" id="rCi-vv-xqF"/>
+                        <outlet property="dailyStepsLabel" destination="SUo-4i-QxR" id="pbd-dG-5W3"/>
+                        <outlet property="weeklyGoalLabel" destination="z67-ca-yFh" id="vu9-aw-9Sf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="saj-lA-1e0" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -248,6 +257,7 @@
                         <outlet property="instructionsTextField" destination="ngp-bR-dtb" id="DAo-Mf-UHO"/>
                         <outlet property="numberOfStepsLabel" destination="mQq-31-1g6" id="48b-1O-VEF"/>
                         <outlet property="okButton" destination="Yfd-4F-t3f" id="OAd-yu-imH"/>
+                        <segue destination="sBy-vh-2oW" kind="show" identifier="mainToDashboardSegue" id="uYg-Rx-emj"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="M7F-c0-DRK" userLabel="First Responder" sceneMemberID="firstResponder"/>
