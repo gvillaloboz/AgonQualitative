@@ -18,7 +18,13 @@ class CheckerLoginViewController : UIViewController{
     let userController = UserController()
     let healthKitSetupAssistant = HealthKitSetupAssistant()
     
-    
+
+    /// Verifies if the user exists in the local realm
+    /// in this case it means that the user has previously logged into the system
+    /// If the user exists locally then the CheckerLoginViewController segues to the MainViewController
+    /// If the user does not exists then the CheckerLoginViewController segues to the LoginViewController
+    ///
+    /// - Parameter animated:
     override func viewDidAppear(_ animated: Bool) { //override func viewDidLoad(){
         super.viewDidAppear(animated)
         print("Checker View did appear")
@@ -45,27 +51,27 @@ class CheckerLoginViewController : UIViewController{
 //        }
     }
     
-    @objc func buttonAction(sender: UIButton!) {
-        let group = DispatchGroup()
-        group.enter()
-        
-        DispatchQueue.main.async {
-            self.authorizeHealthKitButtonCall()
-            group.leave()
-        }
-        
-        group.notify(queue: .main){
-            print("Move to next screen")
-            HealthKitSetupAssistant.checkHealthKitAuthorization()
-            self.moveToNextScreen()
-        }
-//        let btnsendtag: UIButton = sender
-//        if btnsendtag.tag == 1 {
+//    @objc func buttonAction(sender: UIButton!) {
+//        let group = DispatchGroup()
+//        group.enter()
 //
-//            dismiss(animated: true, completion: nil)
-//            print("blue button pressed");
+//        DispatchQueue.main.async {
+//            self.authorizeHealthKitButtonCall()
+//            group.leave()
 //        }
-    }
+//
+//        group.notify(queue: .main){
+//            print("Move to next screen")
+//            HealthKitSetupAssistant.checkHealthKitAuthorization()
+//            self.moveToNextScreen()
+//        }
+////        let btnsendtag: UIButton = sender
+////        if btnsendtag.tag == 1 {
+////
+////            dismiss(animated: true, completion: nil)
+////            print("blue button pressed");
+////        }
+//    }
     
     
     private func authorizeHealthKitButtonCall() {

@@ -175,7 +175,7 @@
         <!--Main Screen View Controller-->
         <scene sceneID="hNQ-29-4W5">
             <objects>
-                <viewController id="XGg-Eu-ZXh" customClass="MainScreenViewController" customModule="Agon" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MainScreenViewController" id="XGg-Eu-ZXh" customClass="MainScreenViewController" customModule="Agon" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="t0f-4m-Gvb">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

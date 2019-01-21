@@ -381,23 +381,29 @@ extension HealthKitSetupAssistant{
     }
     
     
-    func getWeeklyAverageStepCount(completion:@escaping (Double) -> Void){
+    /// Calculates the average daily step counts based
+    /// on the previous week.
+    ///
+    /// - Parameter completion: resturns the average daily step count when finishes the calculation
+    func getDailyAverageStepCount(completion:@escaping (Double) -> Void){
         
         /// get the step counts from last week
-        let daysToSubstract = -7              
+        let daysToSubstract = -6
         let currentDate = Date()
+        let cal = Calendar(identifier: .gregorian)
+        let currentDateAtMidnight = cal.startOfDay(for: currentDate)
         
         var dateComponent = DateComponents()
         
         dateComponent.day = daysToSubstract
         
-        let oneWeekAgoDate = Calendar.current.date(byAdding: dateComponent, to: currentDate)
+        let oneWeekAgoDate = Calendar.current.date(byAdding: dateComponent, to: currentDateAtMidnight)
         
         requestStepsToHKWithCompletion(start: oneWeekAgoDate!, end: Date()) { (steps) in
-            var averageWeeklySteps = steps / 7
-            print("Average Weekly Steps: \(averageWeeklySteps)")
-            completion(averageWeeklySteps)
-        }
+            let averageDailySteps = steps / 7
+            print("Average Daily Steps: \(averageDailySteps)")
+            completion(averageDailySteps)
+        } 
     }
     
     

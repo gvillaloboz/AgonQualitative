@@ -8,7 +8,7 @@
 
 import UIKit
 
-class DashboardViewController: UIViewController, HealthKitSetupAssistantProtocol {
+class DashboardViewController: UIViewController, HealthKitSetupAssistantProtocol, shareHealthDataDelegate {
     
     // Properties
     
@@ -19,6 +19,8 @@ class DashboardViewController: UIViewController, HealthKitSetupAssistantProtocol
     let healthkitSetupAssistant = HealthKitSetupAssistant()
     let delegate = UIApplication.shared.delegate as! AppDelegate
     let dashboardController = DashboardController()
+    
+
     
     // Functions
     
@@ -32,6 +34,13 @@ class DashboardViewController: UIViewController, HealthKitSetupAssistantProtocol
             print("Steps requested from Dashboard: \(dailySteps)")
             self.dailyStepsLabel.text = "Steps for today: \(dailySteps)"
         })
+        
+//        guard  let mainScreenViewController = self.storyboard?.instantiateViewController(withIdentifier: "MainScreenViewController")
+//            as? MainScreenViewController else {
+//            fatalError("View Controller not found")
+//        }
+        var mainScreenViewController = MainScreenViewController()
+        mainScreenViewController.delegate = self //Protocol conformation here
         
         /// request to realm the daily goal
         self.dailyGoalLabel.text = "Daily Goal: 123"
@@ -53,6 +62,10 @@ class DashboardViewController: UIViewController, HealthKitSetupAssistantProtocol
     /// Functions
     func userStepsRetrieved(steps: Double) {
         
+    }
+    
+    func downloadWeeklyGoal(weeklyStepsGoal: Double){
+        self.weeklyGoalLabel.text = String(weeklyStepsGoal)
     }
 
     

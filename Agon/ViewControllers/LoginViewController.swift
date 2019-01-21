@@ -64,7 +64,7 @@ class LoginViewController : UIViewController, UserContollerProtocol, UITextField
     
     /// Receives the user data from the controller and handles it in the Login View
     ///
-    /// - Parameter items: data User data
+    /// - Parameter items: data User data from the web server
     func userDataDownloaded(data : String){
         userData = data
         if (userData == "0 results"){
