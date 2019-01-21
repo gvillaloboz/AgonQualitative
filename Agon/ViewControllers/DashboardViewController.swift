@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 class DashboardViewController: UIViewController, HealthKitSetupAssistantProtocol, shareHealthDataDelegate {
     
@@ -39,12 +40,16 @@ class DashboardViewController: UIViewController, HealthKitSetupAssistantProtocol
 //            as? MainScreenViewController else {
 //            fatalError("View Controller not found")
 //        }
-        var mainScreenViewController = MainScreenViewController()
-        mainScreenViewController.delegate = self //Protocol conformation here
+        //var mainScreenViewController = MainScreenViewController()
+        //mainScreenViewController.delegate = self //Protocol conformation here
         
         /// request to realm the daily goal
-        self.dailyGoalLabel.text = "Daily Goal: 123"
-        self.weeklyGoalLabel.text = "Weekly Goal: 999"
+        let realm = try! Realm()
+        if let competitionInfo = realm.objects(RealmCompetitionModel.self).last {
+            self.dailyGoalLabel.text = "Daily Goal: \(competitionInfo.weeklyGoal / 7)"
+            self.weeklyGoalLabel.text = "Weekly Goal: \(competitionInfo.weeklyGoal)"
+        }
+        
         
         // set delegates and initialize controllers
         //dashboardController.delegate = self

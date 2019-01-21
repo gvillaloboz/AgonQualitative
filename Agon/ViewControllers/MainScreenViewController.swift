@@ -78,32 +78,44 @@ class MainScreenViewController : UIViewController  { //HealthKitDataRetrieverPro
 
     
     
+    /// Displays on screen the instructions based on the experimental condition
+    /// The conditions are individual or group
     func forkBasedOnExperimentalCondition(){
-        /// request user experimental condition and average steps
+        
+        /// Request user experimental condition
         let realm = try! Realm()
         let userExperimentalCondition = Int((realm.objects(RealmUserModel.self).first?.expCondition)!)!
-    
+        
+        /// Requests average steps
         healthkitSetupAssistant.getDailyAverageStepCount(completion: {averageSteps in
         
-        self.averageDailySteps = averageSteps.truncate(places: 2)
+            self.averageDailySteps = averageSteps.truncate(places: 2)
             
-        /// based on experimental group set instructions text
-        var instructionsText = ""
-        
-        switch userExperimentalCondition {
-        case 1: /// individual
-            self.instructionsTextField.text = "Your daily aveage steps is \(self.averageDailySteps). Do you want to increase it by 5%? That is walking \((self.averageDailySteps * 0.05).truncate(places: 2)) more steps or about \((self.averageDailySteps *  0.05 * 0.013).truncate(places: 2)) minutes of walking."
-            self.instructionsTextField.isHidden = false
-            self.acceptGoalButton.isHidden = false
-            self.denyGoalButton.isHidden = false
+            /// based on experimental group set instructions text
+            var instructionsText = ""
             
-        case 2: /// group
-            self.instructionsTextField.text = "Would you like to participate in a group competition or would you prefer go on your own?"
-        default:
-            instructionsText = "There was error in the experimental group."
-            }})
+            switch userExperimentalCondition {
+            case 1: /// individual
+                self.instructionsTextField.text = "Your daily aveage steps is \(self.averageDailySteps). Do you want to increase it by 5%? That is walking \((self.averageDailySteps * 0.05).truncate(places: 2)) more steps or about \((self.averageDailySteps *  0.05 * 0.013).truncate(places: 2)) minutes of walking."
+                self.instructionsTextField.isHidden = false
+                self.acceptGoalButton.isHidden = false
+                self.denyGoalButton.isHidden = false
+                
+            case 2: /// group
+                self.instructionsTextField.text = "Would you like to participate in a group competition or would you prefer go on your own?"
+            default:
+                instructionsText = "There was error in the experimental group."
+                }
+            
+        })
         }
     
+    
+    /// Action for the accept button
+    /// Calculates the weekly goal based on the average daily steps and
+    /// displays it on the screen. Shows the OK button.
+    ///
+    /// - Parameter sender: accept button
     @IBAction func acceptGoalButtonAction(_ sender: Any) {
         let weeklyGoal = (self.averageDailySteps * 7) + (self.averageDailySteps * 0.05)
         instructionsTextField.text = "Your goal this week will be to reach \((weeklyGoal).truncate(places: 0)) steps. That is approximately \((weeklyGoal / 7).truncate(places: 0)) steps in one day."
@@ -128,6 +140,11 @@ class MainScreenViewController : UIViewController  { //HealthKitDataRetrieverPro
         okButton.isHidden = false
     }
     
+    
+    /// Saves the competition status and the weekly goal in the local realm
+    /// Hides the ok button and segues to the Dashboard View Controller
+    ///
+    /// - Parameter sender: OK button
     @IBAction func okButtonAction(_ sender: Any) { ///add timestamp to competition status
         //Save competition status (goal) in the realm
         competitionController.storeCompetitionStatusLocally(weeklyGoal: self.weeklyGoal, status : self.competitionStatus, completion: { success in
@@ -139,13 +156,13 @@ class MainScreenViewController : UIViewController  { //HealthKitDataRetrieverPro
         // Hide ok Button
         okButton.isHidden = true
         
-        // Request today step counts to HK and display
-        healthkitSetupAssistant.getTodayStepCount(completion: {dailySteps in
-            self.instructionsTextField.text = "Steps for today: \(dailySteps)"
-        })
+        // Request today step counts to HK and display -> this is not necessary
+//        healthkitSetupAssistant.getTodayStepCount(completion: {dailySteps in
+//            self.instructionsTextField.text = "Steps for today: \(dailySteps)"
+//        })
         
-        // Send weekly steps goal to DashboardViewController
-        delegate?.downloadWeeklyGoal(weeklyStepsGoal: self.weeklyGoal)
+        // Send weekly steps goal to DashboardViewController -> this might not be needed because I am storing the weekly goal on the local realm
+        //delegate?.downloadWeeklyGoal(weeklyStepsGoal: self.weeklyGoal)
         
         performSegue(withIdentifier: "mainToDashboardSegue", sender: self)
         //dashboardController.sendWeeklyGoal(self.weeklyGoal)
