@@ -20,7 +20,7 @@ class DashboardViewController: UIViewController, HealthKitSetupAssistantProtocol
     let healthkitSetupAssistant = HealthKitSetupAssistant()
     let delegate = UIApplication.shared.delegate as! AppDelegate
     let dashboardController = DashboardController()
-    
+    var ring : Ring!
 
     
     // Functions
@@ -33,7 +33,7 @@ class DashboardViewController: UIViewController, HealthKitSetupAssistantProtocol
         // Request today step counts to HK and display
         healthkitSetupAssistant.getTodayStepCount(completion: {dailySteps in
             print("Steps requested from Dashboard: \(dailySteps)")
-            self.dailyStepsLabel.text = "Steps for today: \(dailySteps)"
+            self.dailyStepsLabel.text = "Steps for today: \r \(Int(dailySteps))"
         })
         
 //        guard  let mainScreenViewController = self.storyboard?.instantiateViewController(withIdentifier: "MainScreenViewController")
@@ -46,9 +46,13 @@ class DashboardViewController: UIViewController, HealthKitSetupAssistantProtocol
         /// request to realm the daily goal
         let realm = try! Realm()
         if let competitionInfo = realm.objects(RealmCompetitionModel.self).last {
-            self.dailyGoalLabel.text = "Daily Goal: \(competitionInfo.weeklyGoal / 7)"
-            self.weeklyGoalLabel.text = "Weekly Goal: \(competitionInfo.weeklyGoal)"
+            self.dailyGoalLabel.text = "Daily Goal: \(Int(competitionInfo.weeklyGoal / 7))"
+            self.weeklyGoalLabel.text = "Weekly Goal: \(Int (competitionInfo.weeklyGoal))"
         }
+        
+        ring = Ring()
+        ring.draw(CGRect.zero)
+        self.view.addSubview(ring)
         
         
         // set delegates and initialize controllers
@@ -73,6 +77,4 @@ class DashboardViewController: UIViewController, HealthKitSetupAssistantProtocol
         self.weeklyGoalLabel.text = String(weeklyStepsGoal)
     }
 
-    
 }
-

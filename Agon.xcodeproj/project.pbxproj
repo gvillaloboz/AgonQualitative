@@ -11,6 +11,7 @@
 		8B458D7A21BE44EA0058D93A /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B458D7921BE44EA0058D93A /* Reachability.swift */; };
 		8B458D7C21BE75750058D93A /* RealmCompetitionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B458D7B21BE75750058D93A /* RealmCompetitionModel.swift */; };
 		8B458D7E21BEA9B50058D93A /* Numerical.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B458D7D21BEA9B50058D93A /* Numerical.swift */; };
+		8B6ED9D721F61AB700F5A263 /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6ED9D621F61AB700F5A263 /* HistoryViewController.swift */; };
 		8B713C5021D404CF00F4F993 /* DashboardController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B713C4F21D404CF00F4F993 /* DashboardController.swift */; };
 		8B7B10DF2191C160005308CC /* CheckerLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B7B10DE2191C160005308CC /* CheckerLoginViewController.swift */; };
 		8B96CCF221A6B561005B8962 /* MainScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B96CCF121A6B561005B8962 /* MainScreenViewController.swift */; };
@@ -18,6 +19,7 @@
 		8BB3484821A4138E00768F1C /* PermissionRequestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB3484721A4138E00768F1C /* PermissionRequestViewController.swift */; };
 		8BB3484A21A41D9900768F1C /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BB3484921A41D9900768F1C /* HealthKit.framework */; };
 		8BB3484D21A44D1900768F1C /* HealthKitSetupAssistant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB3484C21A44D1900768F1C /* HealthKitSetupAssistant.swift */; };
+		8BC7F68721F8D28700F16DB8 /* Ring.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BC7F68621F8D28700F16DB8 /* Ring.swift */; };
 		8BDC2EDC218C8F5600A7B4A2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BDC2EDB218C8F5600A7B4A2 /* AppDelegate.swift */; };
 		8BDC2EDE218C8F5600A7B4A2 /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BDC2EDD218C8F5600A7B4A2 /* DashboardViewController.swift */; };
 		8BDC2EE1218C8F5600A7B4A2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8BDC2EDF218C8F5600A7B4A2 /* Main.storyboard */; };
@@ -57,6 +59,7 @@
 		8B458D7921BE44EA0058D93A /* Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		8B458D7B21BE75750058D93A /* RealmCompetitionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmCompetitionModel.swift; sourceTree = "<group>"; };
 		8B458D7D21BEA9B50058D93A /* Numerical.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Numerical.swift; sourceTree = "<group>"; };
+		8B6ED9D621F61AB700F5A263 /* HistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
 		8B713C4F21D404CF00F4F993 /* DashboardController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardController.swift; sourceTree = "<group>"; };
 		8B7B10DE2191C160005308CC /* CheckerLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckerLoginViewController.swift; sourceTree = "<group>"; };
 		8B96CCF121A6B561005B8962 /* MainScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenViewController.swift; sourceTree = "<group>"; };
@@ -65,6 +68,7 @@
 		8BB3484921A41D9900768F1C /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		8BB3484B21A41D9900768F1C /* Agon.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Agon.entitlements; sourceTree = "<group>"; };
 		8BB3484C21A44D1900768F1C /* HealthKitSetupAssistant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitSetupAssistant.swift; sourceTree = "<group>"; };
+		8BC7F68621F8D28700F16DB8 /* Ring.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ring.swift; sourceTree = "<group>"; };
 		8BDC2ED8218C8F5600A7B4A2 /* Agon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Agon.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8BDC2EDB218C8F5600A7B4A2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8BDC2EDD218C8F5600A7B4A2 /* DashboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
@@ -148,9 +152,18 @@
 			path = HealthKit;
 			sourceTree = "<group>";
 		};
+		8BC7F68521F8D27600F16DB8 /* Graphics */ = {
+			isa = PBXGroup;
+			children = (
+				8BC7F68621F8D28700F16DB8 /* Ring.swift */,
+			);
+			path = Graphics;
+			sourceTree = "<group>";
+		};
 		8BDC2ECF218C8F5600A7B4A2 = {
 			isa = PBXGroup;
 			children = (
+				8BC7F68521F8D27600F16DB8 /* Graphics */,
 				8B458D7821BE44B00058D93A /* Helpers */,
 				8BB3484E21A45C4B00768F1C /* HealthKit */,
 				8B96E50821A40E3C009174C2 /* Assets */,
@@ -226,6 +239,7 @@
 				8BF31D502194A55A005A526A /* LoginViewController.swift */,
 				8BB3484721A4138E00768F1C /* PermissionRequestViewController.swift */,
 				8B96CCF121A6B561005B8962 /* MainScreenViewController.swift */,
+				8B6ED9D621F61AB700F5A263 /* HistoryViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -561,6 +575,7 @@
 				8BF616B921D0ECC700C9C2BC /* CompetitionController.swift in Sources */,
 				8BDC2EDE218C8F5600A7B4A2 /* DashboardViewController.swift in Sources */,
 				8BF31D532195A86B005A526A /* HomeModel.swift in Sources */,
+				8BC7F68721F8D28700F16DB8 /* Ring.swift in Sources */,
 				8BDC2EDC218C8F5600A7B4A2 /* AppDelegate.swift in Sources */,
 				8B458D7C21BE75750058D93A /* RealmCompetitionModel.swift in Sources */,
 				8BF31D512194A55A005A526A /* LoginViewController.swift in Sources */,
@@ -569,6 +584,7 @@
 				8B713C5021D404CF00F4F993 /* DashboardController.swift in Sources */,
 				8B7B10DF2191C160005308CC /* CheckerLoginViewController.swift in Sources */,
 				8BB3484D21A44D1900768F1C /* HealthKitSetupAssistant.swift in Sources */,
+				8B6ED9D721F61AB700F5A263 /* HistoryViewController.swift in Sources */,
 				8B458D7A21BE44EA0058D93A /* Reachability.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -675,12 +691,13 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.2;
 			};
 			name = Debug;
 		};
@@ -729,11 +746,12 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 4.2;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;

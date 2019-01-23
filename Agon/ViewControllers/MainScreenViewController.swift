@@ -156,19 +156,16 @@ class MainScreenViewController : UIViewController  { //HealthKitDataRetrieverPro
         // Hide ok Button
         okButton.isHidden = true
         
-        // Request today step counts to HK and display -> this is not necessary
-//        healthkitSetupAssistant.getTodayStepCount(completion: {dailySteps in
-//            self.instructionsTextField.text = "Steps for today: \(dailySteps)"
-//        })
-        
         // Send weekly steps goal to DashboardViewController -> this might not be needed because I am storing the weekly goal on the local realm
         //delegate?.downloadWeeklyGoal(weeklyStepsGoal: self.weeklyGoal)
         
         performSegue(withIdentifier: "mainToDashboardSegue", sender: self)
-        //dashboardController.sendWeeklyGoal(self.weeklyGoal)
-        
+    
     }
    
+    
+    /// Hides the UI components for buttons
+    /// and instructions text field
     func hideUIComponents(){
         okButton.isHidden = true
         acceptGoalButton.isHidden = true
