@@ -36,6 +36,11 @@ class DashboardViewController: UIViewController, HealthKitSetupAssistantProtocol
             self.dailyStepsLabel.text = "Steps for today: \r \(Int(dailySteps))"
         })
         
+        // Store steps in the Agon DB Server
+        dashboardController.storeStepsInWebServer(steps : dailySteps)
+        
+        
+        
 //        guard  let mainScreenViewController = self.storyboard?.instantiateViewController(withIdentifier: "MainScreenViewController")
 //            as? MainScreenViewController else {
 //            fatalError("View Controller not found")
@@ -50,9 +55,9 @@ class DashboardViewController: UIViewController, HealthKitSetupAssistantProtocol
             self.weeklyGoalLabel.text = "Weekly Goal: \(Int (competitionInfo.weeklyGoal))"
         }
         
-        ring = Ring()
-        ring.draw(CGRect.zero)
-        self.view.addSubview(ring)
+//        ring = Ring()
+//        ring.draw(CGRect.zero)
+//        self.view.addSubview(ring)
         
         
         // set delegates and initialize controllers
