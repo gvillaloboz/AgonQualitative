@@ -9,7 +9,10 @@
 import Foundation
 import UIKit
 
-class HistoryViewController : UITableViewController{
+class HistoryViewController : UITableViewController, HistoryContollerProtocol{
+    
+    var historyController = HistoryController()
+    var userModel = RealmUserModel()
     
     // MARK: - Table view data source
     
@@ -21,7 +24,7 @@ class HistoryViewController : UITableViewController{
         return 5
     }
  
-
+    
     /// Create cells according to the Prototype cell and configure the cell text to show the section and row numbers
     ///
     /// - Parameters:
@@ -33,6 +36,9 @@ class HistoryViewController : UITableViewController{
         
         //cell.textLabel?.text = "Section \(indexPath.section) Row \(indexPath.row)"
         cell.textLabel?.text = "27.10 \t\t 3450"
+        
+    
+        historyController.downloadAllHistoryData(userId: userModel.getId())
         
         return cell
     }
@@ -47,4 +53,10 @@ class HistoryViewController : UITableViewController{
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return "Section \(section)"
     }
+    
+    // Prints the content of the history retrieved from the server [Temporal]
+    func userAllHistoryDataDownloaded(data: String) {
+        print(data)
+    }
+    
 }

@@ -18,23 +18,27 @@ class DashboardController {
     weak var delegate : DashboardContollerProtocol!
     var realmUserModel = RealmUserModel()
     var numericalHelper = Numerical() // maybe I do not need to create an object of this class
+    var synchronizationModel = SynchronizationModel()
     
     // Funtion to store past unsync steps on the server and today's steps until current time
     func storeStepsInWebServer(steps : Double){
-        // Checks if there is internet connection available to avoid connectivity issues with the server
-        var internetConnection = Reachability().isInternetAvailable()
-        // Send today's steps to the server
-        if(Reachability().isInternetAvailable()){
-            sendStepsDataToWebServer(steps : steps,
-                                     userId : realmUserModel.getId(),
-                                     timestamp : Numerical().convertDateToString(Date()),
-                                     completion : { results in
-                                        print (results)
-                                        }
-                                    )
+        // Checks if there are new steps that should be store on the DB
+        if(synchronizationModel.getLastSyncTimestamp() < Date() && synchronizationModel.getLastSyncSteps() != steps)
+        {
+            // Checks if there is internet connection available to avoid connectivity issues with the server
+            var internetConnection = Reachability().isInternetAvailable()
+            // Send today's steps to the server
+            if(Reachability().isInternetAvailable()){
+                sendStepsDataToWebServer(steps : steps,
+                                         userId : realmUserModel.getId(),
+                                         timestamp : Numerical().convertDateToString(date: Date()),
+                                         completion : { results in
+                                            print (results)
+                }
+                )
+            }
         }
     }
-    
     
     
     
@@ -78,7 +82,11 @@ class DashboardController {
             var splitString = [String]()
             splitString = (responseString?.components(separatedBy: "."))!
             completion(splitString[0])
+            
+            self.synchronizationModel.updateLastSyncTimestampAndSteps(steps: steps)
         }
         task.resume()
+        
+        
     }
 }

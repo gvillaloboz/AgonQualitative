@@ -15,6 +15,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let healthKitSetupAssistant = HealthKitSetupAssistant()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        // Initializes in Realm the Last Sync Timestamp -> This determines the starting day of the baseline
+        SynchronizationModel().initializeLastDaySync(year: 2018, month: 12, day: 1, hour: 0, minute: 0, second: 0)
+        
         // Override point for customization after application launch.
         print("application did finish launching with options")
         healthKitSetupAssistant.requestAccessWithCompletion(){ success, error in

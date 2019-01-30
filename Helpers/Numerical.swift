@@ -21,7 +21,7 @@ extension Double
 class Numerical{
     
     
-    private func convertDateToString(date : Date) -> String{
+    func convertDateToString(date : Date) -> String{
         var myStringafd : String
         
         let locale = NSLocale.current

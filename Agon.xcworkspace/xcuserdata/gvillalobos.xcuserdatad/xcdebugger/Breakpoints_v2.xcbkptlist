@@ -26,7 +26,7 @@
                   moduleName = "Agon"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/gvillalobos/Code/Agon/Agon/Models/HomeModel.swift"
-                  timestampString = "569956419.373042"
+                  timestampString = "570566566.220886"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "20"
@@ -41,7 +41,7 @@
                   moduleName = "Agon"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/gvillalobos/Code/Agon/Agon/Models/HomeModel.swift"
-                  timestampString = "569956419.376628"
+                  timestampString = "570566566.2231179"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "20"
@@ -56,7 +56,7 @@
                   moduleName = "Agon"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/gvillalobos/Code/Agon/Agon/Models/HomeModel.swift"
-                  timestampString = "569956419.3793761"
+                  timestampString = "570566566.225441"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "20"
@@ -121,7 +121,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Agon/ViewControllers/LoginViewController.swift"
-            timestampString = "567345171.330048"
+            timestampString = "570565697.618111"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "119"
@@ -153,7 +153,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Agon/ViewControllers/LoginViewController.swift"
-            timestampString = "567345171.330186"
+            timestampString = "570565697.618212"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "55"
@@ -233,7 +233,7 @@
                   moduleName = "Agon"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/gvillalobos/Code/Agon/Agon/ViewControllers/PermissionRequestViewController.swift"
-                  timestampString = "569956419.506732"
+                  timestampString = "570566566.385958"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "51"
@@ -248,7 +248,7 @@
                   moduleName = "Agon"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/gvillalobos/Code/Agon/Agon/ViewControllers/PermissionRequestViewController.swift"
-                  timestampString = "569956419.509003"
+                  timestampString = "570566566.388341"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "52"
@@ -361,7 +361,7 @@
                   moduleName = "Agon"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/gvillalobos/Code/Agon/HealthKit/HealthKitSetupAssistant.swift"
-                  timestampString = "569956419.51599"
+                  timestampString = "570566566.3959301"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "228"
@@ -376,7 +376,7 @@
                   moduleName = "Agon"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/gvillalobos/Code/Agon/HealthKit/HealthKitSetupAssistant.swift"
-                  timestampString = "569956419.518189"
+                  timestampString = "570566566.398252"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "229"
@@ -585,27 +585,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Agon/ViewControllers/DashboardViewController.swift"
-            timestampString = "569956419.1374"
+            timestampString = "570566565.967398"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "29"
-            endingLineNumber = "29"
-            landmarkName = "viewDidLoad()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Agon/ViewControllers/DashboardViewController.swift"
-            timestampString = "569956419.137922"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "48"
-            endingLineNumber = "48"
+            startingLineNumber = "39"
+            endingLineNumber = "39"
             landmarkName = "viewDidLoad()"
             landmarkType = "7">
          </BreakpointContent>
@@ -617,12 +601,108 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Graphics/Ring.swift"
-            timestampString = "569956429.573264"
+            timestampString = "570460802.112216"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "31"
             endingLineNumber = "31"
-            landmarkName = "draw(_:)"
+            landmarkName = "Ring"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Agon.Ring.__allocating_init(coder: __C.NSCoder) -&gt; Swift.Optional&lt;Agon.Ring&gt;"
+                  moduleName = "Agon"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/gvillalobos/Code/Agon/Graphics/Ring.swift"
+                  timestampString = "570566566.4150569"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "12">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Agon.Ring.init(coder: __C.NSCoder) -&gt; Swift.Optional&lt;Agon.Ring&gt;"
+                  moduleName = "Agon"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/gvillalobos/Code/Agon/Graphics/Ring.swift"
+                  timestampString = "570566566.417015"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "15"
+                  endingLineNumber = "15"
+                  offsetFromSymbolStart = "44">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Agon/Controllers/DashboardController.swift"
+            timestampString = "570566565.967492"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "55"
+            endingLineNumber = "55"
+            landmarkName = "sendStepsDataToWebServer(steps:userId:timestamp:completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Agon/Controllers/DashboardController.swift"
+            timestampString = "570566565.967555"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "26"
+            endingLineNumber = "26"
+            landmarkName = "storeStepsInWebServer(steps:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Agon/Controllers/DashboardController.swift"
+            timestampString = "570566565.967612"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "86"
+            endingLineNumber = "86"
+            landmarkName = "sendStepsDataToWebServer(steps:userId:timestamp:completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Agon/Models/SynchronizationModel.swift"
+            timestampString = "570566565.9676681"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "25"
+            endingLineNumber = "25"
+            landmarkName = "getLastSyncTimestamp()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

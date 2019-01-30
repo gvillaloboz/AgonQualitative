@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		2A007C923ACA1167442702DD /* Pods_AgonUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD9B167BF04C0848A8E4A62A /* Pods_AgonUITests.framework */; };
+		8B13AD1E2200A9870074C8B2 /* SynchronizationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B13AD1D2200A9870074C8B2 /* SynchronizationModel.swift */; };
+		8B13AD2022021CDE0074C8B2 /* HistoryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B13AD1F22021CDE0074C8B2 /* HistoryController.swift */; };
 		8B458D7A21BE44EA0058D93A /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B458D7921BE44EA0058D93A /* Reachability.swift */; };
 		8B458D7C21BE75750058D93A /* RealmCompetitionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B458D7B21BE75750058D93A /* RealmCompetitionModel.swift */; };
 		8B458D7E21BEA9B50058D93A /* Numerical.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B458D7D21BEA9B50058D93A /* Numerical.swift */; };
@@ -56,6 +58,8 @@
 
 /* Begin PBXFileReference section */
 		07FA020758ED65DC54559303 /* Pods_Agon.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Agon.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8B13AD1D2200A9870074C8B2 /* SynchronizationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SynchronizationModel.swift; sourceTree = "<group>"; };
+		8B13AD1F22021CDE0074C8B2 /* HistoryController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryController.swift; sourceTree = "<group>"; };
 		8B458D7921BE44EA0058D93A /* Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		8B458D7B21BE75750058D93A /* RealmCompetitionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmCompetitionModel.swift; sourceTree = "<group>"; };
 		8B458D7D21BEA9B50058D93A /* Numerical.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Numerical.swift; sourceTree = "<group>"; };
@@ -227,6 +231,7 @@
 				8BF31D522195A86B005A526A /* HomeModel.swift */,
 				8BF31D54219ACB4B005A526A /* UserModel.swift */,
 				8B458D7B21BE75750058D93A /* RealmCompetitionModel.swift */,
+				8B13AD1D2200A9870074C8B2 /* SynchronizationModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -250,6 +255,7 @@
 				8BF31D57219B158C005A526A /* UserController.swift */,
 				8BF616B821D0ECC700C9C2BC /* CompetitionController.swift */,
 				8B713C4F21D404CF00F4F993 /* DashboardController.swift */,
+				8B13AD1F22021CDE0074C8B2 /* HistoryController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -568,6 +574,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8B13AD2022021CDE0074C8B2 /* HistoryController.swift in Sources */,
 				8BF31D4F2194A518005A526A /* RealmUserModel.swift in Sources */,
 				8BF31D55219ACB4B005A526A /* UserModel.swift in Sources */,
 				8B458D7E21BEA9B50058D93A /* Numerical.swift in Sources */,
@@ -577,6 +584,7 @@
 				8BF31D532195A86B005A526A /* HomeModel.swift in Sources */,
 				8BC7F68721F8D28700F16DB8 /* Ring.swift in Sources */,
 				8BDC2EDC218C8F5600A7B4A2 /* AppDelegate.swift in Sources */,
+				8B13AD1E2200A9870074C8B2 /* SynchronizationModel.swift in Sources */,
 				8B458D7C21BE75750058D93A /* RealmCompetitionModel.swift in Sources */,
 				8BF31D512194A55A005A526A /* LoginViewController.swift in Sources */,
 				8BB3484821A4138E00768F1C /* PermissionRequestViewController.swift in Sources */,

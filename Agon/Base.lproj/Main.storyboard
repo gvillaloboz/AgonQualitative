@@ -154,22 +154,6 @@
                                     <segue destination="KQ2-jq-N7a" kind="show" id="EnI-m0-JKe"/>
                                 </connections>
                             </button>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wYV-2t-Mfp" customClass="Ring" customModule="Agon" customModuleProvider="target">
-                                <rect key="frame" x="67" y="518" width="240" height="128"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="mainColor">
-                                        <color key="value" red="0.93725001809999997" green="0.20000000300000001" blue="0.25097998980000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="ringColor">
-                                        <color key="value" red="0.25197722319999999" green="0.54373732330000002" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="ringThickness">
-                                        <real key="value" value="5"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -368,6 +352,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="4RN-rO-QOa"/>
+        <segue reference="fzF-zh-fWF"/>
     </inferredMetricsTieBreakers>
 </document>

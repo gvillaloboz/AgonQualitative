@@ -31,6 +31,6 @@ class RealmUserModel : Object{
     func getId() -> String {
         let realm = try! Realm()
         let id = realm.objects(RealmUserModel.self).first?.id
-        return id
+        return id!
     }
 }

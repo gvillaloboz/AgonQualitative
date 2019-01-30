@@ -34,10 +34,12 @@ class DashboardViewController: UIViewController, HealthKitSetupAssistantProtocol
         healthkitSetupAssistant.getTodayStepCount(completion: {dailySteps in
             print("Steps requested from Dashboard: \(dailySteps)")
             self.dailyStepsLabel.text = "Steps for today: \r \(Int(dailySteps))"
+            
+            // Store steps in the Agon DB Server
+            self.dashboardController.storeStepsInWebServer(steps : dailySteps)
         })
         
-        // Store steps in the Agon DB Server
-        dashboardController.storeStepsInWebServer(steps : dailySteps)
+        
         
         
         
