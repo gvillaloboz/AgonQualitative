@@ -46,11 +46,10 @@ class HistoryController{
             }
             
             let responseString = String(data: data, encoding: .utf8)!
-            print("responseString = \(String(describing: responseString))")
+            //print("responseString = \(String(describing: responseString))")
             
-            // Sends user data to the delegate function on the Login View
             DispatchQueue.main.async(execute: { () -> Void  in
-                
+                // Sends user data to the delegate function on the Login View
                 self.delegate.userAllHistoryDataDownloaded(data: responseString)
             })
         }

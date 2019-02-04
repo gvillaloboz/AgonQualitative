@@ -11,35 +11,46 @@ import UIKit
 
 class HistoryViewController : UITableViewController, HistoryContollerProtocol{
     
+    struct StepsRecord{
+        var stepsNumber : String
+        var timestamp : String
+    }
+    
     var historyController = HistoryController()
     var userModel = RealmUserModel()
+    var historyArray : [StepsRecord] = []
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        historyController.delegate = self
+        historyController.downloadAllHistoryData(userId: userModel.getId())
+    }
     
     // MARK: - Table view data source
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 3
+        return 1
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return historyArray.count
     }
  
     
     /// Create cells according to the Prototype cell and configure the cell text to show the section and row numbers
     ///
     /// - Parameters:
-    ///   - tableView: <#tableView description#>
-    ///   - indexPath: <#indexPath description#>
+    ///   - tableView: table view
+    ///   - indexPath: position in the table
     /// - Returns: the table view cell
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "LabelCell", for: indexPath)
         
         //cell.textLabel?.text = "Section \(indexPath.section) Row \(indexPath.row)"
-        cell.textLabel?.text = "27.10 \t\t 3450"
-        
+        cell.textLabel?.text = historyArray[indexPath.row].stepsNumber + "\t\t" + historyArray[indexPath.row].timestamp
+
+        print(historyArray[indexPath.row].stepsNumber + "\t\t" + historyArray[indexPath.row].timestamp)
     
-        historyController.downloadAllHistoryData(userId: userModel.getId())
-        
         return cell
     }
     
@@ -50,13 +61,27 @@ class HistoryViewController : UITableViewController, HistoryContollerProtocol{
     ///   - tableView: <#tableView description#>
     ///   - section: <#section description#>
     /// - Returns: title according to the section number
-    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return "Section \(section)"
-    }
+//    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+//        return "Section \(section)"
+//    }
     
     // Prints the content of the history retrieved from the server [Temporal]
     func userAllHistoryDataDownloaded(data: String) {
-        print(data)
+        var rawStringRecordArray = data.components(separatedBy: "\n")
+        rawStringRecordArray.remove(at: rawStringRecordArray.count-1)
+        //historyArray = data.components(separatedBy: "\n")
+        //rawStringRecordArray.forEach{ (rawRecord) in
+        for (index, rawRecord) in rawStringRecordArray.enumerated(){
+            var temp = rawRecord.components(separatedBy: ",")
+            let stepsRecord = StepsRecord(stepsNumber: temp[0], timestamp : temp[1])
+        
+            historyArray.append(stepsRecord)
+        
+        }
+        
+        tableView.reloadData()
+
+        
     }
     
 }
