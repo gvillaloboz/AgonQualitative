@@ -29,6 +29,7 @@
 		8BDC2EE6218C8F5700A7B4A2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8BDC2EE4218C8F5700A7B4A2 /* LaunchScreen.storyboard */; };
 		8BDC2EF1218C8F5700A7B4A2 /* AgonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BDC2EF0218C8F5700A7B4A2 /* AgonTests.swift */; };
 		8BDC2EFC218C8F5700A7B4A2 /* AgonUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BDC2EFB218C8F5700A7B4A2 /* AgonUITests.swift */; };
+		8BE10AC122099CCE00CC6AD3 /* HistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BE10AC022099CCE00CC6AD3 /* HistoryTableViewCell.swift */; };
 		8BF31D4F2194A518005A526A /* RealmUserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF31D4E2194A518005A526A /* RealmUserModel.swift */; };
 		8BF31D512194A55A005A526A /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF31D502194A55A005A526A /* LoginViewController.swift */; };
 		8BF31D532195A86B005A526A /* HomeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF31D522195A86B005A526A /* HomeModel.swift */; };
@@ -86,6 +87,7 @@
 		8BDC2EF7218C8F5700A7B4A2 /* AgonUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AgonUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8BDC2EFB218C8F5700A7B4A2 /* AgonUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgonUITests.swift; sourceTree = "<group>"; };
 		8BDC2EFD218C8F5700A7B4A2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8BE10AC022099CCE00CC6AD3 /* HistoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryTableViewCell.swift; sourceTree = "<group>"; };
 		8BF31D4E2194A518005A526A /* RealmUserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmUserModel.swift; sourceTree = "<group>"; };
 		8BF31D502194A55A005A526A /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		8BF31D522195A86B005A526A /* HomeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeModel.swift; sourceTree = "<group>"; };
@@ -245,6 +247,7 @@
 				8BB3484721A4138E00768F1C /* PermissionRequestViewController.swift */,
 				8B96CCF121A6B561005B8962 /* MainScreenViewController.swift */,
 				8B6ED9D621F61AB700F5A263 /* HistoryViewController.swift */,
+				8BE10AC022099CCE00CC6AD3 /* HistoryTableViewCell.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -583,6 +586,7 @@
 				8BDC2EDE218C8F5600A7B4A2 /* DashboardViewController.swift in Sources */,
 				8BF31D532195A86B005A526A /* HomeModel.swift in Sources */,
 				8BC7F68721F8D28700F16DB8 /* Ring.swift in Sources */,
+				8BE10AC122099CCE00CC6AD3 /* HistoryTableViewCell.swift in Sources */,
 				8BDC2EDC218C8F5600A7B4A2 /* AppDelegate.swift in Sources */,
 				8B13AD1E2200A9870074C8B2 /* SynchronizationModel.swift in Sources */,
 				8B458D7C21BE75750058D93A /* RealmCompetitionModel.swift in Sources */,

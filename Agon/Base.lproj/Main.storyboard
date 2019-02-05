@@ -191,14 +191,38 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="LabelCell" id="OTM-mE-ceB">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="LabelCell" id="OTM-mE-ceB" customClass="HistoryTableViewCell" customModule="Agon" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="OTM-mE-ceB" id="rbv-Rh-kuW">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="43.666666666666664"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EB8-T0-bIG">
+                                            <rect key="frame" x="16" y="11" width="42" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kCA-tG-I1r">
+                                            <rect key="frame" x="317" y="11" width="42" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="kCA-tG-I1r" firstAttribute="top" secondItem="rbv-Rh-kuW" secondAttribute="topMargin" id="690-L4-1gm"/>
+                                        <constraint firstItem="kCA-tG-I1r" firstAttribute="trailing" secondItem="rbv-Rh-kuW" secondAttribute="trailingMargin" id="6cv-8m-1SZ"/>
+                                        <constraint firstItem="EB8-T0-bIG" firstAttribute="leading" secondItem="rbv-Rh-kuW" secondAttribute="leadingMargin" id="Pmo-7h-KE5"/>
+                                        <constraint firstItem="EB8-T0-bIG" firstAttribute="top" secondItem="rbv-Rh-kuW" secondAttribute="topMargin" id="ccb-ct-Sr9"/>
+                                    </constraints>
                                 </tableViewCellContentView>
                                 <inset key="separatorInset" minX="15" minY="0.0" maxX="15" maxY="0.0"/>
+                                <connections>
+                                    <outlet property="stepsNumberLabel" destination="EB8-T0-bIG" id="TdF-gn-kal"/>
+                                    <outlet property="timestampLabel" destination="kCA-tG-I1r" id="It9-Ey-SbX"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>

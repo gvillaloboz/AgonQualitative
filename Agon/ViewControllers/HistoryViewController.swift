@@ -44,12 +44,11 @@ class HistoryViewController : UITableViewController, HistoryContollerProtocol{
     ///   - indexPath: position in the table
     /// - Returns: the table view cell
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "LabelCell", for: indexPath)
-        
-        //cell.textLabel?.text = "Section \(indexPath.section) Row \(indexPath.row)"
-        cell.textLabel?.text = historyArray[indexPath.row].stepsNumber + "\t\t" + historyArray[indexPath.row].timestamp
-
-        print(historyArray[indexPath.row].stepsNumber + "\t\t" + historyArray[indexPath.row].timestamp)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "LabelCell", for: indexPath) as! HistoryTableViewCell
+        cell.stepsNumberLabel?.text = historyArray[indexPath.row].stepsNumber
+        cell.timestampLabel?.text = historyArray[indexPath.row].timestamp
+       
+        //print(historyArray[indexPath.row].stepsNumber + "\t" + historyArray[indexPath.row].timestamp)
     
         return cell
     }
