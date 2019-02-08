@@ -9,22 +9,31 @@
 import Foundation
 
 protocol DashboardContollerProtocol: class {
-    //func userDataDownloaded(data : String)
+    func updateStepsLabelFunc(steps : String)
 }
 
 class DashboardController {
     
     //properties
-    weak var delegate : DashboardContollerProtocol!
+    weak var delegate : DashboardContollerProtocol?
     var realmUserModel = RealmUserModel()
     var numericalHelper = Numerical() // maybe I do not need to create an object of this class
     var synchronizationModel = SynchronizationModel()
     
+    
+    func updateStepsLabel(steps: Double){
+         self.delegate?.updateStepsLabelFunc(steps: String(steps))
+    }
+    
     // Funtion to store past unsync steps on the server and today's steps until current time
     func storeStepsInWebServer(steps : Double){
+        print("Store Steps in WebServer")
         // Checks if there are new steps that should be store on the DB
         if(synchronizationModel.getLastSyncTimestamp() < Date() && synchronizationModel.getLastSyncSteps() != steps)
         {
+            // Updates Dashboard View Controller UI Steps Label
+            //self.delegate?.updateStepsLabel(steps: String(steps))
+            
             // Checks if there is internet connection available to avoid connectivity issues with the server
             var internetConnection = Reachability().isInternetAvailable()
             // Send today's steps to the server
@@ -56,7 +65,7 @@ class DashboardController {
         let backSlash = "\'"
         let timeString = backSlash + a + backSlash
         // End Convert Date to String
-        
+        // review si viene un "NoId"
         let postString = "a=\(steps)&b=\(userId)&c=\(timeString)"
         print(postString)
         

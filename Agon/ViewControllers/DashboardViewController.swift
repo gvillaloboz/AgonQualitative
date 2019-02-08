@@ -9,16 +9,18 @@
 import UIKit
 import RealmSwift
 
-class DashboardViewController: UIViewController, HealthKitSetupAssistantProtocol, shareHealthDataDelegate {
+class DashboardViewController: UIViewController, HealthKitSetupAssistantProtocol, shareHealthDataDelegate, DashboardContollerProtocol {
+
     
+
     // Properties
     
     @IBOutlet weak var weeklyGoalLabel: UILabel!
     @IBOutlet weak var dailyGoalLabel: UILabel!
     @IBOutlet weak var dailyStepsLabel: UILabel!
     
-    let healthkitSetupAssistant = HealthKitSetupAssistant()
-    let delegate = UIApplication.shared.delegate as! AppDelegate
+    let healthKitSetupAssistant = HealthKitSetupAssistant()
+    //let delegate = UIApplication.shared.delegate as! AppDelegate
     let dashboardController = DashboardController()
     var ring : Ring!
 
@@ -28,21 +30,19 @@ class DashboardViewController: UIViewController, HealthKitSetupAssistantProtocol
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        dashboardController.delegate = self
+        healthKitSetupAssistant.delegate = self
         print("Dashboard view did load")
         
         // Request today step counts to HK and display
-        healthkitSetupAssistant.getTodayStepCount(completion: {dailySteps in
+        healthKitSetupAssistant.getTodayStepCount(completion: {dailySteps in
             print("Steps requested from Dashboard: \(dailySteps)")
             self.dailyStepsLabel.text = "Steps for today: \r \(Int(dailySteps))"
             
             // Store steps in the Agon DB Server
             self.dashboardController.storeStepsInWebServer(steps : dailySteps)
         })
-        
-        
-        
-        
-        
+    
 //        guard  let mainScreenViewController = self.storyboard?.instantiateViewController(withIdentifier: "MainScreenViewController")
 //            as? MainScreenViewController else {
 //            fatalError("View Controller not found")
@@ -69,6 +69,20 @@ class DashboardViewController: UIViewController, HealthKitSetupAssistantProtocol
 //        healthkitSetupAssistant.delegate = self
 //        stepCountLabel.text = String(healthkitSetupAssistant.stepsFromBackground)
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        print("Dashboard view did appear")
+        healthKitSetupAssistant.delegate = self
+        // Request today step counts to HK and display
+        healthKitSetupAssistant.getTodayStepCount(completion: {dailySteps in
+            print("Steps requested from Dashboard: \(dailySteps)")
+            self.dailyStepsLabel.text = "Steps for today: \r \(Int(dailySteps))"
+            
+            // Store steps in the Agon DB Server
+            self.dashboardController.storeStepsInWebServer(steps : dailySteps)
+        })
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -76,12 +90,17 @@ class DashboardViewController: UIViewController, HealthKitSetupAssistantProtocol
     }
     
     /// Functions
-    func userStepsRetrieved(steps: Double) {
-        
-    }
-    
     func downloadWeeklyGoal(weeklyStepsGoal: Double){
         self.weeklyGoalLabel.text = String(weeklyStepsGoal)
     }
+
+    func updateStepsNumberLabel(steps: Double) {
+        self.dailyStepsLabel.text = "Steps for today: \r \(Int(steps))"
+    }
+    
+    func updateStepsLabelFunc(steps: String) {
+        self.dailyStepsLabel.text = "Steps for today: \r \(Int(steps))"
+    }
+    
 
 }

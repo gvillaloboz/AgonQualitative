@@ -29,8 +29,21 @@ class CheckerLoginViewController : UIViewController{
         super.viewDidAppear(animated)
         print("Checker View did appear")
 
+            /// For Base on Experimental Condition
             if(userController.checkIfUserExistsLocally()){
-                performSegue(withIdentifier: "splashToMainSegue", sender: self)
+                /// Request user experimental condition
+                let realm = try! Realm()
+                let userExperimentalCondition = Int((realm.objects(RealmUserModel.self).first?.expCondition)!)!
+                
+                switch userExperimentalCondition {
+                case 1: /// individual
+                    performSegue(withIdentifier: "splashToMainSegue", sender: self)
+                    
+                case 2: /// group
+                    performSegue(withIdentifier: "splashToGroupMainSegue", sender: self)
+                default:
+                    print("There was error in the experimental group.")
+                }
             }
             else{
                 performSegue(withIdentifier: "splashToLoginSegue", sender: self)

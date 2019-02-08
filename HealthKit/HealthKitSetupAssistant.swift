@@ -13,7 +13,7 @@ typealias AccessRequestCallback = (_ success: Bool, _ error: Error) -> Void
 
 
 protocol HealthKitSetupAssistantProtocol: class {
-    func userStepsRetrieved(steps : Double)
+    func updateStepsNumberLabel(steps : Double)
 }
 
 class HealthKitSetupAssistant {
@@ -21,8 +21,8 @@ class HealthKitSetupAssistant {
     // Properties
     private let healthStore = HKHealthStore()
     var internetConnection = false
-    weak var delegate : HealthKitSetupAssistantProtocol!
-    var stepsFromBackground = Double()
+    weak var delegate : HealthKitSetupAssistantProtocol?
+    let dashboardController = DashboardController()
     
     
     /// Requests access to all the data types the app wishes to read/write from HealthKit.
@@ -48,7 +48,9 @@ class HealthKitSetupAssistant {
                 strongSelf.setUpBackgroundDeliveryForDataTypes(types: readDataTypes, completion: { steps in
                     ///  review how to send data from here to the dashboard view controller
                     print("Steps from background: \(steps)")
-                    //strongSelf.stepsFromBackground = steps
+                    strongSelf.delegate?.updateStepsNumberLabel(steps: steps)
+                    strongSelf.dashboardController.storeStepsInWebServer(steps: steps)
+                    strongSelf.dashboardController.updateStepsLabel(steps: steps)
                     //strongSelf.delegate.userStepsRetrieved(steps: steps)
                 })
             }

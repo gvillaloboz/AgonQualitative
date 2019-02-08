@@ -27,7 +27,7 @@ class MainScreenViewController : UIViewController  { //HealthKitDataRetrieverPro
     @IBOutlet weak var acceptGoalButton: UIButton!
     @IBOutlet weak var denyGoalButton: UIButton!
     @IBOutlet weak var okButton: UIButton!
-    
+        
     private let healthkitSetupAssistant = HealthKitSetupAssistant()
     private let competitionController = CompetitionController()
     private let dashboardController = DashboardController()
@@ -41,6 +41,8 @@ class MainScreenViewController : UIViewController  { //HealthKitDataRetrieverPro
     // Functions
     override func viewDidLoad() {
         hideUIComponents()
+        styleTextView()
+        styleButtons()
     }
     
     override func viewDidAppear(_ animated: Bool){
@@ -60,6 +62,8 @@ class MainScreenViewController : UIViewController  { //HealthKitDataRetrieverPro
             print("Running competition")
             denyGoalButton.isHidden = true
             acceptGoalButton.isHidden = true
+            //soloButton.isHidden = true
+            //groupButton.isHidden = true
             performSegue(withIdentifier: "mainToDashboardSegue", sender: self)
             
             // Request today step counts to HK and display
@@ -103,6 +107,9 @@ class MainScreenViewController : UIViewController  { //HealthKitDataRetrieverPro
                 
             case 2: /// group
                 self.instructionsTextField.text = "Would you like to participate in a group competition or would you prefer go on your own?"
+                self.instructionsTextField.isHidden = false
+//                self.soloButton.isHidden = false
+//                self.groupButton.isHidden = false
             default:
                 instructionsText = "There was error in the experimental group."
                 }
@@ -162,7 +169,7 @@ class MainScreenViewController : UIViewController  { //HealthKitDataRetrieverPro
         performSegue(withIdentifier: "mainToDashboardSegue", sender: self)
     
     }
-   
+    
     
     /// Hides the UI components for buttons
     /// and instructions text field
@@ -171,6 +178,36 @@ class MainScreenViewController : UIViewController  { //HealthKitDataRetrieverPro
         acceptGoalButton.isHidden = true
         denyGoalButton.isHidden = true
         instructionsTextField.isHidden = true
+    }
+    
+    func styleTextView(){
+        instructionsTextField.layer.backgroundColor = Color().getPurple()
+        instructionsTextField.layer.cornerRadius = 5
+        instructionsTextField.layer.borderColor = UIColor.gray.withAlphaComponent(0.5).cgColor
+        instructionsTextField.layer.borderWidth = 0.5
+        instructionsTextField.clipsToBounds = true
+
+    }
+    
+    func styleButtons(){
+        acceptGoalButton.layer.cornerRadius = 5
+        acceptGoalButton.layer.borderColor = UIColor.gray.withAlphaComponent(0.5).cgColor
+        acceptGoalButton.layer.borderWidth = 0.5
+        acceptGoalButton.layer.backgroundColor = Color().getOrange()
+        acceptGoalButton.setTitleColor(.white, for: .normal)
+        
+        denyGoalButton.layer.cornerRadius = 5
+        denyGoalButton.layer.borderColor = UIColor.gray.withAlphaComponent(0.5).cgColor
+        denyGoalButton.layer.borderWidth = 0.5
+        denyGoalButton.layer.backgroundColor = Color().getOrange()
+        denyGoalButton.setTitleColor(.white, for: .normal)
+        
+        okButton.layer.cornerRadius = 5
+        okButton.layer.borderColor = UIColor.gray.withAlphaComponent(0.5).cgColor
+        okButton.layer.borderWidth = 0.5
+        okButton.layer.backgroundColor = Color().getOrange()
+        okButton.setTitleColor(.white, for: .normal)
+        
     }
     
 }

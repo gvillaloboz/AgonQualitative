@@ -13,6 +13,9 @@
 		8B458D7A21BE44EA0058D93A /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B458D7921BE44EA0058D93A /* Reachability.swift */; };
 		8B458D7C21BE75750058D93A /* RealmCompetitionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B458D7B21BE75750058D93A /* RealmCompetitionModel.swift */; };
 		8B458D7E21BEA9B50058D93A /* Numerical.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B458D7D21BEA9B50058D93A /* Numerical.swift */; };
+		8B622663220DC16C00FB7170 /* GroupDashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B622662220DC16C00FB7170 /* GroupDashboardViewController.swift */; };
+		8B622666220DC31700FB7170 /* GroupMainScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B622665220DC31700FB7170 /* GroupMainScreenViewController.swift */; };
+		8B622668220DD0AF00FB7170 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B622667220DD0AF00FB7170 /* Color.swift */; };
 		8B6ED9D721F61AB700F5A263 /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6ED9D621F61AB700F5A263 /* HistoryViewController.swift */; };
 		8B713C5021D404CF00F4F993 /* DashboardController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B713C4F21D404CF00F4F993 /* DashboardController.swift */; };
 		8B7B10DF2191C160005308CC /* CheckerLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B7B10DE2191C160005308CC /* CheckerLoginViewController.swift */; };
@@ -64,6 +67,9 @@
 		8B458D7921BE44EA0058D93A /* Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		8B458D7B21BE75750058D93A /* RealmCompetitionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmCompetitionModel.swift; sourceTree = "<group>"; };
 		8B458D7D21BEA9B50058D93A /* Numerical.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Numerical.swift; sourceTree = "<group>"; };
+		8B622662220DC16C00FB7170 /* GroupDashboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupDashboardViewController.swift; sourceTree = "<group>"; };
+		8B622665220DC31700FB7170 /* GroupMainScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupMainScreenViewController.swift; sourceTree = "<group>"; };
+		8B622667220DD0AF00FB7170 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		8B6ED9D621F61AB700F5A263 /* HistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
 		8B713C4F21D404CF00F4F993 /* DashboardController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardController.swift; sourceTree = "<group>"; };
 		8B7B10DE2191C160005308CC /* CheckerLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckerLoginViewController.swift; sourceTree = "<group>"; };
@@ -162,6 +168,7 @@
 			isa = PBXGroup;
 			children = (
 				8BC7F68621F8D28700F16DB8 /* Ring.swift */,
+				8B622667220DD0AF00FB7170 /* Color.swift */,
 			);
 			path = Graphics;
 			sourceTree = "<group>";
@@ -248,6 +255,8 @@
 				8B96CCF121A6B561005B8962 /* MainScreenViewController.swift */,
 				8B6ED9D621F61AB700F5A263 /* HistoryViewController.swift */,
 				8BE10AC022099CCE00CC6AD3 /* HistoryTableViewCell.swift */,
+				8B622662220DC16C00FB7170 /* GroupDashboardViewController.swift */,
+				8B622665220DC31700FB7170 /* GroupMainScreenViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -582,12 +591,15 @@
 				8BF31D55219ACB4B005A526A /* UserModel.swift in Sources */,
 				8B458D7E21BEA9B50058D93A /* Numerical.swift in Sources */,
 				8BF31D58219B158C005A526A /* UserController.swift in Sources */,
+				8B622668220DD0AF00FB7170 /* Color.swift in Sources */,
 				8BF616B921D0ECC700C9C2BC /* CompetitionController.swift in Sources */,
 				8BDC2EDE218C8F5600A7B4A2 /* DashboardViewController.swift in Sources */,
 				8BF31D532195A86B005A526A /* HomeModel.swift in Sources */,
 				8BC7F68721F8D28700F16DB8 /* Ring.swift in Sources */,
+				8B622666220DC31700FB7170 /* GroupMainScreenViewController.swift in Sources */,
 				8BE10AC122099CCE00CC6AD3 /* HistoryTableViewCell.swift in Sources */,
 				8BDC2EDC218C8F5600A7B4A2 /* AppDelegate.swift in Sources */,
+				8B622663220DC16C00FB7170 /* GroupDashboardViewController.swift in Sources */,
 				8B13AD1E2200A9870074C8B2 /* SynchronizationModel.swift in Sources */,
 				8B458D7C21BE75750058D93A /* RealmCompetitionModel.swift in Sources */,
 				8BF31D512194A55A005A526A /* LoginViewController.swift in Sources */,

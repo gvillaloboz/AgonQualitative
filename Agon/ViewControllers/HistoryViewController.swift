@@ -56,7 +56,7 @@ class HistoryViewController : UITableViewController, HistoryContollerProtocol{
     
     /// Returns a title according to the section number
     ///
-    /// - Parameters:
+    /// - Parameters: 
     ///   - tableView: <#tableView description#>
     ///   - section: <#section description#>
     /// - Returns: title according to the section number
