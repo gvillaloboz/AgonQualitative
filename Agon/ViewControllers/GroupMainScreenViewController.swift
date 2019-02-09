@@ -39,8 +39,8 @@ class GroupMainScreenViewController : UIViewController{
     func hideUIComponents(){
         okButton.isHidden = true
         instructionsTextField.isHidden = true
-        soloButton.isHidden = true
-        groupButton.isHidden = true
+        //soloButton.isHidden = true
+        //groupButton.isHidden = true
     }
     
     func styleTextView(){
