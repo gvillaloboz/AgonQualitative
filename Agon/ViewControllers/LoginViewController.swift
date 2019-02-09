@@ -20,26 +20,23 @@ class LoginViewController : UIViewController, UserContollerProtocol, UITextField
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var pseudonymTextField: UITextField!
     @IBOutlet weak var messageLabel: UILabel!
+    @IBOutlet weak var startButton: UIButton!
     
     // Functions
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         // Do any additional setup after loading the view, typically from a nib.
+        styleButtons()
         messageLabel.text = " "
         messageLabel.textColor = UIColor.red
         
         // set delegates and initialize controllers
         userController.delegate = self
-        // this function i added to test passing a parameter, but when the view loads i do not have the email yet
-        //userController.downloadItems(email : "gavizu@gmail.com")
-        
         emailTextField.delegate = self
         pseudonymTextField.delegate = self
-        //emailTextField.tag = 0
         
-        // Looks for single or multiple taps
-//        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
-//        view.addGestureRecognizer(tap)
+        self.setupHideKeyboardOnTap()
     }
     
     
@@ -109,8 +106,6 @@ class LoginViewController : UIViewController, UserContollerProtocol, UITextField
         }
     }
     
-    
-    
     /// Moves to the pseudonym textfield after hiting return from the email textfield
     ///
     /// - Parameter textField: email textfield
@@ -125,12 +120,30 @@ class LoginViewController : UIViewController, UserContollerProtocol, UITextField
         }
         return true
     }
-    
-    
-    /// Function called when a tap is recognized.
-    /// Causes the view (or one of its embedded text fields) to resign the first responder status
-    func dismissKeyboard(){
-        view.endEditing(true)
+
+    /// Gives style to the button of the UI
+    func styleButtons(){
+        startButton.layer.cornerRadius = 5
+        startButton.layer.borderColor = UIColor.gray.withAlphaComponent(0.5).cgColor
+        startButton.layer.borderWidth = 0.5
+        startButton.layer.backgroundColor = Color().getOrange()
+        startButton.setTitleColor(.white, for: .normal)
+    }
+}
+
+// MARK: - Extension
+
+extension UIViewController {
+    /// Call this once to dismiss open keyboards by tapping anywhere in the view controller
+    func setupHideKeyboardOnTap() {
+        self.view.addGestureRecognizer(self.endEditingRecognizer())
+        self.navigationController?.navigationBar.addGestureRecognizer(self.endEditingRecognizer())
     }
     
+    /// Dismisses the keyboard from self.view
+    private func endEditingRecognizer() -> UIGestureRecognizer {
+        let tap = UITapGestureRecognizer(target: self.view, action: #selector(self.view.endEditing(_:)))
+        tap.cancelsTouchesInView = false
+        return tap
+    }
 }

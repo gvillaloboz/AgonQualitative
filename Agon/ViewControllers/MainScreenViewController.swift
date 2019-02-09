@@ -62,8 +62,7 @@ class MainScreenViewController : UIViewController  { //HealthKitDataRetrieverPro
             print("Running competition")
             denyGoalButton.isHidden = true
             acceptGoalButton.isHidden = true
-            //soloButton.isHidden = true
-            //groupButton.isHidden = true
+
             performSegue(withIdentifier: "mainToDashboardSegue", sender: self)
             
             // Request today step counts to HK and display

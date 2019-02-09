@@ -21,7 +21,8 @@ class CheckerLoginViewController : UIViewController{
 
     /// Verifies if the user exists in the local realm
     /// in this case it means that the user has previously logged into the system
-    /// If the user exists locally then the CheckerLoginViewController segues to the MainViewController
+    /// If the user exists locally then the CheckerLoginViewController checkes the
+    /// the experimental condition and segues accordingly to the MainScreenViewController or GroupMainScreenViewController
     /// If the user does not exists then the CheckerLoginViewController segues to the LoginViewController
     ///
     /// - Parameter animated:
@@ -29,7 +30,7 @@ class CheckerLoginViewController : UIViewController{
         super.viewDidAppear(animated)
         print("Checker View did appear")
 
-            /// For Base on Experimental Condition
+            /// Forks based on Experimental Condition
             if(userController.checkIfUserExistsLocally()){
                 /// Request user experimental condition
                 let realm = try! Realm()
