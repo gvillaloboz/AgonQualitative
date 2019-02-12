@@ -18,11 +18,11 @@ class DashboardViewController: UIViewController, HealthKitSetupAssistantProtocol
     @IBOutlet weak var weeklyGoalLabel: UILabel!
     @IBOutlet weak var dailyGoalLabel: UILabel!
     @IBOutlet weak var dailyStepsLabel: UILabel!
+    @IBOutlet weak var historyButton: UIButton!
     
     let healthKitSetupAssistant = HealthKitSetupAssistant()
     //let delegate = UIApplication.shared.delegate as! AppDelegate
     let dashboardController = DashboardController()
-    var ring : Ring!
 
     
     // Functions
@@ -30,14 +30,15 @@ class DashboardViewController: UIViewController, HealthKitSetupAssistantProtocol
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        styleUI()
         dashboardController.delegate = self
         healthKitSetupAssistant.delegate = self
-        print("Dashboard view did load")
+        
         
         // Request today step counts to HK and display
         healthKitSetupAssistant.getTodayStepCount(completion: {dailySteps in
             print("Steps requested from Dashboard: \(dailySteps)")
-            self.dailyStepsLabel.text = "Steps for today: \r \(Int(dailySteps))"
+            self.dailyStepsLabel.text = "Steps for today: \n\n \(Int(dailySteps))"
             
             // Store steps in the Agon DB Server
             self.dashboardController.storeStepsInWebServer(steps : dailySteps)
@@ -100,6 +101,15 @@ class DashboardViewController: UIViewController, HealthKitSetupAssistantProtocol
     
     func updateStepsLabelFunc(steps: String) {
         self.dailyStepsLabel.text = "Steps for today: \r \(Int(steps))"
+    }
+    
+    
+    func styleUI(){
+        historyButton.layer.cornerRadius = 5
+        historyButton.layer.borderColor = UIColor.gray.withAlphaComponent(0.5).cgColor
+        historyButton.layer.borderWidth = 0.5
+        historyButton.layer.backgroundColor = Color().getOrange()
+        historyButton.setTitleColor(.white, for: .normal)
     }
     
 
