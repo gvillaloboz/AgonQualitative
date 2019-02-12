@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import RealmSwift
 
 class LoginViewController : UIViewController, UserContollerProtocol, UITextFieldDelegate{
 
@@ -71,8 +72,20 @@ class LoginViewController : UIViewController, UserContollerProtocol, UITextField
             userController.storeUserLocally(data: data, pseudonym:  pseudonymTextField.text!, completion: {
                 status in
                 
+                /// Segues accordingly to experimental condition 
                 if(status){
-                    self.performSegue(withIdentifier: "loginToMainScreenSegue", sender: self)
+                    /// Request user experimental condition
+                    let realm = try! Realm()
+                    let userExperimentalCondition = Int((realm.objects(RealmUserModel.self).first?.expCondition)!)!
+                    
+                    switch userExperimentalCondition {
+                    case 1: // Individual
+                        self.performSegue(withIdentifier: "loginToMainScreenSegue", sender: self)
+                    case 2: // Group
+                        self.performSegue(withIdentifier: "loginToGroupMainScreenSegue", sender: self)
+                    default:
+                        print("No experimental condition that allows Segueing")
+                    }
                 }
             })
             

@@ -80,11 +80,11 @@ class UserController: NSObject, URLSessionDataDelegate {
         
         
         let realm = try! Realm()
-        
-        if let existingUser = realm.object(ofType: RealmUserModel.self, forPrimaryKey: id){
-            print("User already exists on disc")
-            return false
-        }
+        // 12.02.19 I removed this to insert N number of users with updated experimental conditions
+//        if let existingUser = realm.object(ofType: RealmUserModel.self, forPrimaryKey: id){
+//            print("User already exists on disc")
+//            return false
+//        }
         
         try! realm.write {
             realm.add(user)
@@ -110,8 +110,18 @@ class UserController: NSObject, URLSessionDataDelegate {
         if(storeRealmUser(id: id, name: name, lastName: lastName, pseudonym: pseudonym, email: email, expCondition: expCondition)){
             completion(true)
         }
-    
     }
+    
+    func storeUserLocally(id : String, name : String, lastName : String, pseudonym : String, email : String, expCondition : String, completion: (Bool) -> Void){
+        
+        if(storeRealmUser(id: id, name: name, lastName: lastName, pseudonym: pseudonym, email: email, expCondition: expCondition))
+        {
+            completion(true)
+        }
+        
+    }
+    
+    
     
     
     /// Sets the value of the pseudonym property in the controller

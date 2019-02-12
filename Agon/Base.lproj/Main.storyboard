@@ -125,6 +125,7 @@
                         <outlet property="pseudonymTextField" destination="ThG-eR-Caj" id="2vj-7z-yHe"/>
                         <outlet property="startButton" destination="fse-ad-onN" id="jgB-4P-PE7"/>
                         <segue destination="XGg-Eu-ZXh" kind="show" identifier="loginToMainScreenSegue" id="4RN-rO-QOa"/>
+                        <segue destination="0n2-od-DEq" kind="show" identifier="loginToGroupMainScreenSegue" id="xhF-ag-Bq2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hPe-bR-mXe" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -447,81 +448,84 @@
         <!--Group Main Screen View Controller-->
         <scene sceneID="vKQ-cz-LYC">
             <objects>
-                <viewController id="0n2-od-DEq" customClass="GroupMainScreenViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="s2l-JZ-oKM" customClass="GroupMainScreenViewController">
+                <viewController id="0n2-od-DEq" customClass="GroupMainScreenViewController" customModule="Agon" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="s2l-JZ-oKM">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Usq-od-rqb">
-                                <rect key="frame" x="67" y="135" width="240" height="349"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="center" adjustsFontForContentSizeCategory="YES" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Usq-od-rqb">
+                                <rect key="frame" x="68" y="135" width="240" height="240"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="349" id="1qI-cp-VLq"/>
+                                    <constraint firstAttribute="width" constant="240" id="TPy-c2-r34"/>
+                                    <constraint firstAttribute="height" constant="240" id="n63-hb-j9p"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xTc-1j-FNa">
-                                <rect key="frame" x="85" y="585" width="88" height="36"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nS7-XV-dWP">
+                                <rect key="frame" x="219.66666666666663" y="437" width="88" height="36"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="88" id="3vz-iq-AmX"/>
-                                    <constraint firstAttribute="height" constant="36" id="Lxq-NL-5f8"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <state key="normal" title="Solo"/>
-                                <connections>
-                                    <action selector="soloMode:" destination="XGg-Eu-ZXh" eventType="touchUpInside" id="fld-cD-Rti"/>
-                                    <action selector="soloMode:" destination="s2l-JZ-oKM" eventType="touchUpInside" id="h7s-ta-v6q"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nS7-XV-dWP">
-                                <rect key="frame" x="303" y="585" width="54" height="36"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="36" id="LwJ-YZ-fqx"/>
-                                    <constraint firstAttribute="width" constant="88" id="wxn-bz-DDf"/>
+                                    <constraint firstAttribute="width" constant="88" id="bk7-x3-Old"/>
+                                    <constraint firstAttribute="height" constant="36" id="tjA-j7-4Kx"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <state key="normal" title="Group"/>
                                 <connections>
-                                    <action selector="groupMode:" destination="XGg-Eu-ZXh" eventType="touchUpInside" id="A0r-0H-sL3"/>
-                                    <action selector="groupMode:" destination="s2l-JZ-oKM" eventType="touchUpInside" id="b77-jI-Xyz"/>
+                                    <action selector="groupMode:" destination="0n2-od-DEq" eventType="touchUpInside" id="S2g-S1-AcT"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FHM-1h-ILG">
-                                <rect key="frame" x="172" y="585" width="88" height="36"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FHM-1h-ILG">
+                                <rect key="frame" x="143.66666666666666" y="437" width="88" height="36"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="88" id="He3-6m-IHP"/>
-                                    <constraint firstAttribute="height" constant="36" id="Mhg-GF-TSq"/>
+                                    <constraint firstAttribute="width" constant="88" id="aOp-Il-OZM"/>
+                                    <constraint firstAttribute="height" constant="36" id="xY7-Ua-q5i"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <state key="normal" title="Ok"/>
                                 <connections>
-                                    <action selector="okGroup:" destination="XGg-Eu-ZXh" eventType="touchUpInside" id="7Gd-ID-NNv"/>
-                                    <action selector="okGroup:" destination="s2l-JZ-oKM" eventType="touchUpInside" id="gIr-hN-QKG"/>
+                                    <action selector="okGroup:" destination="0n2-od-DEq" eventType="touchUpInside" id="KoC-k4-lfC"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xTc-1j-FNa">
+                                <rect key="frame" x="67.666666666666671" y="437" width="88.000000000000014" height="36"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="88" id="32X-DM-gTG"/>
+                                    <constraint firstAttribute="height" constant="36" id="s6L-di-szM"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="Solo"/>
+                                <connections>
+                                    <action selector="soloMode:" destination="0n2-od-DEq" eventType="touchUpInside" id="988-Zj-Aa3"/>
+                                    <segue destination="XGg-Eu-ZXh" kind="show" identifier="groupToSoloSegue" id="Ez0-eE-ER9"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="nS7-XV-dWP" firstAttribute="leading" secondItem="FHM-1h-ILG" secondAttribute="trailing" constant="43" id="8xt-Cj-E6Q"/>
-                            <constraint firstItem="nS7-XV-dWP" firstAttribute="leading" secondItem="FHM-1h-ILG" secondAttribute="trailing" constant="43" id="Bz3-l8-Oth"/>
-                            <constraint firstItem="4ax-IB-kcc" firstAttribute="trailing" secondItem="nS7-XV-dWP" secondAttribute="trailing" constant="18" id="Qos-rt-4md"/>
-                            <constraint firstItem="FHM-1h-ILG" firstAttribute="leading" secondItem="4ax-IB-kcc" secondAttribute="leading" constant="172" id="USW-Jd-cW8"/>
-                            <constraint firstItem="Usq-od-rqb" firstAttribute="centerX" secondItem="s2l-JZ-oKM" secondAttribute="centerX" id="h6h-FS-5pK"/>
-                            <constraint firstItem="xTc-1j-FNa" firstAttribute="leading" secondItem="4ax-IB-kcc" secondAttribute="leading" constant="85" id="jaA-QJ-ilx"/>
+                            <constraint firstItem="Usq-od-rqb" firstAttribute="centerX" secondItem="FHM-1h-ILG" secondAttribute="centerX" id="MeQ-f8-r0G"/>
+                            <constraint firstItem="xTc-1j-FNa" firstAttribute="top" secondItem="Usq-od-rqb" secondAttribute="bottom" constant="62" id="Nth-kw-KAC"/>
+                            <constraint firstItem="nS7-XV-dWP" firstAttribute="baseline" secondItem="FHM-1h-ILG" secondAttribute="baseline" id="SmA-aD-sjo"/>
+                            <constraint firstItem="Usq-od-rqb" firstAttribute="trailing" secondItem="nS7-XV-dWP" secondAttribute="trailing" id="W6S-VV-HpQ"/>
+                            <constraint firstItem="Usq-od-rqb" firstAttribute="top" secondItem="4ax-IB-kcc" secondAttribute="top" constant="91" id="XA7-Uu-pu8"/>
+                            <constraint firstItem="Usq-od-rqb" firstAttribute="leading" secondItem="xTc-1j-FNa" secondAttribute="leading" id="dpn-iq-mbn"/>
+                            <constraint firstItem="nS7-XV-dWP" firstAttribute="baseline" secondItem="xTc-1j-FNa" secondAttribute="baseline" id="fbA-PC-X3a"/>
+                            <constraint firstItem="Usq-od-rqb" firstAttribute="centerX" secondItem="s2l-JZ-oKM" secondAttribute="centerX" id="fjd-gH-7UE"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="4ax-IB-kcc"/>
-                        <connections>
-                            <outlet property="groupButton" destination="nS7-XV-dWP" id="RvV-So-nSP"/>
-                            <outlet property="instructionsTextField" destination="Usq-od-rqb" id="1Ro-qE-gf0"/>
-                            <outlet property="okButton" destination="FHM-1h-ILG" id="Mie-6b-cog"/>
-                            <outlet property="soloButton" destination="xTc-1j-FNa" id="AXA-Q0-HgE"/>
-                        </connections>
                     </view>
+                    <connections>
+                        <outlet property="groupButton" destination="nS7-XV-dWP" id="sUC-ul-ctx"/>
+                        <outlet property="instructionsTextField" destination="Usq-od-rqb" id="JUm-1N-3BX"/>
+                        <outlet property="okButton" destination="FHM-1h-ILG" id="LGr-AZ-qO6"/>
+                        <outlet property="soloButton" destination="xTc-1j-FNa" id="elZ-tg-qqe"/>
+                        <segue destination="RaD-L4-qEH" kind="show" identifier="groupMainToGroupDashboardSegue" id="WII-Hb-9Qx"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="s6k-te-j4A" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1385" y="1153"/>
+            <point key="canvasLocation" x="1384.8" y="1152.7093596059115"/>
         </scene>
         <!--Root View Controller-->
         <scene sceneID="W2z-sW-3Ag">
@@ -570,6 +574,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="4RN-rO-QOa"/>
+        <segue reference="xhF-ag-Bq2"/>
+        <segue reference="Ez0-eE-ER9"/>
     </inferredMetricsTieBreakers>
 </document>

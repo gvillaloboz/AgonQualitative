@@ -87,7 +87,7 @@ class MainScreenViewController : UIViewController  { //HealthKitDataRetrieverPro
         
         /// Request user experimental condition
         let realm = try! Realm()
-        let userExperimentalCondition = Int((realm.objects(RealmUserModel.self).first?.expCondition)!)!
+        let userExperimentalCondition = Int((realm.objects(RealmUserModel.self).last?.expCondition)!)!
         
         /// Requests average steps
         healthkitSetupAssistant.getDailyAverageStepCount(completion: {averageSteps in
@@ -105,7 +105,7 @@ class MainScreenViewController : UIViewController  { //HealthKitDataRetrieverPro
                 self.denyGoalButton.isHidden = false
                 
             case 2: /// group
-                self.instructionsTextField.text = "Would you like to participate in a group competition or would you prefer go on your own?"
+                self.instructionsTextField.text = "The system should never get me here"
                 self.instructionsTextField.isHidden = false
 //                self.soloButton.isHidden = false
 //                self.groupButton.isHidden = false

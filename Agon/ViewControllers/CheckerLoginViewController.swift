@@ -34,7 +34,7 @@ class CheckerLoginViewController : UIViewController{
             if(userController.checkIfUserExistsLocally()){
                 /// Request user experimental condition
                 let realm = try! Realm()
-                let userExperimentalCondition = Int((realm.objects(RealmUserModel.self).first?.expCondition)!)!
+                let userExperimentalCondition = Int((realm.objects(RealmUserModel.self).last?.expCondition)!)!
                 
                 switch userExperimentalCondition {
                 case 1: /// individual

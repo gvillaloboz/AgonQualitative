@@ -24,9 +24,9 @@ class RealmUserModel : Object{
         self.init()
     }
     
-    override static func primaryKey() ->String? {
-        return "id"
-    }
+//    override static func primaryKey() ->String? {
+//        return "id"
+//    }
     
     func getId() -> String {
         let realm = try! Realm()
