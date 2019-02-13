@@ -11,9 +11,8 @@ import UIKit
 
 class HistoryTableViewCell : UITableViewCell {
     
-    
+    // Properties
     @IBOutlet weak var stepsNumberLabel: UILabel!
-    
     @IBOutlet weak var timestampLabel: UILabel!
     
 }

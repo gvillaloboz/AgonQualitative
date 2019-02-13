@@ -1,28 +1,29 @@
 //
-//  DashboardController.swift
+//  GroupDashboardController.swift
 //  Agon
 //
-//  Created by Gabriela Villalobos-Zúñiga on 26.12.18.
-//  Copyright © 2018 UNIL. All rights reserved.
+//  Created by Gabriela Villalobos-Zúñiga on 13.02.19.
+//  Copyright © 2019 UNIL. All rights reserved.
 //
 
 import Foundation
+import UIKit
 
-protocol DashboardContollerProtocol: class {
+protocol GroupDashboardControllerProtocol: class{
     func updateStepsLabelFunc(steps : String)
 }
 
-class DashboardController {
+class GroupDashboardController {
     
     // Properties
-    weak var delegate : DashboardContollerProtocol?
+    weak var delegate : GroupDashboardControllerProtocol?
     var realmUserModel = RealmUserModel()
-    var numericalHelper = Numerical() // maybe I do not need to create an object of this class
+    var numericalHelper = Numerical()
     var synchronizationModel = SynchronizationModel()
     
     // Functions
-    func updateStepsLabel(steps: Double){
-         self.delegate?.updateStepsLabelFunc(steps: String(steps))
+    func updateStepsLabel(steps : Double){
+        self.delegate?.updateStepsLabelFunc(steps: String(steps))
     }
     
     // Funtion to store past unsync steps on the server and today's steps until current time
@@ -49,12 +50,10 @@ class DashboardController {
         }
     }
     
-    
-    
     // Send unsync steps to the server
     
     // Print that everything was done correctly
-
+    
     
     func sendStepsDataToWebServer(steps : Double, userId : String, timestamp : String, completion : @escaping (String) -> Void){
         let request = NSMutableURLRequest(url: NSURL (string: "https://pow.unil.ch/agon/phpScripts/storeSteps.php")! as URL)
@@ -96,6 +95,8 @@ class DashboardController {
         }
         task.resume()
         
-        
     }
+    
+    
 }
+

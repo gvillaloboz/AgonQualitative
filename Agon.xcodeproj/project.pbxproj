@@ -32,6 +32,8 @@
 		8BDC2EE6218C8F5700A7B4A2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8BDC2EE4218C8F5700A7B4A2 /* LaunchScreen.storyboard */; };
 		8BDC2EF1218C8F5700A7B4A2 /* AgonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BDC2EF0218C8F5700A7B4A2 /* AgonTests.swift */; };
 		8BDC2EFC218C8F5700A7B4A2 /* AgonUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BDC2EFB218C8F5700A7B4A2 /* AgonUITests.swift */; };
+		8BDCA57D22147C570063A2AB /* GroupDashboardController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BDCA57C22147C570063A2AB /* GroupDashboardController.swift */; };
+		8BE00FB0221425510061F55D /* LeaderboardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BE00FAF221425510061F55D /* LeaderboardTableViewCell.swift */; };
 		8BE10AC122099CCE00CC6AD3 /* HistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BE10AC022099CCE00CC6AD3 /* HistoryTableViewCell.swift */; };
 		8BF31D4F2194A518005A526A /* RealmUserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF31D4E2194A518005A526A /* RealmUserModel.swift */; };
 		8BF31D512194A55A005A526A /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF31D502194A55A005A526A /* LoginViewController.swift */; };
@@ -93,6 +95,8 @@
 		8BDC2EF7218C8F5700A7B4A2 /* AgonUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AgonUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8BDC2EFB218C8F5700A7B4A2 /* AgonUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgonUITests.swift; sourceTree = "<group>"; };
 		8BDC2EFD218C8F5700A7B4A2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8BDCA57C22147C570063A2AB /* GroupDashboardController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupDashboardController.swift; sourceTree = "<group>"; };
+		8BE00FAF221425510061F55D /* LeaderboardTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderboardTableViewCell.swift; sourceTree = "<group>"; };
 		8BE10AC022099CCE00CC6AD3 /* HistoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryTableViewCell.swift; sourceTree = "<group>"; };
 		8BF31D4E2194A518005A526A /* RealmUserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmUserModel.swift; sourceTree = "<group>"; };
 		8BF31D502194A55A005A526A /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -257,6 +261,7 @@
 				8BE10AC022099CCE00CC6AD3 /* HistoryTableViewCell.swift */,
 				8B622662220DC16C00FB7170 /* GroupDashboardViewController.swift */,
 				8B622665220DC31700FB7170 /* GroupMainScreenViewController.swift */,
+				8BE00FAF221425510061F55D /* LeaderboardTableViewCell.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -268,6 +273,7 @@
 				8BF616B821D0ECC700C9C2BC /* CompetitionController.swift */,
 				8B713C4F21D404CF00F4F993 /* DashboardController.swift */,
 				8B13AD1F22021CDE0074C8B2 /* HistoryController.swift */,
+				8BDCA57C22147C570063A2AB /* GroupDashboardController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -602,11 +608,13 @@
 				8B622663220DC16C00FB7170 /* GroupDashboardViewController.swift in Sources */,
 				8B13AD1E2200A9870074C8B2 /* SynchronizationModel.swift in Sources */,
 				8B458D7C21BE75750058D93A /* RealmCompetitionModel.swift in Sources */,
+				8BE00FB0221425510061F55D /* LeaderboardTableViewCell.swift in Sources */,
 				8BF31D512194A55A005A526A /* LoginViewController.swift in Sources */,
 				8BB3484821A4138E00768F1C /* PermissionRequestViewController.swift in Sources */,
 				8B96CCF221A6B561005B8962 /* MainScreenViewController.swift in Sources */,
 				8B713C5021D404CF00F4F993 /* DashboardController.swift in Sources */,
 				8B7B10DF2191C160005308CC /* CheckerLoginViewController.swift in Sources */,
+				8BDCA57D22147C570063A2AB /* GroupDashboardController.swift in Sources */,
 				8BB3484D21A44D1900768F1C /* HealthKitSetupAssistant.swift in Sources */,
 				8B6ED9D721F61AB700F5A263 /* HistoryViewController.swift in Sources */,
 				8B458D7A21BE44EA0058D93A /* Reachability.swift in Sources */,

@@ -21,7 +21,6 @@ class DashboardViewController: UIViewController, HealthKitSetupAssistantProtocol
     @IBOutlet weak var historyButton: UIButton!
     
     let healthKitSetupAssistant = HealthKitSetupAssistant()
-    //let delegate = UIApplication.shared.delegate as! AppDelegate
     let dashboardController = DashboardController()
 
     

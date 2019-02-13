@@ -9,12 +9,14 @@
 import Foundation
 import UIKit
 
-class GroupDashboardViewController : UIViewController, UITableViewDataSource, UITableViewDelegate {
+class GroupDashboardViewController : UIViewController, UITableViewDataSource, UITableViewDelegate, DashboardContollerProtocol, HealthKitSetupAssistantProtocol {
 
     
-    struct StepsRecord{
+
+    struct LeaderboardRecord{
+        var userName : String
         var stepsNumber : String
-        var timestamp : String
+        var kudo : String
     }
     
     // Properties
@@ -24,13 +26,35 @@ class GroupDashboardViewController : UIViewController, UITableViewDataSource, UI
     @IBOutlet weak var historyButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
     
+    let healthKitSetupAssistant = HealthKitSetupAssistant()
+    let dashboardController = DashboardController()
+    
     let animals = ["Cat", "Dog", "Cow", "Mulval"]
+    
+    var leaderboardArray = [
+        LeaderboardRecord(userName : "Fred Durst", stepsNumber : "4432", kudo : "0"),
+        LeaderboardRecord(userName : "Sandra Cohen", stepsNumber : "14563", kudo : "1"),
+        LeaderboardRecord(userName : "Christina Aguilera", stepsNumber : "21", kudo : "1"),
+        LeaderboardRecord(userName : "Stephanie Dupont", stepsNumber : "3000", kudo : "0")
+    ]
     
     // Functions
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        // Do any additional setup after loading the view, typically from a nib.
         styleUI()
+        dashboardController.delegate = self
+        healthKitSetupAssistant.delegate = self
+        
+        // Request today step counts to HK and display
+        healthKitSetupAssistant.getTodayStepCount(completion: {dailySteps in
+            print("Steps requested from Dashboard: \(dailySteps)")
+            self.dailyStepsLabel.text = "Steps for today: \(Int(dailySteps))"
+            
+            // Store steps in the Agon DB Server
+            self.dashboardController.storeStepsInWebServer(steps : dailySteps)
+        })
     }
     
     override func didReceiveMemoryWarning() {
@@ -49,14 +73,25 @@ class GroupDashboardViewController : UIViewController, UITableViewDataSource, UI
      // MARK: - Table view data source
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-            return animals.count
+            return leaderboardArray.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-        cell.textLabel?.text = animals[indexPath.row]
-        //cell.textLabel?.text = "Section \(indexPath.section) Row \(indexPath.row)"
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! LeaderboardTableViewCell
+        
+        cell.userNameLabel?.text = leaderboardArray[indexPath.row].userName
+        cell.stepsLabel?.text = leaderboardArray[indexPath.row].stepsNumber
+        cell.kudoButton?.setTitle(leaderboardArray[indexPath.row].kudo, for: .normal)
+    
         return cell
+    }
+    
+    func updateStepsLabelFunc(steps: String) {
+        self.dailyStepsLabel.text = "Steps for today: \r \(Int(steps))"
+    }
+    
+    func updateStepsNumberLabel(steps: Double) {
+        self.dailyStepsLabel.text = "Steps for today: \r \(Int(steps))"
     }
     
     

@@ -97,7 +97,7 @@ class GroupMainScreenViewController : UIViewController{
     
     
     @IBAction func groupMode(_ sender: Any) {
-        instructionsTextField.text = "You will be placed in a group of people with similar physical activity level. Each week you will compete with a different group of people. \n To win, make more steps than your opponent. \n The weekly challenge begins on Mondays at 00:00 hrs and ends on Sundays at 23:59 hrs."
+        instructionsTextField.text = "You will be placed in a group of people with similar physical activity level. Each week you will compete with a different group of people. \n\n To win, make more steps than your opponent. \n\n The weekly challenge begins on Mondays at 00:00 hrs and ends on Sundays at 23:59 hrs."
         
         okButton.isHidden = false
         soloButton.isHidden = true
