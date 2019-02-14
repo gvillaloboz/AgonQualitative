@@ -11,25 +11,29 @@ import UIKit
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
+    // MARK: - Properties
+    
     var window: UIWindow?
     let healthKitSetupAssistant = HealthKitSetupAssistant()
 
+    // MARK: - Functions
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        
         // Initializes in Realm the Last Sync Timestamp -> This determines the starting day of the baseline
         SynchronizationModel().initializeLastDaySync(year: 2018, month: 12, day: 1, hour: 0, minute: 0, second: 0)
         
         // Override point for customization after application launch.
-        print("application did finish launching with options")
+        //print("application did finish launching with options")
         healthKitSetupAssistant.requestAccessWithCompletion(){ success, error in
             if success{
-                print("HelathKit access granted from App Delegate") // check if this is really true and is not just that access was requested but no guarantee of granted
+                print("Healthkit access requested from App Delegate") // Note: Access Requested not necessarily granted
             }
             else{
                 print("Error requesting access to HealthKit: \(error)")
             }
         }
 
-    return true
+        return true
         
 //        healthKitSetupAssistant.authorizeHealthKit { (authorized , error) in
 //            guard authorized else {
@@ -81,7 +85,4 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
-
-
 }
-

@@ -12,16 +12,16 @@ import RealmSwift
 
 class CheckerLoginViewController : UIViewController{
     
-    
-    // Properties
-    @IBOutlet weak var messageTextView: UITextView!
+    // MARK: - Properties
     let userController = UserController()
     let healthKitSetupAssistant = HealthKitSetupAssistant()
     
 
+    // MARK: - Functions
+    
     /// Verifies if the user exists in the local realm
     /// in this case it means that the user has previously logged into the system
-    /// If the user exists locally then the CheckerLoginViewController checkes the
+    /// If the user exists locally then the CheckerLoginViewController checks the
     /// the experimental condition and segues accordingly to the MainScreenViewController or GroupMainScreenViewController
     /// If the user does not exists then the CheckerLoginViewController segues to the LoginViewController
     ///
@@ -30,22 +30,26 @@ class CheckerLoginViewController : UIViewController{
         super.viewDidAppear(animated)
         print("Checker View did appear")
 
-            /// Forks based on Experimental Condition
+            // Forks based on Experimental Condition and takes the last
+            // user object because of the ability of group users to swith
+            // from experimental conditions
+        
+            // Login occured previously (user created on local realm)
             if(userController.checkIfUserExistsLocally()){
-                /// Request user experimental condition
+                // Request user experimental condition
                 let realm = try! Realm()
                 let userExperimentalCondition = Int((realm.objects(RealmUserModel.self).last?.expCondition)!)!
                 
                 switch userExperimentalCondition {
-                case 1: /// individual
+                case 1: // individual
                     performSegue(withIdentifier: "splashToMainSegue", sender: self)
-                    
-                case 2: /// group
+                case 2: // group
                     performSegue(withIdentifier: "splashToGroupMainSegue", sender: self)
                 default:
                     print("There was error in the experimental group.")
                 }
             }
+            // No Login yet (user does not exist on local realm)
             else{
                 performSegue(withIdentifier: "splashToLoginSegue", sender: self)
             }

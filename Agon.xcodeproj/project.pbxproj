@@ -13,6 +13,7 @@
 		8B458D7A21BE44EA0058D93A /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B458D7921BE44EA0058D93A /* Reachability.swift */; };
 		8B458D7C21BE75750058D93A /* RealmCompetitionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B458D7B21BE75750058D93A /* RealmCompetitionModel.swift */; };
 		8B458D7E21BEA9B50058D93A /* Numerical.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B458D7D21BEA9B50058D93A /* Numerical.swift */; };
+		8B45CEBD2215B66B005D722A /* HealthKitDataManagementAssistant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B45CEBC2215B66B005D722A /* HealthKitDataManagementAssistant.swift */; };
 		8B622663220DC16C00FB7170 /* GroupDashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B622662220DC16C00FB7170 /* GroupDashboardViewController.swift */; };
 		8B622666220DC31700FB7170 /* GroupMainScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B622665220DC31700FB7170 /* GroupMainScreenViewController.swift */; };
 		8B622668220DD0AF00FB7170 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B622667220DD0AF00FB7170 /* Color.swift */; };
@@ -38,7 +39,6 @@
 		8BF31D4F2194A518005A526A /* RealmUserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF31D4E2194A518005A526A /* RealmUserModel.swift */; };
 		8BF31D512194A55A005A526A /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF31D502194A55A005A526A /* LoginViewController.swift */; };
 		8BF31D532195A86B005A526A /* HomeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF31D522195A86B005A526A /* HomeModel.swift */; };
-		8BF31D55219ACB4B005A526A /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF31D54219ACB4B005A526A /* UserModel.swift */; };
 		8BF31D58219B158C005A526A /* UserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF31D57219B158C005A526A /* UserController.swift */; };
 		8BF616B921D0ECC700C9C2BC /* CompetitionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF616B821D0ECC700C9C2BC /* CompetitionController.swift */; };
 		BD74B9BC2D9ADA6A225DA7D8 /* Pods_AgonTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCC0634A7DBEE0CFE26EB398 /* Pods_AgonTests.framework */; };
@@ -69,6 +69,7 @@
 		8B458D7921BE44EA0058D93A /* Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		8B458D7B21BE75750058D93A /* RealmCompetitionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmCompetitionModel.swift; sourceTree = "<group>"; };
 		8B458D7D21BEA9B50058D93A /* Numerical.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Numerical.swift; sourceTree = "<group>"; };
+		8B45CEBC2215B66B005D722A /* HealthKitDataManagementAssistant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitDataManagementAssistant.swift; sourceTree = "<group>"; };
 		8B622662220DC16C00FB7170 /* GroupDashboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupDashboardViewController.swift; sourceTree = "<group>"; };
 		8B622665220DC31700FB7170 /* GroupMainScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupMainScreenViewController.swift; sourceTree = "<group>"; };
 		8B622667220DD0AF00FB7170 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
@@ -101,7 +102,6 @@
 		8BF31D4E2194A518005A526A /* RealmUserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmUserModel.swift; sourceTree = "<group>"; };
 		8BF31D502194A55A005A526A /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		8BF31D522195A86B005A526A /* HomeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeModel.swift; sourceTree = "<group>"; };
-		8BF31D54219ACB4B005A526A /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		8BF31D57219B158C005A526A /* UserController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserController.swift; sourceTree = "<group>"; };
 		8BF616B821D0ECC700C9C2BC /* CompetitionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompetitionController.swift; sourceTree = "<group>"; };
 		9546D991DC59F7D5E7672322 /* Pods-AgonUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AgonUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AgonUITests/Pods-AgonUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -164,6 +164,7 @@
 			isa = PBXGroup;
 			children = (
 				8BB3484C21A44D1900768F1C /* HealthKitSetupAssistant.swift */,
+				8B45CEBC2215B66B005D722A /* HealthKitDataManagementAssistant.swift */,
 			);
 			path = HealthKit;
 			sourceTree = "<group>";
@@ -242,7 +243,6 @@
 			children = (
 				8BF31D4E2194A518005A526A /* RealmUserModel.swift */,
 				8BF31D522195A86B005A526A /* HomeModel.swift */,
-				8BF31D54219ACB4B005A526A /* UserModel.swift */,
 				8B458D7B21BE75750058D93A /* RealmCompetitionModel.swift */,
 				8B13AD1D2200A9870074C8B2 /* SynchronizationModel.swift */,
 			);
@@ -594,7 +594,6 @@
 			files = (
 				8B13AD2022021CDE0074C8B2 /* HistoryController.swift in Sources */,
 				8BF31D4F2194A518005A526A /* RealmUserModel.swift in Sources */,
-				8BF31D55219ACB4B005A526A /* UserModel.swift in Sources */,
 				8B458D7E21BEA9B50058D93A /* Numerical.swift in Sources */,
 				8BF31D58219B158C005A526A /* UserController.swift in Sources */,
 				8B622668220DD0AF00FB7170 /* Color.swift in Sources */,
@@ -617,6 +616,7 @@
 				8BDCA57D22147C570063A2AB /* GroupDashboardController.swift in Sources */,
 				8BB3484D21A44D1900768F1C /* HealthKitSetupAssistant.swift in Sources */,
 				8B6ED9D721F61AB700F5A263 /* HistoryViewController.swift in Sources */,
+				8B45CEBD2215B66B005D722A /* HealthKitDataManagementAssistant.swift in Sources */,
 				8B458D7A21BE44EA0058D93A /* Reachability.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

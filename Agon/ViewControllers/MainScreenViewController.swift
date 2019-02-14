@@ -5,8 +5,8 @@
 //  Created by Gabriela Villalobos on 22.11.18.
 //  Copyright © 2018 UNIL. All rights reserved.
 //
+//  Image credits: competition by pictohaven from the Noun Project
 
-/// Image credits: competition by pictohaven from the Noun Project
 
 import Foundation
 import UIKit
@@ -19,11 +19,9 @@ protocol shareHealthDataDelegate : class {
 
 class MainScreenViewController : UIViewController  { //HealthKitDataRetrieverProtocol
     
-    // Properties
+    /// MARK: - Properties
     
-    @IBOutlet weak var numberOfStepsLabel: UILabel!
     @IBOutlet weak var instructionsTextField: UITextView!
-    
     @IBOutlet weak var acceptGoalButton: UIButton!
     @IBOutlet weak var denyGoalButton: UIButton!
     @IBOutlet weak var okButton: UIButton!
@@ -38,42 +36,42 @@ class MainScreenViewController : UIViewController  { //HealthKitDataRetrieverPro
     
     weak var delegate : shareHealthDataDelegate?
     
-    // Functions
+    /// MARK: - Functions
+    
     override func viewDidLoad() {
         hideUIComponents()
         styleTextView()
         styleButtons()
     }
     
+    
     override func viewDidAppear(_ animated: Bool){
         
         //dashboardController.delegate = self
-        
-        /// get the competition status from Realm
-        /// no running competition 0
-        /// running competition 1
+        //  get the competition status from Realm
         self.competitionStatus = competitionController.getCompetitionStatus()
         
         switch self.competitionStatus {
-        case 0:
+        
+        case 0: // no running competition
             print("No running competition")
             forkBasedOnExperimentalCondition()
-        case 1:
+        
+        case 1: // running competition
             print("Running competition")
             denyGoalButton.isHidden = true
             acceptGoalButton.isHidden = true
-
             performSegue(withIdentifier: "mainToDashboardSegue", sender: self)
             
-            // Request today step counts to HK and display
-//            healthkitSetupAssistant.getTodayStepCount(completion: {dailySteps in
-//                self.instructionsTextField.text = "Steps for today: \(dailySteps)"
-//            })
         default:
             print("No valid competition status")
         }
     }
     
+    
+    /// <#Description#>
+    ///
+    /// - Parameter data: <#data description#>
     func stepCountsDownloaded(data: String) {
         print("Call to steps data downloaded")
     }

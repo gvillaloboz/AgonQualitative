@@ -18,12 +18,14 @@ protocol HealthKitSetupAssistantProtocol: class {
 
 class HealthKitSetupAssistant {
 
-    // Properties
+    //MARK: - Properties
     private let healthStore = HKHealthStore()
     var internetConnection = false
     weak var delegate : HealthKitSetupAssistantProtocol?
     let dashboardController = DashboardController()
     
+    
+    // MARK: - Functions
     
     /// Requests access to all the data types the app wishes to read/write from HealthKit.
     /// On success, data is queried immediately and observer queries are set up for background
@@ -51,7 +53,6 @@ class HealthKitSetupAssistant {
                     strongSelf.delegate?.updateStepsNumberLabel(steps: steps)
                     strongSelf.dashboardController.storeStepsInWebServer(steps: steps)
                     strongSelf.dashboardController.updateStepsLabel(steps: steps)
-                    //strongSelf.delegate.userStepsRetrieved(steps: steps)
                 })
             }
             else{
@@ -76,63 +77,6 @@ class HealthKitSetupAssistant {
         return HKHealthStore.isHealthDataAvailable()
     }
     
-
-
-
-/// Function to request access to healthkit data -- I am not using this one right now
-///
-/// - Parameter completion: authorization requested successfully
-func authorizeHealthKit(completion: @escaping (Bool, Error?) -> Swift.Void) {
-
-         enum HealthkitSetupError: Error {
-            case notAvailableOnDevice
-            case dataTypeNotAvailable
-        }
-    
-        //1. Check to see if HealthKit is available on this device
-        // Guard statement stops the app from executing the rest of the method's logic if HealthKit is not available on the device
-        guard HKHealthStore.isHealthDataAvailable() else {
-            completion(false, HealthkitSetupError.notAvailableOnDevice)
-            return
-        }
-    
-        //2. Prepare the data types that will interact with HealthKit
-        guard  let stepCount = HKObjectType.quantityType(forIdentifier: .stepCount) else {
-                
-                completion(false, HealthkitSetupError.dataTypeNotAvailable)
-                return
-            }
-        
-    
-        //3. Prepare a list of types you want HealthKit to read
-        let healthKitTypesToRead: Set<HKObjectType> = [stepCount]
-    
-    
-        //4. Request Authorization
-//    HKHealthStore().requestAuthorization(toShare: nil, read: healthKitTypesToRead) { (success, error) in
-//                                                completion(success, error)
-
-    HKHealthStore().requestAuthorization(toShare: nil, read: healthKitTypesToRead) { (success: Bool, error: Error?) in
-        
-        if success {
-            debugPrint("Access to HealthKit data has been granted")
-            //strongSelf.readHealthKitData()
-            
-            //self.setUpBackgroundDeliveryForDataTypes(types: healthKitTypesToRead)
-            
-        } else {
-            debugPrint("Error requesting HealthKit authorization: \(String(describing: error))")
-        }
-        
-        DispatchQueue.main.async {
-            completion(success, error)
-        }
-    }
-    
-}
-        
-    
-
 
 //  The authorization status for an HKObjectType does not reflect whether your application has authorization to read samples of those types. It only indicates whether you have requested authorization at all and whether your app is authorized to write samples of those types. So if your app requests authorization to read step count samples but not write them, and the user grants read authorization, then the authorization status for HKQuantityTypeIdentifierStepCount will be HKAuthorizationStatusSharingDenied.
     
@@ -179,7 +123,8 @@ extension HealthKitSetupAssistant{
                     completion(steps)
                 })
                 
-                //HKObserverQueryCompletionHandler() // not so sure which completion handler to use
+                // FIXME:  not so sure which completion handler to use
+                //HKObserverQueryCompletionHandler()
                 completionHandler()
             }
             
@@ -223,6 +168,10 @@ extension HealthKitSetupAssistant{
         )
     }
     
+    
+    /// <#Description#>
+    ///
+    /// - Parameter completion: <#completion description#>
     func getStepsOnDate(completion:@escaping (Double) -> Void) {
         let startOfDay = getSpecificDate(year: 2018, month: 12, day: 7, hour: 0, minute: 0, second: 0)
         let endOfDay = getSpecificDate(year: 2018, month: 12, day: 7, hour: 23, minute: 59, second: 59)
@@ -239,6 +188,10 @@ extension HealthKitSetupAssistant{
 //        })
     }
     
+    
+    /// <#Description#>
+    ///
+    /// - Parameter completion: <#completion description#>
     func getTodayStepCount(completion: @escaping (Double) -> Void){
         
         let now = Date()
@@ -251,6 +204,17 @@ extension HealthKitSetupAssistant{
     
     }
     
+    
+    /// <#Description#>
+    ///
+    /// - Parameters:
+    ///   - year: <#year description#>
+    ///   - month: <#month description#>
+    ///   - day: <#day description#>
+    ///   - hour: <#hour description#>
+    ///   - minute: <#minute description#>
+    ///   - second: <#second description#>
+    /// - Returns: <#return value description#>
     func getSpecificDate(year: Int, month: Int, day: Int, hour: Int, minute: Int, second: Int) -> Date{
         
         let dateFormatter = DateFormatter()
@@ -278,6 +242,13 @@ extension HealthKitSetupAssistant{
 
 extension HealthKitSetupAssistant{
     
+    
+    /// <#Description#>
+    ///
+    /// - Parameters:
+    ///   - start: <#start description#>
+    ///   - end: <#end description#>
+    ///   - completion: <#completion description#>
     func requestStepsToHKWithCompletion(start : Date , end : Date, completion:@escaping (Double) -> Void){
         
         let timePredicate : NSPredicate = HKQuery.predicateForSamples(withStart: start as Date, end: end as Date, options: .strictStartDate)
@@ -313,6 +284,10 @@ extension HealthKitSetupAssistant{
         healthStore.execute(query)
     }
     
+    
+    /// <#Description#>
+    ///
+    /// - Parameter daysBack: <#daysBack description#>
     func getNStepsBack(daysBack : Int){
         for i in 0 ..< daysBack{
             
@@ -349,7 +324,14 @@ extension HealthKitSetupAssistant{
         }
     }
     
-    // Always use UTC time for calculations. Do not add two hours to UTC!
+    
+   
+    
+    /// <#Description#>
+    ///
+    /// - Parameter numberOfDaysBack: <#numberOfDaysBack description#>
+    /// - Returns: <#return value description#>
+    /* Always use UTC time for calculations. Do not add two hours to UTC! */
     private func getNDaysBackStartOfDay(numberOfDaysBack : Int)->Date{
         var calendar = Calendar.current
         //calendar.timeZone = TimeZone(abbreviation: "UTC")! //OR NSTimeZone.localTimeZone()
@@ -365,6 +347,12 @@ extension HealthKitSetupAssistant{
         
     }
     
+    
+    
+    /// <#Description#>
+    ///
+    /// - Parameter numberOfDaysBack: <#numberOfDaysBack description#>
+    /// - Returns: <#return value description#>
     private func getNDaysBackEndOfDay(numberOfDaysBack : Int)->Date{
         var calendar = Calendar.current
         //calendar.timeZone = TimeZone(abbreviation: "UTC")! //OR NSTimeZone.localTimeZone()
@@ -408,6 +396,56 @@ extension HealthKitSetupAssistant{
         } 
     }
     
-    
+    /// Function to request access to healthkit data -- I am not using this one right now
+    ///
+    /// - Parameter completion: authorization requested successfully
+    func authorizeHealthKit(completion: @escaping (Bool, Error?) -> Swift.Void) {
+        
+        enum HealthkitSetupError: Error {
+            case notAvailableOnDevice
+            case dataTypeNotAvailable
+        }
+        
+        //1. Check to see if HealthKit is available on this device
+        // Guard statement stops the app from executing the rest of the method's logic if HealthKit is not available on the device
+        guard HKHealthStore.isHealthDataAvailable() else {
+            completion(false, HealthkitSetupError.notAvailableOnDevice)
+            return
+        }
+        
+        //2. Prepare the data types that will interact with HealthKit
+        guard  let stepCount = HKObjectType.quantityType(forIdentifier: .stepCount) else {
+            
+            completion(false, HealthkitSetupError.dataTypeNotAvailable)
+            return
+        }
+        
+        
+        //3. Prepare a list of types you want HealthKit to read
+        let healthKitTypesToRead: Set<HKObjectType> = [stepCount]
+        
+        
+        //4. Request Authorization
+        //    HKHealthStore().requestAuthorization(toShare: nil, read: healthKitTypesToRead) { (success, error) in
+        //                                                completion(success, error)
+        
+        HKHealthStore().requestAuthorization(toShare: nil, read: healthKitTypesToRead) { (success: Bool, error: Error?) in
+            
+            if success {
+                debugPrint("Access to HealthKit data has been granted")
+                //strongSelf.readHealthKitData()
+                
+                //self.setUpBackgroundDeliveryForDataTypes(types: healthKitTypesToRead)
+                
+            } else {
+                debugPrint("Error requesting HealthKit authorization: \(String(describing: error))")
+            }
+            
+            DispatchQueue.main.async {
+                completion(success, error)
+            }
+        }
+        
+    }
     
 }

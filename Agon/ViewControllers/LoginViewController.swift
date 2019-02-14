@@ -12,10 +12,9 @@ import RealmSwift
 
 class LoginViewController : UIViewController, UserContollerProtocol, UITextFieldDelegate{
 
-    // Properties
+    // MARK: - Properties
     var userData: String = String()
-    var user : UserModel = UserModel()
-    // no estoy segura si se está bien declarar e inicializar este controller aquí. En el tutorial estaba en el viewDidLoad(), pero yo necesito tener acceso desde que hago click
+    // FIXME:  no estoy segura si se está bien declarar e inicializar este controller aquí. En el tutorial estaba en el viewDidLoad(), pero yo necesito tener acceso desde que hago click
     let userController = UserController()
     
     @IBOutlet weak var emailTextField: UITextField!
@@ -23,7 +22,7 @@ class LoginViewController : UIViewController, UserContollerProtocol, UITextField
     @IBOutlet weak var messageLabel: UILabel!
     @IBOutlet weak var startButton: UIButton!
     
-    // Functions
+    // MARK: - Functions
     override func viewDidLoad() {
         super.viewDidLoad()
         

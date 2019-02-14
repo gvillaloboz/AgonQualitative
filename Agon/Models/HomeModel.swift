@@ -43,44 +43,44 @@ class HomeModel: NSObject, URLSessionDataDelegate {
     
     func parseJSON(_ data : Data){
         
-        var jsonResult = NSArray()
-        
-        do{
-            jsonResult = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.allowFragments) as! NSArray
-        } catch let error as NSError{
-            print(error)
-        }
-        
-        var jsonElement = NSDictionary()
-        let users = NSMutableArray()
-//        let realm = try! Realm()
-        
-        for i in 0 ..< jsonResult.count{
-            jsonElement = jsonResult[i] as! NSDictionary
-            
-            let user = UserModel()
-            //let realmUser = RealmUserModel()
-            
-            // To make sure non of the JSON values are nil by optional binding
-            if  let name = jsonElement["name"] as? String,
-                let email = jsonElement["email"] as? String
-
-            {
-                user.name = name
-                user.email = email
-               
-//                try! realm.write{
-//                    realm.add(realmUser)
-//                }
-            }
-            
-            users.add(user)
-            
-        }
-        DispatchQueue.main.async(execute: { () -> Void  in
-        
-            self.delegate.itemsDownloaded(items: users)
-        })
+//        var jsonResult = NSArray()
+//
+//        do{
+//            jsonResult = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.allowFragments) as! NSArray
+//        } catch let error as NSError{
+//            print(error)
+//        }
+//
+//        var jsonElement = NSDictionary()
+//        let users = NSMutableArray()
+////        let realm = try! Realm()
+//
+//        for i in 0 ..< jsonResult.count{
+//            jsonElement = jsonResult[i] as! NSDictionary
+//
+//            let user = UserModel()
+//            //let realmUser = RealmUserModel()
+//
+//            // To make sure non of the JSON values are nil by optional binding
+//            if  let name = jsonElement["name"] as? String,
+//                let email = jsonElement["email"] as? String
+//
+//            {
+//                user.name = name
+//                user.email = email
+//
+////                try! realm.write{
+////                    realm.add(realmUser)
+////                }
+//            }
+//
+//            users.add(user)
+//
+//        }
+//        DispatchQueue.main.async(execute: { () -> Void  in
+//
+//            self.delegate.itemsDownloaded(items: users)
+//        })
     }
     
 }

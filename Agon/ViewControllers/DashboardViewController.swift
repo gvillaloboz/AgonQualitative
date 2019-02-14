@@ -94,15 +94,27 @@ class DashboardViewController: UIViewController, HealthKitSetupAssistantProtocol
         self.weeklyGoalLabel.text = String(weeklyStepsGoal)
     }
 
+    
+    //FIXME: Update steps label when detected a background update
+    
+    /// Called when there was a background update on the steps
+    ///
+    /// - Parameter steps: <#steps description#>
     func updateStepsNumberLabel(steps: Double) {
-        self.dailyStepsLabel.text = "Steps for today: \r \(Int(steps))"
+        self.dailyStepsLabel.text = "bg Steps for today: \r \(Int(steps))"
     }
     
+    
+    
+    /// Attempt to update steps label when backgroud mode
+    ///
+    /// - Parameter steps: <#steps description#>
     func updateStepsLabelFunc(steps: String) {
-        self.dailyStepsLabel.text = "Steps for today: \r \(Int(steps))"
+        self.dailyStepsLabel.text = "Steps2 for today: \r \(Int(steps))"
     }
     
     
+    /// Gives style to the history button
     func styleUI(){
         historyButton.layer.cornerRadius = 5
         historyButton.layer.borderColor = UIColor.gray.withAlphaComponent(0.5).cgColor
