@@ -119,9 +119,9 @@ final class SynchronizationModel: Object{
         //then again set the date format whhich type of output you need
         formatter.dateFormat = "yyyy-MM-dd"
         // again convert your date to string
-        var myStringafd = formatter.string(from: yourDate!)
+        let myStringafd = formatter.string(from: yourDate!)
         
-        var dt = formatter.date(from: myStringafd)
+        let dt = formatter.date(from: myStringafd)
         
         return dt!
         

@@ -12,7 +12,6 @@ import RealmSwift
 class DashboardViewController: UIViewController, HealthKitSetupAssistantProtocol, shareHealthDataDelegate, DashboardContollerProtocol {
 
     
-
     // Properties
     
     @IBOutlet weak var weeklyGoalLabel: UILabel!
@@ -110,7 +109,7 @@ class DashboardViewController: UIViewController, HealthKitSetupAssistantProtocol
     ///
     /// - Parameter steps: <#steps description#>
     func updateStepsLabelFunc(steps: String) {
-        self.dailyStepsLabel.text = "Steps2 for today: \r \(Int(steps))"
+        self.dailyStepsLabel.text = "Steps2 for today: \r \(Int(steps) ?? 99999)"
     }
     
     

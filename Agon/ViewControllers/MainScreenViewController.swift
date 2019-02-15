@@ -93,7 +93,6 @@ class MainScreenViewController : UIViewController  { //HealthKitDataRetrieverPro
             self.averageDailySteps = averageSteps.truncate(places: 0)
             
             /// based on experimental group set instructions text
-            var instructionsText = ""
             
             switch userExperimentalCondition {
             case 1: /// individual
@@ -108,7 +107,7 @@ class MainScreenViewController : UIViewController  { //HealthKitDataRetrieverPro
 //                self.soloButton.isHidden = false
 //                self.groupButton.isHidden = false
             default:
-                instructionsText = "There was error in the experimental group."
+                print( "There was error in the experimental group.")
                 }
             
         })

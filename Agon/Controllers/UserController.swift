@@ -137,7 +137,7 @@ class UserController: NSObject, URLSessionDataDelegate {
     /// - Returns: true if the user exists on device disk, false otherwise
     func checkIfUserExistsLocally() -> Bool{
         let realm = try! Realm()
-        var matchedUsers = realm.objects(RealmUserModel.self)
+        let matchedUsers = realm.objects(RealmUserModel.self)
         if (!matchedUsers.isEmpty){
             return true
         }

@@ -19,7 +19,10 @@ class GroupMainScreenViewController : UIViewController{
     @IBOutlet weak var soloButton: UIButton!
     @IBOutlet weak var okButton: UIButton!
     @IBOutlet weak var instructionsTextField: UITextView!
+    
+    private let competitionController = CompetitionController()
     let userController = UserController()
+    var competitionStatus = Int()
     
     // Functions
     
@@ -30,10 +33,27 @@ class GroupMainScreenViewController : UIViewController{
     }
     
     override func viewDidAppear(_ animated: Bool){
-        self.instructionsTextField.text = "Would you like to participate in a group competition or would you prefer go on your own?"
-        self.instructionsTextField.isHidden = false
-        self.soloButton.isHidden = false
-        self.groupButton.isHidden = false
+        self.competitionStatus = competitionController.getCompetitionStatus()
+        
+        switch self.competitionStatus {
+            
+        case 0: // no running competition
+            print("No running competition")
+            self.instructionsTextField.text = "Would you like to participate in a group competition or would you prefer go on your own?"
+            self.instructionsTextField.isHidden = false
+            self.soloButton.isHidden = false
+            self.groupButton.isHidden = false
+            
+        case 1: // running competition
+            print("Running competition")
+            groupButton.isHidden = true
+            soloButton.isHidden = true
+            okButton.isHidden = true
+            performSegue(withIdentifier: "groupMainToGroupDashboardSegue", sender: self)
+            
+        default:
+            print("No valid competition status")
+        }
     }
     
     
@@ -102,12 +122,21 @@ class GroupMainScreenViewController : UIViewController{
         okButton.isHidden = false
         soloButton.isHidden = true
         groupButton.isHidden = true
+        
+        self.competitionStatus = 1
     }
     
     
     @IBAction func okGroup(_ sender: Any) {
         print("OK to group")
         okButton.isHidden = true
+        
+        //Save competition status (goal) in the realm
+        competitionController.storeCompetitionStatusLocally(weeklyGoal: 99999, status : self.competitionStatus, completion: { success in
+            print("Competition Status succesfully inserted in local realm")
+            print("Competition Status: \(competitionStatus)")
+        })
+        
         performSegue(withIdentifier: "groupMainToGroupDashboardSegue", sender: self)
         
     }

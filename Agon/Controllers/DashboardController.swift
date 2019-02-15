@@ -35,7 +35,7 @@ class DashboardController {
             //self.delegate?.updateStepsLabel(steps: String(steps))
             
             // Checks if there is internet connection available to avoid connectivity issues with the server
-            var internetConnection = Reachability().isInternetAvailable()
+            let internetConnection = Reachability().isInternetAvailable()
             // Send today's steps to the server
             if(Reachability().isInternetAvailable()){
                 sendStepsDataToWebServer(steps : steps,

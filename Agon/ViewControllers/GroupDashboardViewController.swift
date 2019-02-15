@@ -87,7 +87,7 @@ class GroupDashboardViewController : UIViewController, UITableViewDataSource, UI
     }
     
     func updateStepsLabelFunc(steps: String) {
-        self.dailyStepsLabel.text = "Steps for today: \r \(Int(steps))"
+        self.dailyStepsLabel.text = "Steps for today: \r \(Int(steps) ?? 99999)"
     }
     
     func updateStepsNumberLabel(steps: Double) {

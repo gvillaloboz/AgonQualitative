@@ -115,7 +115,7 @@ class CheckerLoginViewController : UIViewController{
     
     private func moveToNextScreen(){
         let realm = try! Realm()
-        var matchedUsers = realm.objects(RealmUserModel.self)
+        let matchedUsers = realm.objects(RealmUserModel.self)
         if (!matchedUsers.isEmpty){
             //print("User already logged in!!!!")
             performSegue(withIdentifier: "splashToMainSegue", sender: self)
