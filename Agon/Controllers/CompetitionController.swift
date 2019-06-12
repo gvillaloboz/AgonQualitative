@@ -42,4 +42,18 @@ class CompetitionController {
         }
         return competitionStatus
     }
+    
+    
+    /// Queries and returns the last competition assignment
+    /// This is used to make the first assignment of groups.
+    /// - Returns: the last assignment to group
+    func getCompetitionAssignment() -> Int {
+        let realm = try! Realm()
+        var competitionAssignment = 0
+        
+        if (!realm.objects(RealmCompetitionModel.self).isEmpty){
+            competitionAssignment = (realm.objects(RealmCompetitionModel.self).last?.assignment)!
+        }
+        return competitionAssignment
+    }
 }

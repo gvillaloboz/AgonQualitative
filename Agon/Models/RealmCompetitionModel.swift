@@ -19,6 +19,8 @@ class RealmCompetitionModel : Object{
     @objc dynamic var statusName = ""
     @objc dynamic var weeklyGoal = 0.0
     @objc dynamic var timeStamp = Date()
+    @objc dynamic var assignment = 0 // number of assignmets to group, this is used to know when there is a first assignment
+    @objc dynamic var group = 0
     
     // Init
     convenience init(status: Int) {

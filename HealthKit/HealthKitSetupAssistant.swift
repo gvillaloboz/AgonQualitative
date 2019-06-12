@@ -325,7 +325,25 @@ extension HealthKitSetupAssistant{
     }
     
     
-   
+    
+    /// Queries the last N days of steps and returns the average
+    ///
+    /// - Parameter daysBack: days back to queries steps from today
+    func getNStepsBackAverage(daysBack : Int){
+        for i in 0 ..< daysBack{
+            
+            let yesterdayStartOfDay = getNDaysBackStartOfDay(numberOfDaysBack: i)
+            let yesterdayEndOfDay = getNDaysBackEndOfDay(numberOfDaysBack: i)
+            
+            requestStepsToHKWithCompletion(start: yesterdayStartOfDay, end: yesterdayEndOfDay, completion: {steps in
+                print("YESTERDAY START: ", yesterdayStartOfDay)
+                print("YESTERDAY END: ", yesterdayEndOfDay)
+                print("Last \(daysBack) days steps: ", steps)
+            })
+        }
+    }
+    
+
     
     /// <#Description#>
     ///
@@ -394,6 +412,31 @@ extension HealthKitSetupAssistant{
             print("Average Daily Steps: \(averageDailySteps)")
             completion(averageDailySteps)
         } 
+    }
+    
+    /// Calculates the average daily step counts based
+    /// on the number of weeks used to make the calculation.
+    ///
+    /// - Parameter completion: resturns the average daily step count when finishes the calculation
+    func getDailyAverageStepCount(numberOfSampleDays: Int , completion:@escaping (Double) -> Void){
+        
+        /// get the step counts from last week
+        let daysToSubstract = numberOfSampleDays * -1
+        let currentDate = Date()
+        let cal = Calendar(identifier: .gregorian)
+        let currentDateAtMidnight = cal.startOfDay(for: currentDate)
+        
+        var dateComponent = DateComponents()
+        
+        dateComponent.day = daysToSubstract
+        
+        let daysAgoDate = Calendar.current.date(byAdding: dateComponent, to: currentDateAtMidnight)
+        
+        requestStepsToHKWithCompletion(start: daysAgoDate!, end: Date()) { (steps) in
+            let averageDailySteps = steps / Double(numberOfSampleDays)
+            print("Average Daily Steps: \(averageDailySteps)")
+            completion(averageDailySteps)
+        }
     }
     
     /// Function to request access to healthkit data -- I am not using this one right now

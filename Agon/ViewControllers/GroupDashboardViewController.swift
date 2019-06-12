@@ -55,6 +55,13 @@ class GroupDashboardViewController : UIViewController, UITableViewDataSource, UI
             // Store steps in the Agon DB Server
             self.dashboardController.storeStepsInWebServer(steps : dailySteps)
         })
+        
+        // Get Group Weekly Goal
+        var weeklyGoal = 60000
+    
+        // Get Daily Goal
+        //self.dailyGoalLabel.text = "Daily Goal: \(Int(competitionInfo.weeklyGoal / 7))"
+        self.dailyGoalLabel.text = "Daily Goal: \(Int(weeklyGoal / 7))" // or divided by the remaining days of the week
     }
     
     override func didReceiveMemoryWarning() {
@@ -95,26 +102,5 @@ class GroupDashboardViewController : UIViewController, UITableViewDataSource, UI
     }
     
     
-//    func numberOfSections(in tableView: UITableView) -> Int {
-//        return 3
-//    }
-//
-//    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return 5
-//    }
-//
-//    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-//
-//        cell.textLabel?.text = "Section \(indexPath.section) Row \(indexPath.row)"
-//        //cell.stepsNumberLabel?.text = "steps number"
-//        //cell.timestampLabel?.text = "timestamp"
-//
-//        return cell
-//    }
-//
-//    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-//        return "Section \(section)"
-//    }
-//
+    
 }

@@ -23,6 +23,7 @@ class GroupMainScreenViewController : UIViewController{
     private let competitionController = CompetitionController()
     let userController = UserController()
     var competitionStatus = Int()
+    let healthKitSetupAssistant = HealthKitSetupAssistant()
     
     // Functions
     
@@ -124,6 +125,8 @@ class GroupMainScreenViewController : UIViewController{
         groupButton.isHidden = true
         
         self.competitionStatus = 1
+        
+        assignToChallengeGroup()
     }
     
     
@@ -138,6 +141,69 @@ class GroupMainScreenViewController : UIViewController{
         })
         
         performSegue(withIdentifier: "groupMainToGroupDashboardSegue", sender: self)
+        
+    }
+    
+    
+    /// This function will assign a participant to an optimal competition group
+    /// If it is the first assignment then it will consider just two weeks ago
+    /// Next assignmnets will consider steps from the previous week exclusively
+    func assignToChallengeGroup(){
+        var userId : String
+        var assignmentNumber : Int
+        var daysBack = 7 // most of the time we will evaluate just one week ago to assign to a group
+        var averageStepsForGroupAssignment : Double = 0.0
+        
+        // Gets the user Id
+        let realm = try! Realm()
+        if let user = realm.objects(RealmUserModel.self).first{
+            userId = user.id
+        }
+        
+        // Checks if this is the first assignment
+        if let competition = realm.objects(RealmCompetitionModel.self).last{
+            assignmentNumber = competition.assignment
+            if assignmentNumber == 0 {
+                daysBack = 14
+            }
+        }
+        
+        // Gets the weekly average steps of the last 2 weeks or of the last week
+        healthKitSetupAssistant.getDailyAverageStepCount(numberOfSampleDays: daysBack) { (steps) in
+            print("Average daily steps of the last \(daysBack / 7) weeks: ", steps)
+            averageStepsForGroupAssignment = steps
+        }
+        
+        // Assigns to a competition group in the DB and in the realm
+        // There will always be 10 groups (this could be adjusted based on the number of participants)
+        // The 10 competitions groups should already be created in the DB
+
+        switch averageStepsForGroupAssignment {
+            case 0...1000:
+                print ("Range 0...1000")
+                // insert in competitionGroup looking for physicalActivityLevel 0,1000
+                //competitionController.insertIntoCompetitionGroup()
+            case 1001...2000:
+                print ("Range 1001...2000")
+            case 2001...3000:
+                print ("Range 2001...3000")
+            case 3001...4000:
+                print ("Range 3001...4000")
+            case 4001...5000:
+                print ("Range 4001...5000")
+            case 5001...6000:
+                print ("Range 5001...6000")
+            case 6001...7000:
+                print ("Range 6001...7000")
+            case 7001...8000:
+                print ("Range 7001...8000")
+            case 8001...9000:
+                print ("Range 8001...9000")
+            case 9001...10000:
+                print ("Range 9001...10000")
+            default:
+                print ("More than 10000")
+        }
         
     }
     
