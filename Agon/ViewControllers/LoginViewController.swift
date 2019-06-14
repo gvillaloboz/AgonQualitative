@@ -81,7 +81,7 @@ class LoginViewController : UIViewController, UserContollerProtocol, UITextField
                     case 1: // Individual
                         self.performSegue(withIdentifier: "loginToMainScreenSegue", sender: self)
                     case 2: // Group
-                        self.performSegue(withIdentifier: "loginToGroupMainScreenSegue", sender: self)
+                        self.performSegue(withIdentifier: "loginToMainScreenSegue", sender: self)
                     default:
                         print("No experimental condition that allows Segueing")
                     }
