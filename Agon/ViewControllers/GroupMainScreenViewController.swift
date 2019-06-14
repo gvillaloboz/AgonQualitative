@@ -20,7 +20,7 @@ class GroupMainScreenViewController : UIViewController{
     @IBOutlet weak var okButton: UIButton!
     @IBOutlet weak var instructionsTextField: UITextView!
     
-    private let competitionController = CompetitionController()
+    private let trialController = TrialController()
     let userController = UserController()
     var competitionStatus = Int()
     let healthKitSetupAssistant = HealthKitSetupAssistant()
@@ -34,7 +34,7 @@ class GroupMainScreenViewController : UIViewController{
     }
     
     override func viewDidAppear(_ animated: Bool){
-        self.competitionStatus = competitionController.getCompetitionStatus()
+        self.competitionStatus = trialController.getTrialStatus()
         
         switch self.competitionStatus {
             
@@ -135,10 +135,10 @@ class GroupMainScreenViewController : UIViewController{
         okButton.isHidden = true
         
         //Save competition status (goal) in the realm
-        competitionController.storeCompetitionStatusLocally(weeklyGoal: 99999, status : self.competitionStatus, completion: { success in
-            print("Competition Status succesfully inserted in local realm")
-            print("Competition Status: \(competitionStatus)")
-        })
+//        trialController.storeTrialStatusLocally(weeklyGoal: 99999, status : self.trialStatus, d completion: { success in
+//            print("Trial Status succesfully inserted in local realm")
+//            print("Trial Status: \(competitionStatus)")
+//        })
         
         performSegue(withIdentifier: "groupMainToGroupDashboardSegue", sender: self)
         
@@ -161,7 +161,7 @@ class GroupMainScreenViewController : UIViewController{
         }
         
         // Checks if this is the first assignment
-        if let competition = realm.objects(RealmCompetitionModel.self).last{
+        if let competition = realm.objects(RealmTrialModel.self).last{
             assignmentNumber = competition.assignment
             if assignmentNumber == 0 {
                 daysBack = 14

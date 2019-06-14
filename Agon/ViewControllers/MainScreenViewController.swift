@@ -27,12 +27,13 @@ class MainScreenViewController : UIViewController  { //HealthKitDataRetrieverPro
     @IBOutlet weak var okButton: UIButton!
         
     private let healthkitSetupAssistant = HealthKitSetupAssistant()
-    private let competitionController = CompetitionController()
+    private let trialController = TrialController()
     private let dashboardController = DashboardController()
     
-    var competitionStatus = Int()
+    var trialStatus = Int()
     var weeklyGoal = Double()
     var averageDailySteps = Double()
+    var endTimeStamp = Date()
     
     weak var delegate : shareHealthDataDelegate?
     
@@ -48,16 +49,20 @@ class MainScreenViewController : UIViewController  { //HealthKitDataRetrieverPro
     override func viewDidAppear(_ animated: Bool){
         
         //dashboardController.delegate = self
+        // A competition is a week of recording step data. During a competition each participant has a weekly step goal.
         //  get the competition status from Realm
-        self.competitionStatus = competitionController.getCompetitionStatus()
+        // think of how to turn this competition status to 0 by the end of the week
+        self.trialStatus = trialController.getTrialStatus()
         
-        switch self.competitionStatus {
+        switch self.trialStatus {
         
-        case 0: // no running competition
+        case 0: // no running trial
             print("No running competition")
-            forkBasedOnExperimentalCondition()
+            // fork should occur after setting the instructions for the weekly goal
+            displayOptimalChallengeInstructions()
+            //forkBasedOnExperimentalCondition()
         
-        case 1: // running competition
+        case 1: // running trial
             print("Running competition")
             denyGoalButton.isHidden = true
             acceptGoalButton.isHidden = true
@@ -76,11 +81,24 @@ class MainScreenViewController : UIViewController  { //HealthKitDataRetrieverPro
         print("Call to steps data downloaded")
     }
     
+    
+    /// Displays on streen the instructions for the optimal challenge
+    /// This action will give as a result the weekly step goal
+    func displayOptimalChallengeInstructions(){
+        /// Requests average steps
+        healthkitSetupAssistant.getDailyAverageStepCount(completion: {averageSteps in
+        self.averageDailySteps = averageSteps.truncate(places: 0)
+        self.instructionsTextField.text = "Your daily aveage steps is \(Int(self.averageDailySteps)). \n Do you want to increase it by 5%? \n That is walking \((Int(self.averageDailySteps * 0.05))) more steps or about \((self.averageDailySteps *  0.05 * 0.013).truncate(places: 2)) minutes of walking."
+        self.instructionsTextField.isHidden = false
+        self.acceptGoalButton.isHidden = false
+        self.denyGoalButton.isHidden = false
+        })
+    }
 
     
     
     /// Displays on screen the instructions based on the experimental condition
-    /// The conditions are individual or group
+    /// The conditions are autonomy, autonomy+competence, autonomy+competence+relatedness
     func forkBasedOnExperimentalCondition(){
         
         /// Request user experimental condition
@@ -92,7 +110,7 @@ class MainScreenViewController : UIViewController  { //HealthKitDataRetrieverPro
         
             self.averageDailySteps = averageSteps.truncate(places: 0)
             
-            /// based on experimental group set instructions text
+            /// based on experimental condition set instructions text
             
             switch userExperimentalCondition {
             case 1: /// individual
@@ -124,7 +142,10 @@ class MainScreenViewController : UIViewController  { //HealthKitDataRetrieverPro
         instructionsTextField.text = "Your goal this week will be to reach \(Int(weeklyGoal)) steps. \n\n That is approximately \(Int(weeklyGoal / 7)) steps in one day."
         
         self.weeklyGoal = weeklyGoal
-        self.competitionStatus = 1
+        self.trialStatus = 1
+        self.endTimeStamp = Date.today().next(.monday)
+        print(Date.today().next(.monday))
+        
         
         acceptGoalButton.isHidden = true
         denyGoalButton.isHidden = true
@@ -136,7 +157,7 @@ class MainScreenViewController : UIViewController  { //HealthKitDataRetrieverPro
         instructionsTextField.text = "It is fine! Let's try to keep your average number of steps as the goal for this week, that is \(self.averageDailySteps) steps."
         
         self.weeklyGoal = self.averageDailySteps
-        self.competitionStatus = 1
+        self.trialStatus = 1
         
         denyGoalButton.isHidden = true
         acceptGoalButton.isHidden = true
@@ -144,16 +165,16 @@ class MainScreenViewController : UIViewController  { //HealthKitDataRetrieverPro
     }
     
     
-    /// Saves the competition status and the weekly goal in the local realm
+    /// Saves the trial status and the weekly goal in the local realm
     /// Hides the ok button and segues to the Dashboard View Controller
     ///
     /// - Parameter sender: OK button
     @IBAction func okButtonAction(_ sender: Any) { ///add timestamp to competition status
-        //Save competition status (goal) in the realm
-        competitionController.storeCompetitionStatusLocally(weeklyGoal: self.weeklyGoal, status : self.competitionStatus, completion: { success in
+        //Save trial status (goal) in the realm
+        trialController.storeTrialObjectLocally(weeklyGoal: self.weeklyGoal, status : self.trialStatus, endTimeStamp: self.endTimeStamp,  completion: { success in
             print("Competition Status succesfully inserted in local realm")
             print("Weekly Goal: \(weeklyGoal)")
-            print("Competition Status: \(competitionStatus)")
+            print("Trial Status: \(trialStatus)")
         })
         
         // Hide ok Button

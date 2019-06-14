@@ -28,7 +28,22 @@ class DashboardViewController: UIViewController, HealthKitSetupAssistantProtocol
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        styleUI()
+        // Check experimental condition to show/hide History button and Ranking
+        /// Request user experimental condition
+        let realm = try! Realm()
+        let userExperimentalCondition = Int((realm.objects(RealmUserModel.self).last?.expCondition)!)!
+        switch userExperimentalCondition {
+        case 1:
+            historyButton.isHidden = true
+        case 2:
+            styleUI()
+        case 3:
+            styleUI()
+            print("Load Ranking")
+        default:
+             print( "There was error in the experimental group.")
+        }
+       
         dashboardController.delegate = self
         healthKitSetupAssistant.delegate = self
         
@@ -50,10 +65,10 @@ class DashboardViewController: UIViewController, HealthKitSetupAssistantProtocol
         //mainScreenViewController.delegate = self //Protocol conformation here
         
         /// request to realm the daily goal
-        let realm = try! Realm()
-        if let competitionInfo = realm.objects(RealmCompetitionModel.self).last {
-            self.dailyGoalLabel.text = "Daily Goal: \(Int(competitionInfo.weeklyGoal / 7))"
-            self.weeklyGoalLabel.text = "Weekly Goal: \(Int (competitionInfo.weeklyGoal))"
+        //let realm = try! Realm()
+        if let trialInfo = realm.objects(RealmTrialModel.self).last {
+            self.dailyGoalLabel.text = "Daily Goal: \(Int(trialInfo.weeklyGoal / 7))"
+            self.weeklyGoalLabel.text = "Weekly Goal: \(Int (trialInfo.weeklyGoal))"
         }
         
 //        ring = Ring()

@@ -41,10 +41,12 @@ class CheckerLoginViewController : UIViewController{
                 let userExperimentalCondition = Int((realm.objects(RealmUserModel.self).last?.expCondition)!)!
                 
                 switch userExperimentalCondition {
-                case 1: // individual
+                case 1: // autonomy supportive
                     performSegue(withIdentifier: "splashToMainSegue", sender: self)
-                case 2: // group
+                case 2: // (autonomy + competence) supportive
                     performSegue(withIdentifier: "splashToGroupMainSegue", sender: self)
+                case 3: // (autonomoy + competence + relatedness) supportive
+                    performSegue(withIdentifier: "splashToMainSegue", sender: self)
                 default:
                     print("There was error in the experimental group.")
                 }

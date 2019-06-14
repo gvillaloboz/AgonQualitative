@@ -58,7 +58,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" text="tegan@gmail.com" borderStyle="roundedRect" placeholder="Type your email" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="77H-qx-oEi">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" text="gavizu@gmail.com" borderStyle="roundedRect" placeholder="Type your email" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="77H-qx-oEi">
                                 <rect key="frame" x="16" y="297" width="343" height="31"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="31" id="GLY-d7-kmv"/>
@@ -675,7 +675,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="0TO-Hp-tDW"/>
-        <segue reference="Ez0-eE-ER9"/>
+        <segue reference="xhF-ag-Bq2"/>
+        <segue reference="4RN-rO-QOa"/>
     </inferredMetricsTieBreakers>
 </document>

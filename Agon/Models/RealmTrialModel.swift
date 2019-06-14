@@ -1,5 +1,5 @@
 //
-//  RealmCompetitionStatusModel.swift
+//  RealmTrialModel.swift
 //  Agon
 //
 //  Created by Gabriela Villalobos-Zúñiga on 10.12.18.
@@ -9,10 +9,10 @@
 import Foundation
 import RealmSwift
 
-class RealmCompetitionModel : Object{
-    /// 0: not on competition
-    /// 1: weekly competition started
-    ///
+class RealmTrialModel : Object{
+    /// 0: not on trial
+    /// 1: weekly trial started
+    
     
     // Properties
     @objc dynamic var status = 0
@@ -21,6 +21,7 @@ class RealmCompetitionModel : Object{
     @objc dynamic var timeStamp = Date()
     @objc dynamic var assignment = 0 // number of assignmets to group, this is used to know when there is a first assignment
     @objc dynamic var group = 0
+    @objc dynamic var endTimeStamp = Date()
     
     // Init
     convenience init(status: Int) {
