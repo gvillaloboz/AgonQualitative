@@ -44,7 +44,7 @@ class CheckerLoginViewController : UIViewController{
                 case 1: // autonomy supportive
                     performSegue(withIdentifier: "splashToMainSegue", sender: self)
                 case 2: // (autonomy + competence) supportive
-                    performSegue(withIdentifier: "splashToGroupMainSegue", sender: self)
+                    performSegue(withIdentifier: "splashToMainSegue", sender: self)
                 case 3: // (autonomoy + competence + relatedness) supportive
                     performSegue(withIdentifier: "splashToMainSegue", sender: self)
                 default:

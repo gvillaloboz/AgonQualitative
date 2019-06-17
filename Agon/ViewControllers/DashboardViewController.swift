@@ -9,8 +9,15 @@
 import UIKit
 import RealmSwift
 
-class DashboardViewController: UIViewController, HealthKitSetupAssistantProtocol, shareHealthDataDelegate, DashboardContollerProtocol {
+class DashboardViewController: UIViewController, HealthKitSetupAssistantProtocol, shareHealthDataDelegate, DashboardContollerProtocol, UITableViewDataSource, UITableViewDelegate {
 
+    // Struct
+    
+    struct LeaderboardRecord{
+        var userName : String
+        var stepsNumber : String
+        var kudo : String
+    }
     
     // Properties
     
@@ -18,10 +25,17 @@ class DashboardViewController: UIViewController, HealthKitSetupAssistantProtocol
     @IBOutlet weak var dailyGoalLabel: UILabel!
     @IBOutlet weak var dailyStepsLabel: UILabel!
     @IBOutlet weak var historyButton: UIButton!
+    @IBOutlet weak var tableView: UITableView!
     
     let healthKitSetupAssistant = HealthKitSetupAssistant()
     let dashboardController = DashboardController()
 
+    var leaderboardArray = [
+        LeaderboardRecord(userName : "Fred Durst", stepsNumber : "4432", kudo : "0"),
+        LeaderboardRecord(userName : "Sandra Cohen", stepsNumber : "14563", kudo : "1"),
+        LeaderboardRecord(userName : "Christina Aguilera", stepsNumber : "21", kudo : "1"),
+        LeaderboardRecord(userName : "Stephanie Dupont", stepsNumber : "3000", kudo : "0")
+    ]
     
     // Functions
     
@@ -39,7 +53,8 @@ class DashboardViewController: UIViewController, HealthKitSetupAssistantProtocol
             styleUI()
         case 3:
             styleUI()
-            print("Load Ranking")
+            //print("Load Ranking")
+            //self.performSegue(withIdentifier: "dashboardToGroupDashboardSegue", sender: self)
         default:
              print( "There was error in the experimental group.")
         }
@@ -137,5 +152,20 @@ class DashboardViewController: UIViewController, HealthKitSetupAssistantProtocol
         historyButton.setTitleColor(.white, for: .normal)
     }
     
+    // MARK: - Table view data source
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return leaderboardArray.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! LeaderboardTableViewCell
+        
+        cell.userNameLabel?.text = leaderboardArray[indexPath.row].userName
+        cell.stepsLabel?.text = leaderboardArray[indexPath.row].stepsNumber
+        cell.kudoButton?.setTitle(leaderboardArray[indexPath.row].kudo, for: .normal)
+        
+        return cell
+    }
 
 }

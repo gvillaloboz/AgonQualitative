@@ -78,9 +78,11 @@ class LoginViewController : UIViewController, UserContollerProtocol, UITextField
                     let userExperimentalCondition = Int((realm.objects(RealmUserModel.self).first?.expCondition)!)!
                     
                     switch userExperimentalCondition {
-                    case 1: // Individual
+                    case 1: // Autonomy
                         self.performSegue(withIdentifier: "loginToMainScreenSegue", sender: self)
-                    case 2: // Group
+                    case 2: // Autonomy + Competence
+                        self.performSegue(withIdentifier: "loginToMainScreenSegue", sender: self)
+                    case 3: // Autonomy + Competence + Relatedness
                         self.performSegue(withIdentifier: "loginToMainScreenSegue", sender: self)
                     default:
                         print("No experimental condition that allows Segueing")
