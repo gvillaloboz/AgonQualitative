@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class GroupDashboardViewController : UIViewController, UITableViewDataSource, UITableViewDelegate, DashboardContollerProtocol, HealthKitSetupAssistantProtocol {
+class GroupDashboardViewController : UIViewController, UITableViewDataSource, UITableViewDelegate, HealthKitSetupAssistantProtocol {
 
     
 

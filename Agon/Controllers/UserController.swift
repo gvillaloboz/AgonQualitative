@@ -69,12 +69,11 @@ class UserController: NSObject, URLSessionDataDelegate {
     ///   - pseudonym: user pseudonym
     ///   - email: user email
     /// - Returns: returns true if Realm User Object created successfully
-    func storeRealmUser(id : String, name : String, lastName : String, pseudonym : String, email : String, expCondition : String) -> Bool{
+    func storeRealmUser(id : String, name : String, lastName : String, email : String, expCondition : String) -> Bool{
         let user = RealmUserModel()
         user.id = id
         user.name = name
         user.lastName = lastName
-        user.pseudonym = pseudonym
         user.email = email
         user.expCondition = expCondition
         
@@ -97,7 +96,7 @@ class UserController: NSObject, URLSessionDataDelegate {
     /// if yes then stores it locally
     ///
     /// - Parameter data: User data from the server or "0 results" message
-    func storeUserLocally(data : String, pseudonym : String, completion: (Bool) -> Void){
+    func storeUserLocally(data : String, completion: (Bool) -> Void){
 
         var splitString = [String]()
         splitString = (data.components(separatedBy: " "))
@@ -107,14 +106,14 @@ class UserController: NSObject, URLSessionDataDelegate {
         //let pseudonym = splitString[3]
         let email = splitString[4]
         let expCondition = splitString[5]
-        if(storeRealmUser(id: id, name: name, lastName: lastName, pseudonym: pseudonym, email: email, expCondition: expCondition)){
+        if(storeRealmUser(id: id, name: name, lastName: lastName, email: email, expCondition: expCondition)){
             completion(true)
         }
     }
     
     func storeUserLocally(id : String, name : String, lastName : String, pseudonym : String, email : String, expCondition : String, completion: (Bool) -> Void){
         
-        if(storeRealmUser(id: id, name: name, lastName: lastName, pseudonym: pseudonym, email: email, expCondition: expCondition))
+        if(storeRealmUser(id: id, name: name, lastName: lastName, email: email, expCondition: expCondition))
         {
             completion(true)
         }

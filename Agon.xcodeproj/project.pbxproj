@@ -14,7 +14,6 @@
 		8B458D7C21BE75750058D93A /* RealmTrialModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B458D7B21BE75750058D93A /* RealmTrialModel.swift */; };
 		8B458D7E21BEA9B50058D93A /* Numerical.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B458D7D21BEA9B50058D93A /* Numerical.swift */; };
 		8B45CEBD2215B66B005D722A /* HealthKitDataManagementAssistant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B45CEBC2215B66B005D722A /* HealthKitDataManagementAssistant.swift */; };
-		8B622663220DC16C00FB7170 /* GroupDashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B622662220DC16C00FB7170 /* GroupDashboardViewController.swift */; };
 		8B622666220DC31700FB7170 /* GroupMainScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B622665220DC31700FB7170 /* GroupMainScreenViewController.swift */; };
 		8B622668220DD0AF00FB7170 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B622667220DD0AF00FB7170 /* Color.swift */; };
 		8B6ED9D721F61AB700F5A263 /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6ED9D621F61AB700F5A263 /* HistoryViewController.swift */; };
@@ -22,6 +21,7 @@
 		8B7B10DF2191C160005308CC /* CheckerLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B7B10DE2191C160005308CC /* CheckerLoginViewController.swift */; };
 		8B96CCF221A6B561005B8962 /* MainScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B96CCF121A6B561005B8962 /* MainScreenViewController.swift */; };
 		8B96E50A21A40EB7009174C2 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B96E50921A40EB7009174C2 /* logo.png */; };
+		8BB24CF222C5780C00CE60B4 /* LeaderboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB24CF122C5780C00CE60B4 /* LeaderboardViewController.swift */; };
 		8BB3484821A4138E00768F1C /* PermissionRequestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB3484721A4138E00768F1C /* PermissionRequestViewController.swift */; };
 		8BB3484A21A41D9900768F1C /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BB3484921A41D9900768F1C /* HealthKit.framework */; };
 		8BB3484D21A44D1900768F1C /* HealthKitSetupAssistant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB3484C21A44D1900768F1C /* HealthKitSetupAssistant.swift */; };
@@ -71,7 +71,6 @@
 		8B458D7B21BE75750058D93A /* RealmTrialModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmTrialModel.swift; sourceTree = "<group>"; };
 		8B458D7D21BEA9B50058D93A /* Numerical.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Numerical.swift; sourceTree = "<group>"; };
 		8B45CEBC2215B66B005D722A /* HealthKitDataManagementAssistant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitDataManagementAssistant.swift; sourceTree = "<group>"; };
-		8B622662220DC16C00FB7170 /* GroupDashboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupDashboardViewController.swift; sourceTree = "<group>"; };
 		8B622665220DC31700FB7170 /* GroupMainScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupMainScreenViewController.swift; sourceTree = "<group>"; };
 		8B622667220DD0AF00FB7170 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		8B6ED9D621F61AB700F5A263 /* HistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
@@ -79,6 +78,7 @@
 		8B7B10DE2191C160005308CC /* CheckerLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckerLoginViewController.swift; sourceTree = "<group>"; };
 		8B96CCF121A6B561005B8962 /* MainScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenViewController.swift; sourceTree = "<group>"; };
 		8B96E50921A40EB7009174C2 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
+		8BB24CF122C5780C00CE60B4 /* LeaderboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderboardViewController.swift; sourceTree = "<group>"; };
 		8BB3484721A4138E00768F1C /* PermissionRequestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionRequestViewController.swift; sourceTree = "<group>"; };
 		8BB3484921A41D9900768F1C /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		8BB3484B21A41D9900768F1C /* Agon.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Agon.entitlements; sourceTree = "<group>"; };
@@ -262,9 +262,9 @@
 				8B96CCF121A6B561005B8962 /* MainScreenViewController.swift */,
 				8B6ED9D621F61AB700F5A263 /* HistoryViewController.swift */,
 				8BE10AC022099CCE00CC6AD3 /* HistoryTableViewCell.swift */,
-				8B622662220DC16C00FB7170 /* GroupDashboardViewController.swift */,
 				8B622665220DC31700FB7170 /* GroupMainScreenViewController.swift */,
 				8BE00FAF221425510061F55D /* LeaderboardTableViewCell.swift */,
+				8BB24CF122C5780C00CE60B4 /* LeaderboardViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -598,6 +598,7 @@
 				8B13AD2022021CDE0074C8B2 /* HistoryController.swift in Sources */,
 				8BF31D4F2194A518005A526A /* RealmUserModel.swift in Sources */,
 				8B458D7E21BEA9B50058D93A /* Numerical.swift in Sources */,
+				8BB24CF222C5780C00CE60B4 /* LeaderboardViewController.swift in Sources */,
 				8BF31D58219B158C005A526A /* UserController.swift in Sources */,
 				8B622668220DD0AF00FB7170 /* Color.swift in Sources */,
 				8BF616B921D0ECC700C9C2BC /* TrialController.swift in Sources */,
@@ -607,7 +608,6 @@
 				8B622666220DC31700FB7170 /* GroupMainScreenViewController.swift in Sources */,
 				8BE10AC122099CCE00CC6AD3 /* HistoryTableViewCell.swift in Sources */,
 				8BDC2EDC218C8F5600A7B4A2 /* AppDelegate.swift in Sources */,
-				8B622663220DC16C00FB7170 /* GroupDashboardViewController.swift in Sources */,
 				8B13AD1E2200A9870074C8B2 /* SynchronizationModel.swift in Sources */,
 				8B458D7C21BE75750058D93A /* RealmTrialModel.swift in Sources */,
 				A77D438722B2BD13003529F8 /* Dates.swift in Sources */,
@@ -806,7 +806,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.unil;
+				PRODUCT_BUNDLE_IDENTIFIER = ch.unil.agon;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.2;
@@ -828,7 +828,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.unil;
+				PRODUCT_BUNDLE_IDENTIFIER = ch.unil.agon;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.2;

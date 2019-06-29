@@ -18,7 +18,6 @@ class LoginViewController : UIViewController, UserContollerProtocol, UITextField
     let userController = UserController()
     
     @IBOutlet weak var emailTextField: UITextField!
-    @IBOutlet weak var pseudonymTextField: UITextField!
     @IBOutlet weak var messageLabel: UILabel!
     @IBOutlet weak var startButton: UIButton!
     
@@ -34,7 +33,6 @@ class LoginViewController : UIViewController, UserContollerProtocol, UITextField
         // set delegates and initialize controllers
         userController.delegate = self
         emailTextField.delegate = self
-        pseudonymTextField.delegate = self
         
         self.setupHideKeyboardOnTap()
     }
@@ -45,17 +43,13 @@ class LoginViewController : UIViewController, UserContollerProtocol, UITextField
     /// - Parameter sender: the start button on the Login View
     @IBAction func startButtonPress(_ sender: UIButton) {
         
-        if(!isEmailTextfieldEmpty() && !isPseudonymTextfieldEmpty()){
+        if(!isEmailTextfieldEmpty()){
 
             // The if let is done to remove the optional
             if let actualEmail = emailTextField.text{
                 userController.downloadUserData(email: actualEmail)
             }
             
-            if let actualPesudonym = pseudonymTextField.text{
-                print("Pseudonym:", actualPesudonym)
-                userController.setPseudonym(pseudonym: actualPesudonym)
-            }
         }
     }
     
@@ -65,10 +59,10 @@ class LoginViewController : UIViewController, UserContollerProtocol, UITextField
     func userDataDownloaded(data : String){
         userData = data
         if (userData == "0 results"){
-            messageLabel.text = "Email not registered in the system"
+            messageLabel.text = "Correo electrónico no registrado en el sistema."
         }
         else{
-            userController.storeUserLocally(data: data, pseudonym:  pseudonymTextField.text!, completion: {
+            userController.storeUserLocally(data: data, completion: {
                 status in
                 
                 /// Segues accordingly to experimental condition 
@@ -94,31 +88,19 @@ class LoginViewController : UIViewController, UserContollerProtocol, UITextField
     }
     
     
-    /// Checks if the textfield for the pseudonym is empty
-    /// If it is, displays a message
-    func isPseudonymTextfieldEmpty() -> Bool{
-        if pseudonymTextField.text?.isEmpty ?? true {
-            messageLabel.text = "Type a pseudonym"
-            return true
-        }
-        else{
-            print("Pseudonym text: ", pseudonymTextField.text!)
-            return false
-        }
-    }
-    
     /// Checks if the textfield for the email is empty
     /// If it is, displays a message
     func isEmailTextfieldEmpty() -> Bool{
         if emailTextField.text?.isEmpty ?? true {
-            messageLabel.text = "Type an email"
+            messageLabel.text = "Escriba un correo electrónico"
             return true
         }
-        else{
-            print("Email text: ", pseudonymTextField.text!)
-            return false
-        }
+        else{return false}
     }
+//        else{
+//            print("Email text: ", pseudonymTextField.text!)
+//            return false
+//        }
     
     /// Moves to the pseudonym textfield after hiting return from the email textfield
     ///
@@ -126,10 +108,6 @@ class LoginViewController : UIViewController, UserContollerProtocol, UITextField
     /// - Returns: always true
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if textField == emailTextField {
-            textField.resignFirstResponder()
-            pseudonymTextField.becomeFirstResponder()
-        }
-        else if textField == pseudonymTextField {
             textField.resignFirstResponder()
         }
         return true

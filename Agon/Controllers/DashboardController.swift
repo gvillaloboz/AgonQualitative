@@ -8,17 +8,20 @@
 
 import Foundation
 
+
 protocol DashboardContollerProtocol: class {
     func updateStepsLabelFunc(steps : String)
+    func userListPerConditionDataDownloaded(jsonArray : [[String:Any]])
 }
 
-class DashboardController {
+class DashboardController : NSObject, URLSessionDataDelegate {
     
     // Properties
-    weak var delegate : DashboardContollerProtocol?
+    weak var delegate : DashboardContollerProtocol!
     var realmUserModel = RealmUserModel()
     var numericalHelper = Numerical() // maybe I do not need to create an object of this class
     var synchronizationModel = SynchronizationModel()
+    let urlPath : String = "https://pow.unil.ch/agon/phpScripts/selectUsersListPerCondition.php"
     
     // Functions
     func updateStepsLabel(steps: Double){
@@ -95,7 +98,53 @@ class DashboardController {
             self.synchronizationModel.updateLastSyncTimestampAndSteps(steps: steps)
         }
         task.resume()
-        
-        
+     
     }
+    
+    /// Downloads from agon db in pow.unil.ch the list of users belonging to a particular condition
+    ///
+    /// - Parameter email: email imput on the login screen
+    func downloadUsersListPerCondition(expCondition : String){
+        
+        let url: URL = URL(string :  urlPath)!
+        let defaultSession = Foundation.URLSession(configuration : URLSessionConfiguration.default)
+        
+        var urlRequest : URLRequest = URLRequest(url: url)
+        urlRequest.httpMethod = "POST"
+        let postString = "a=\(expCondition)"
+        urlRequest.httpBody = postString.data(using: .utf8)
+        
+        let postTask = defaultSession.dataTask(with: urlRequest){data, response, error in
+            guard let data = data, error == nil else {  // check for fundamental networking error
+                print("error=\(String(describing: error))")
+                return
+            }
+            
+            if let httpStatus = response as? HTTPURLResponse, httpStatus.statusCode != 200 { // check for http errors
+                print("statusCode should be 200, but is \(httpStatus.statusCode)")
+                print("response = \(String(describing: response))")
+            }
+            
+            //JSON
+            do{
+                let jsonResponse = try JSONSerialization.jsonObject(with: data, options: [])
+                print(jsonResponse) //Response result
+                
+                guard let jsonArray = jsonResponse as? [[String: Any]] else {
+                    return
+                }
+                // Sends user list per condition data to the delegate function on the DashboardView Controller
+                DispatchQueue.main.async(execute: { () -> Void  in
+                    
+                    self.delegate.userListPerConditionDataDownloaded(jsonArray: jsonArray)
+                })
+                //print(jsonArray)
+            }
+            catch let parsingError {
+                print("Error", parsingError)
+            }
+        }
+        postTask.resume();
+    }
+    
 }

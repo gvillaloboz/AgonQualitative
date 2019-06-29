@@ -88,7 +88,7 @@ class MainScreenViewController : UIViewController  { //HealthKitDataRetrieverPro
         /// Requests average steps
         healthkitSetupAssistant.getDailyAverageStepCount(completion: {averageSteps in
         self.averageDailySteps = averageSteps.truncate(places: 0)
-        self.instructionsTextField.text = "Your daily aveage steps is \(Int(self.averageDailySteps)). \n Do you want to increase it by 5%? \n That is walking \((Int(self.averageDailySteps * 0.05))) more steps or about \((self.averageDailySteps *  0.05 * 0.013).truncate(places: 2)) minutes of walking."
+        self.instructionsTextField.text = "Tu promedio diario de pasos es \(Int(self.averageDailySteps)). \n ¿Te gustaría incrementarlo en un 5%? \n Eso es caminar \((Int(self.averageDailySteps * 0.05))) pasos adicionales o alrededor de \((self.averageDailySteps *  0.05 * 0.013).truncate(places: 2)) minutos caminando."
         self.instructionsTextField.isHidden = false
         self.acceptGoalButton.isHidden = false
         self.denyGoalButton.isHidden = false
@@ -114,7 +114,7 @@ class MainScreenViewController : UIViewController  { //HealthKitDataRetrieverPro
             
             switch userExperimentalCondition {
             case 1: /// individual
-                self.instructionsTextField.text = "Your daily aveage steps is \(Int(self.averageDailySteps)). \n Do you want to increase it by 5%? \n That is walking \((Int(self.averageDailySteps * 0.05))) more steps or about \((self.averageDailySteps *  0.05 * 0.013).truncate(places: 2)) minutes of walking."
+                self.instructionsTextField.text = "Tu promedio diario de pasos es \(Int(self.averageDailySteps)). \n ¿Te gustaría incrementarlo en un 5%? \n Eso es caminar \((Int(self.averageDailySteps * 0.05))) pasos adicionales o alrededor de \((self.averageDailySteps *  0.05 * 0.013).truncate(places: 2)) minutos caminando."
                 self.instructionsTextField.isHidden = false
                 self.acceptGoalButton.isHidden = false
                 self.denyGoalButton.isHidden = false
@@ -139,7 +139,7 @@ class MainScreenViewController : UIViewController  { //HealthKitDataRetrieverPro
     /// - Parameter sender: accept button
     @IBAction func acceptGoalButtonAction(_ sender: Any) {
         let weeklyGoal = (self.averageDailySteps * 7) + (self.averageDailySteps * 0.05)
-        instructionsTextField.text = "Your goal this week will be to reach \(Int(weeklyGoal)) steps. \n\n That is approximately \(Int(weeklyGoal / 7)) steps in one day."
+        instructionsTextField.text = "Tu objetivo esta semana será de alcanzar \(Int(weeklyGoal)) pasos. \n\n Esto es aproximadamente \(Int(weeklyGoal / 7)) pasos en un día."
         
         self.weeklyGoal = weeklyGoal
         self.trialStatus = 1
@@ -154,7 +154,7 @@ class MainScreenViewController : UIViewController  { //HealthKitDataRetrieverPro
      
     
     @IBAction func denyGoalButtonAction(_ sender: Any) {
-        instructionsTextField.text = "It is fine! Let's try to keep your average number of steps as the goal for this week, that is \(self.averageDailySteps) steps."
+        instructionsTextField.text = "¡No hay problema! Tratá de mantener tu promedio de pasos como tu objetivo para esta semana, eso es \(self.averageDailySteps.truncate(places: 0)) pasos."
         
         self.weeklyGoal = self.averageDailySteps
         self.trialStatus = 1

@@ -10,6 +10,7 @@ import UIKit
 import RealmSwift
 
 class DashboardViewController: UIViewController, HealthKitSetupAssistantProtocol, shareHealthDataDelegate, DashboardContollerProtocol, UITableViewDataSource, UITableViewDelegate {
+    
 
     // Struct
     
@@ -29,18 +30,23 @@ class DashboardViewController: UIViewController, HealthKitSetupAssistantProtocol
     
     let healthKitSetupAssistant = HealthKitSetupAssistant()
     let dashboardController = DashboardController()
-
-    var leaderboardArray = [
-        LeaderboardRecord(userName : "Fred Durst", stepsNumber : "4432", kudo : "0"),
-        LeaderboardRecord(userName : "Sandra Cohen", stepsNumber : "14563", kudo : "1"),
-        LeaderboardRecord(userName : "Christina Aguilera", stepsNumber : "21", kudo : "1"),
-        LeaderboardRecord(userName : "Stephanie Dupont", stepsNumber : "3000", kudo : "0")
-    ]
+    var leaderboardArray = [LeaderboardRecord]()
+    
+    
+//    var leaderboardArray = [
+//        LeaderboardRecord(userName : "Fred Durst", stepsNumber : "4432", kudo : "0"),
+//        LeaderboardRecord(userName : "Sandra Cohen", stepsNumber : "14563", kudo : "1"),
+//        LeaderboardRecord(userName : "Christina Aguilera", stepsNumber : "21", kudo : "1"),
+//        LeaderboardRecord(userName : "Stephanie Dupont", stepsNumber : "3000", kudo : "0")
+//    ]
     
     // Functions
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        dashboardController.delegate = self
+        healthKitSetupAssistant.delegate = self
+        
         // Do any additional setup after loading the view, typically from a nib.
         // Check experimental condition to show/hide History button and Ranking
         /// Request user experimental condition
@@ -49,24 +55,28 @@ class DashboardViewController: UIViewController, HealthKitSetupAssistantProtocol
         switch userExperimentalCondition {
         case 1:
             historyButton.isHidden = true
+            tableView.isHidden = true
         case 2:
             styleUI()
+            tableView.isHidden = true
         case 3:
             styleUI()
-            //print("Load Ranking")
-            //self.performSegue(withIdentifier: "dashboardToGroupDashboardSegue", sender: self)
+            dashboardController.downloadUsersListPerCondition(expCondition: "3")
+            
+
+        
+        //loadLeaderboard()
         default:
              print( "There was error in the experimental group.")
         }
        
-        dashboardController.delegate = self
-        healthKitSetupAssistant.delegate = self
+        
         
         
         // Request today step counts to HK and display
         healthKitSetupAssistant.getTodayStepCount(completion: {dailySteps in
             print("Steps requested from Dashboard: \(dailySteps)")
-            self.dailyStepsLabel.text = "Steps for today: \n\n \(Int(dailySteps))"
+            self.dailyStepsLabel.text = "Pasos de hoy: \n\n \(Int(dailySteps))"
             
             // Store steps in the Agon DB Server
             self.dashboardController.storeStepsInWebServer(steps : dailySteps)
@@ -82,8 +92,8 @@ class DashboardViewController: UIViewController, HealthKitSetupAssistantProtocol
         /// request to realm the daily goal
         //let realm = try! Realm()
         if let trialInfo = realm.objects(RealmTrialModel.self).last {
-            self.dailyGoalLabel.text = "Daily Goal: \(Int(trialInfo.weeklyGoal / 7))"
-            self.weeklyGoalLabel.text = "Weekly Goal: \(Int (trialInfo.weeklyGoal))"
+            self.dailyGoalLabel.text = "Objetivo Diario: \(Int(trialInfo.weeklyGoal / 7))"
+            self.weeklyGoalLabel.text = "Objetivo Semanal: \(Int (trialInfo.weeklyGoal))"
         }
         
 //        ring = Ring()
@@ -106,7 +116,7 @@ class DashboardViewController: UIViewController, HealthKitSetupAssistantProtocol
         // Request today step counts to HK and display
         healthKitSetupAssistant.getTodayStepCount(completion: {dailySteps in
             print("Steps requested from Dashboard: \(dailySteps)")
-            self.dailyStepsLabel.text = "Steps for today: \r \(Int(dailySteps))"
+            self.dailyStepsLabel.text = "Pasos de hoy: \r \(Int(dailySteps))"
             
             // Store steps in the Agon DB Server
             self.dashboardController.storeStepsInWebServer(steps : dailySteps)
@@ -130,7 +140,7 @@ class DashboardViewController: UIViewController, HealthKitSetupAssistantProtocol
     ///
     /// - Parameter steps: <#steps description#>
     func updateStepsNumberLabel(steps: Double) {
-        self.dailyStepsLabel.text = "bg Steps for today: \r \(Int(steps))"
+        self.dailyStepsLabel.text = "bg Pasos de hoy: \r \(Int(steps))"
     }
     
     
@@ -140,6 +150,17 @@ class DashboardViewController: UIViewController, HealthKitSetupAssistantProtocol
     /// - Parameter steps: <#steps description#>
     func updateStepsLabelFunc(steps: String) {
         self.dailyStepsLabel.text = "Steps2 for today: \r \(Int(steps) ?? 99999)"
+    }
+    
+    func userListPerConditionDataDownloaded(jsonArray: [[String:Any]]) {
+        for dic in jsonArray{
+            guard let name = dic["name"] as? String else { return }
+            print(name)
+            
+            leaderboardArray.append(LeaderboardRecord(userName : name, stepsNumber : "4432", kudo : "0"))
+            self.tableView.reloadData()
+            //self.refresher.endRefreshing()
+        }
     }
     
     
@@ -155,7 +176,7 @@ class DashboardViewController: UIViewController, HealthKitSetupAssistantProtocol
     // MARK: - Table view data source
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return leaderboardArray.count
+            return leaderboardArray.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -166,6 +187,22 @@ class DashboardViewController: UIViewController, HealthKitSetupAssistantProtocol
         cell.kudoButton?.setTitle(leaderboardArray[indexPath.row].kudo, for: .normal)
         
         return cell
+    }
+    
+//    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+//        return 1
+//    }
+//    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//        return TableData.count
+//    }
+    
+    
+    func loadLiderboard(){
+        tableView.isHidden = false
+    }
+    
+    func refreshLeaderboard(){
+        
     }
 
 }
