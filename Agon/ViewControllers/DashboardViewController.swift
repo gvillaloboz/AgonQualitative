@@ -155,9 +155,10 @@ class DashboardViewController: UIViewController, HealthKitSetupAssistantProtocol
     func userListPerConditionDataDownloaded(jsonArray: [[String:Any]]) {
         for dic in jsonArray{
             guard let name = dic["name"] as? String else { return }
+            guard let numSteps = dic["numSteps"] as? String else { return }
             print(name)
             
-            leaderboardArray.append(LeaderboardRecord(userName : name, stepsNumber : "4432", kudo : "0"))
+            leaderboardArray.append(LeaderboardRecord(userName : name, stepsNumber : numSteps, kudo : "0"))
             self.tableView.reloadData()
             //self.refresher.endRefreshing()
         }

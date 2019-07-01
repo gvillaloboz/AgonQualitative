@@ -24,7 +24,9 @@
 	<true/>
 	<key>NSHealthShareUsageDescription</key>
 	<string>We need your number steps to track your physical activity.</string>
-	<key>UIBackgroundModes</key>
+    <key>NSHealthUpdateUsageDescription</key>
+    <string>Necesitamos tu numero de pasos para registrar tu actividad física</string>
+    <key>UIBackgroundModes</key>
 	<array>
 		<string>fetch</string>
 	</array>

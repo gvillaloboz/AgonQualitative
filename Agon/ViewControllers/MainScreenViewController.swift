@@ -34,6 +34,8 @@ class MainScreenViewController : UIViewController  { //HealthKitDataRetrieverPro
     var weeklyGoal = Double()
     var averageDailySteps = Double()
     var endTimeStamp = Date()
+    var averageDailyStepsFlag = false
+    var denyGoalFlag = false
     
     weak var delegate : shareHealthDataDelegate?
     
@@ -88,11 +90,32 @@ class MainScreenViewController : UIViewController  { //HealthKitDataRetrieverPro
         /// Requests average steps
         healthkitSetupAssistant.getDailyAverageStepCount(completion: {averageSteps in
         self.averageDailySteps = averageSteps.truncate(places: 0)
-        self.instructionsTextField.text = "Tu promedio diario de pasos es \(Int(self.averageDailySteps)). \n ¿Te gustaría incrementarlo en un 5%? \n Eso es caminar \((Int(self.averageDailySteps * 0.05))) pasos adicionales o alrededor de \((self.averageDailySteps *  0.05 * 0.013).truncate(places: 2)) minutos caminando."
-        self.instructionsTextField.isHidden = false
-        self.acceptGoalButton.isHidden = false
-        self.denyGoalButton.isHidden = false
-        })
+            
+        // check if average daily steps is at least
+        if(self.averageDailySteps < 1000){
+            self.averageDailySteps = 1000
+            self.averageDailyStepsFlag = true
+        }
+            
+        if(!self.averageDailyStepsFlag){
+            self.instructionsTextField.text = "Tu promedio diario de pasos es \(Int(self.averageDailySteps)). \n ¿Te gustaría incrementarlo en un 5%? \n Eso es caminar \((Int(self.averageDailySteps * 0.05))) pasos adicionales o alrededor de \((self.averageDailySteps *  0.05 * 0.013).truncate(places: 2)) minutos caminando."
+            
+            
+            self.acceptGoalButton.isHidden = false
+            self.denyGoalButton.isHidden = false
+        }else{
+            self.instructionsTextField.text = "No tenemos datos suficientes para calcular tu promedio diario de pasos. Por eso te sugerimos \(Int(self.averageDailySteps))."
+            
+            self.acceptGoalButton.isHidden = true
+            self.denyGoalButton.isHidden = true
+            self.okButton.isHidden = false
+        }
+            self.instructionsTextField.isHidden = false
+            
+            
+//            self.instructionsTextField.text = "Tu promedio diario de pasos es \(Int(self.averageDailySteps)). \n ¿Te gustaría incrementarlo en un 5%? \n Eso es caminar \((Int(self.averageDailySteps * 0.05))) pasos adicionales o alrededor de \((self.averageDailySteps *  0.05 * 0.013).truncate(places: 2)) minutos caminando."
+
+            })
     }
 
     
@@ -114,10 +137,13 @@ class MainScreenViewController : UIViewController  { //HealthKitDataRetrieverPro
             
             switch userExperimentalCondition {
             case 1: /// individual
+                if(!self.averageDailyStepsFlag){
                 self.instructionsTextField.text = "Tu promedio diario de pasos es \(Int(self.averageDailySteps)). \n ¿Te gustaría incrementarlo en un 5%? \n Eso es caminar \((Int(self.averageDailySteps * 0.05))) pasos adicionales o alrededor de \((self.averageDailySteps *  0.05 * 0.013).truncate(places: 2)) minutos caminando."
-                self.instructionsTextField.isHidden = false
-                self.acceptGoalButton.isHidden = false
-                self.denyGoalButton.isHidden = false
+                }else{
+                     self.instructionsTextField.text = "No tenemos datos suficientes para calcular tu promedio diario de pasos. Pero te sugerimos \(Int(self.averageDailySteps)). \n ¿Te gustaría definirlo como objetivo?"
+                }
+                
+           
                 
             case 2: /// group
                 self.instructionsTextField.text = "The system should never get me here"
@@ -138,7 +164,13 @@ class MainScreenViewController : UIViewController  { //HealthKitDataRetrieverPro
     ///
     /// - Parameter sender: accept button
     @IBAction func acceptGoalButtonAction(_ sender: Any) {
-        let weeklyGoal = (self.averageDailySteps * 7) + (self.averageDailySteps * 0.05)
+        var weeklyGoal : Double
+        if(!self.averageDailyStepsFlag){
+            weeklyGoal = (self.averageDailySteps * 7) + ((self.averageDailySteps * 0.05) * 7)
+        }
+        else{
+            weeklyGoal = (self.averageDailySteps * 7)
+        }
         instructionsTextField.text = "Tu objetivo esta semana será de alcanzar \(Int(weeklyGoal)) pasos. \n\n Esto es aproximadamente \(Int(weeklyGoal / 7)) pasos en un día."
         
         self.weeklyGoal = weeklyGoal
@@ -154,7 +186,7 @@ class MainScreenViewController : UIViewController  { //HealthKitDataRetrieverPro
      
     
     @IBAction func denyGoalButtonAction(_ sender: Any) {
-        instructionsTextField.text = "¡No hay problema! Tratá de mantener tu promedio de pasos como tu objetivo para esta semana, eso es \(self.averageDailySteps.truncate(places: 0)) pasos."
+        instructionsTextField.text = "¡No hay problema! Tratá de mantener tu promedio diario de pasos como tu objetivo para esta semana, eso es \(self.averageDailySteps.truncate(places: 0)) pasos."
         
         self.weeklyGoal = self.averageDailySteps
         self.trialStatus = 1
@@ -162,6 +194,8 @@ class MainScreenViewController : UIViewController  { //HealthKitDataRetrieverPro
         denyGoalButton.isHidden = true
         acceptGoalButton.isHidden = true
         okButton.isHidden = false
+        
+        self.denyGoalFlag = true
     }
     
     
@@ -170,6 +204,15 @@ class MainScreenViewController : UIViewController  { //HealthKitDataRetrieverPro
     ///
     /// - Parameter sender: OK button
     @IBAction func okButtonAction(_ sender: Any) { ///add timestamp to competition status
+        var weeklyGoal : Double
+        if(!self.averageDailyStepsFlag && !self.denyGoalFlag){
+            weeklyGoal = (self.averageDailySteps * 7) + ((self.averageDailySteps * 0.05) * 7)
+        }
+        else{
+            weeklyGoal = (self.averageDailySteps * 7)
+        }
+        self.weeklyGoal = weeklyGoal
+        
         //Save trial status (goal) in the realm
         trialController.storeTrialObjectLocally(weeklyGoal: self.weeklyGoal, status : self.trialStatus, endTimeStamp: self.endTimeStamp,  completion: { success in
             print("Competition Status succesfully inserted in local realm")
