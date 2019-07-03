@@ -22,6 +22,9 @@
 		8B96CCF221A6B561005B8962 /* MainScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B96CCF121A6B561005B8962 /* MainScreenViewController.swift */; };
 		8B96E50A21A40EB7009174C2 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B96E50921A40EB7009174C2 /* logo.png */; };
 		8BB24CF222C5780C00CE60B4 /* LeaderboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB24CF122C5780C00CE60B4 /* LeaderboardViewController.swift */; };
+		8BB24CF422CC28E300CE60B4 /* Sync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB24CF322CC28E300CE60B4 /* Sync.swift */; };
+		8BB24CF622CC297300CE60B4 /* FailedStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB24CF522CC297300CE60B4 /* FailedStep.swift */; };
+		8BB24CF822CC2B4000CE60B4 /* Step.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB24CF722CC2B4000CE60B4 /* Step.swift */; };
 		8BB3484821A4138E00768F1C /* PermissionRequestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB3484721A4138E00768F1C /* PermissionRequestViewController.swift */; };
 		8BB3484A21A41D9900768F1C /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BB3484921A41D9900768F1C /* HealthKit.framework */; };
 		8BB3484D21A44D1900768F1C /* HealthKitSetupAssistant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB3484C21A44D1900768F1C /* HealthKitSetupAssistant.swift */; };
@@ -79,6 +82,9 @@
 		8B96CCF121A6B561005B8962 /* MainScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenViewController.swift; sourceTree = "<group>"; };
 		8B96E50921A40EB7009174C2 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
 		8BB24CF122C5780C00CE60B4 /* LeaderboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderboardViewController.swift; sourceTree = "<group>"; };
+		8BB24CF322CC28E300CE60B4 /* Sync.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sync.swift; sourceTree = "<group>"; };
+		8BB24CF522CC297300CE60B4 /* FailedStep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FailedStep.swift; sourceTree = "<group>"; };
+		8BB24CF722CC2B4000CE60B4 /* Step.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Step.swift; sourceTree = "<group>"; };
 		8BB3484721A4138E00768F1C /* PermissionRequestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionRequestViewController.swift; sourceTree = "<group>"; };
 		8BB3484921A41D9900768F1C /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		8BB3484B21A41D9900768F1C /* Agon.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Agon.entitlements; sourceTree = "<group>"; };
@@ -248,6 +254,9 @@
 				8BF31D522195A86B005A526A /* HomeModel.swift */,
 				8B458D7B21BE75750058D93A /* RealmTrialModel.swift */,
 				8B13AD1D2200A9870074C8B2 /* SynchronizationModel.swift */,
+				8BB24CF322CC28E300CE60B4 /* Sync.swift */,
+				8BB24CF522CC297300CE60B4 /* FailedStep.swift */,
+				8BB24CF722CC2B4000CE60B4 /* Step.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -612,6 +621,7 @@
 				8B458D7C21BE75750058D93A /* RealmTrialModel.swift in Sources */,
 				A77D438722B2BD13003529F8 /* Dates.swift in Sources */,
 				8BE00FB0221425510061F55D /* LeaderboardTableViewCell.swift in Sources */,
+				8BB24CF822CC2B4000CE60B4 /* Step.swift in Sources */,
 				8BF31D512194A55A005A526A /* LoginViewController.swift in Sources */,
 				8BB3484821A4138E00768F1C /* PermissionRequestViewController.swift in Sources */,
 				8B96CCF221A6B561005B8962 /* MainScreenViewController.swift in Sources */,
@@ -621,6 +631,8 @@
 				8BB3484D21A44D1900768F1C /* HealthKitSetupAssistant.swift in Sources */,
 				8B6ED9D721F61AB700F5A263 /* HistoryViewController.swift in Sources */,
 				8B45CEBD2215B66B005D722A /* HealthKitDataManagementAssistant.swift in Sources */,
+				8BB24CF622CC297300CE60B4 /* FailedStep.swift in Sources */,
+				8BB24CF422CC28E300CE60B4 /* Sync.swift in Sources */,
 				8B458D7A21BE44EA0058D93A /* Reachability.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

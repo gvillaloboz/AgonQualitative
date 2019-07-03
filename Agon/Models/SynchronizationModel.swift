@@ -27,6 +27,9 @@ final class SynchronizationModel: Object{
         }
     }
     
+    
+    
+    
     func getLastSyncSteps() -> Double{
         let realm = try! Realm()
         if (realm.objects(SynchronizationModel.self).isEmpty){
@@ -38,6 +41,8 @@ final class SynchronizationModel: Object{
             return lastSyncSteps!
         }
     }
+    
+    
     
     
     // MARK: - Functions
@@ -138,5 +143,7 @@ final class SynchronizationModel: Object{
             realm.add(synchronizationModel)
         }
     }
+    
+    
     
 }

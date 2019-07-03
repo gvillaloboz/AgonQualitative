@@ -10,7 +10,7 @@ import Foundation
 import RealmSwift
 
 protocol HistoryContollerProtocol: class {
-    func userAllHistoryDataDownloaded(data : String)
+    func userAllHistoryDataDownloaded(jsonArray : [[String:Any]])
 }
 
 class HistoryController{
@@ -45,15 +45,24 @@ class HistoryController{
                 print("response = \(String(describing: response))")
             }
             
-            let responseString = String(data: data, encoding: .utf8)!
-            //print("responseString = \(String(describing: responseString))")
+            //JSON
+            do{
+                let jsonResponse = try JSONSerialization.jsonObject(with: data, options: [])
+                print(jsonResponse) //Response result
+                
+                guard let jsonArray = jsonResponse as? [[String: Any]] else {
+                    return
+                }
             
-            DispatchQueue.main.async(execute: { () -> Void  in
-                // Sends user data to the delegate function on the Login View
-                self.delegate.userAllHistoryDataDownloaded(data: responseString)
-            })
+                DispatchQueue.main.async(execute: { () -> Void  in
+                    // Sends user data to the delegate function on the Login View
+                    self.delegate.userAllHistoryDataDownloaded(jsonArray: jsonArray)
+                })
+            }
+            catch let parsingError {
+                print("Error", parsingError)
+            }
         }
-        
         postTask.resume();
         
     }

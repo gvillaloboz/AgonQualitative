@@ -97,10 +97,7 @@ class LoginViewController : UIViewController, UserContollerProtocol, UITextField
         }
         else{return false}
     }
-//        else{
-//            print("Email text: ", pseudonymTextField.text!)
-//            return false
-//        }
+
     
     /// Moves to the pseudonym textfield after hiting return from the email textfield
     ///

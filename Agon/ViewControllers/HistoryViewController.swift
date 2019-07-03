@@ -65,18 +65,28 @@ class HistoryViewController : UITableViewController, HistoryContollerProtocol{
 //    }
     
     // Prints the content of the history retrieved from the server [Temporal]
-    func userAllHistoryDataDownloaded(data: String) {
-        var rawStringRecordArray = data.components(separatedBy: "\n")
-        rawStringRecordArray.remove(at: rawStringRecordArray.count-1)
+    func userAllHistoryDataDownloaded(jsonArray: [[String:Any]]) {
+        for dic in jsonArray{
+            guard let userId = dic["userId"] as? String else {return}
+            guard let date = dic["date_1"] as? String else {return}
+            guard let numSteps = dic["numSteps"] as? String else { return }
+        
+            let stepsRecord = StepsRecord(stepsNumber: numSteps, timestamp : date)
+            historyArray.append(stepsRecord)
+            
+//            for (index, rawRecord) in rawStringRecordArray.enumerated(){
+//                var temp = rawRecord.components(separatedBy: ",")
+//                let stepsRecord = StepsRecord(stepsNumber: temp[0], timestamp : temp[1])
+//
+//                historyArray.append(stepsRecord)
+//            }
+        }
+        
+//        var rawStringRecordArray = data.components(separatedBy: "\n")
+//        rawStringRecordArray.remove(at: rawStringRecordArray.count-1)
         //historyArray = data.components(separatedBy: "\n")
         //rawStringRecordArray.forEach{ (rawRecord) in
-        for (index, rawRecord) in rawStringRecordArray.enumerated(){
-            var temp = rawRecord.components(separatedBy: ",")
-            let stepsRecord = StepsRecord(stepsNumber: temp[0], timestamp : temp[1])
         
-            historyArray.append(stepsRecord)
-        
-        }
         
         tableView.reloadData()
 

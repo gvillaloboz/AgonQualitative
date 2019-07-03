@@ -32,10 +32,9 @@ class DashboardController : NSObject, URLSessionDataDelegate {
     func storeStepsInWebServer(steps : Double){
         print("Store Steps in WebServer")
         // Checks if there are new steps that should be store on the DB
-        if(synchronizationModel.getLastSyncTimestamp() < Date() && synchronizationModel.getLastSyncSteps() != steps)
-        {
-            // Updates Dashboard View Controller UI Steps Label
-            //self.delegate?.updateStepsLabel(steps: String(steps))
+        if(synchronizationModel.getLastSyncTimestamp() < Date() &&
+            synchronizationModel.getLastSyncSteps() != steps &&
+            realmUserModel.getId() != "NoId"){
             
             // Checks if there is internet connection available to avoid connectivity issues with the server
             let internetConnection = Reachability().isInternetAvailable()
@@ -46,8 +45,8 @@ class DashboardController : NSObject, URLSessionDataDelegate {
                                          timestamp : Numerical().convertDateToString(date: Date()),
                                          completion : { results in
                                             print (results)
-                }
-                )
+                                        }
+                                        )
             }
         }
     }

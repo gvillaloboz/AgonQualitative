@@ -29,6 +29,7 @@ class MainScreenViewController : UIViewController  { //HealthKitDataRetrieverPro
     private let healthkitSetupAssistant = HealthKitSetupAssistant()
     private let trialController = TrialController()
     private let dashboardController = DashboardController()
+    var synchronizationModel = SynchronizationModel()
     
     var trialStatus = Int()
     var weeklyGoal = Double()
@@ -36,8 +37,11 @@ class MainScreenViewController : UIViewController  { //HealthKitDataRetrieverPro
     var endTimeStamp = Date()
     var averageDailyStepsFlag = false
     var denyGoalFlag = false
+    var internetConnection = false
     
     weak var delegate : shareHealthDataDelegate?
+    private let healthStore = HKHealthStore()
+    
     
     /// MARK: - Functions
     
@@ -49,8 +53,25 @@ class MainScreenViewController : UIViewController  { //HealthKitDataRetrieverPro
     
     
     override func viewDidAppear(_ animated: Bool){
-        
-        //dashboardController.delegate = self
+
+        // Health Kit Code to retrieve baseline steps
+        if HKHealthStore.isHealthDataAvailable() {
+            let readDataTypes = self.stepsTypesToRead()
+            
+            self.healthStore.requestAuthorization(toShare: [], read: readDataTypes, completion: { [unowned self] (success, error) in
+                if success {
+                    DispatchQueue.main.async {
+                        //self.updateUsersStepsLabelAndDateValueLabel()
+                        self.pushUnsyncStepsToServer()
+                    }
+                    
+                } else if let error = error {
+                    print(error.localizedDescription)
+                }
+            })
+            
+        }
+
         // A competition is a week of recording step data. During a competition each participant has a weekly step goal.
         //  get the competition status from Realm
         // think of how to turn this competition status to 0 by the end of the week
@@ -62,7 +83,6 @@ class MainScreenViewController : UIViewController  { //HealthKitDataRetrieverPro
             print("No running competition")
             // fork should occur after setting the instructions for the weekly goal
             displayOptimalChallengeInstructions()
-            //forkBasedOnExperimentalCondition()
         
         case 1: // running trial
             print("Running competition")
@@ -73,6 +93,12 @@ class MainScreenViewController : UIViewController  { //HealthKitDataRetrieverPro
         default:
             print("No valid competition status")
         }
+    }
+    
+    private func stepsTypesToRead() -> Set<HKObjectType> {
+        let stepsType = HKQuantityType.quantityType(forIdentifier: HKQuantityTypeIdentifier.stepCount)!
+        
+        return [stepsType]
     }
     
     
@@ -93,13 +119,12 @@ class MainScreenViewController : UIViewController  { //HealthKitDataRetrieverPro
             
         // check if average daily steps is at least
         if(self.averageDailySteps < 1000){
-            self.averageDailySteps = 1000
+            self.averageDailySteps = 5000
             self.averageDailyStepsFlag = true
         }
             
         if(!self.averageDailyStepsFlag){
             self.instructionsTextField.text = "Tu promedio diario de pasos es \(Int(self.averageDailySteps)). \n ¿Te gustaría incrementarlo en un 5%? \n Eso es caminar \((Int(self.averageDailySteps * 0.05))) pasos adicionales o alrededor de \((self.averageDailySteps *  0.05 * 0.013).truncate(places: 2)) minutos caminando."
-            
             
             self.acceptGoalButton.isHidden = false
             self.denyGoalButton.isHidden = false
@@ -109,53 +134,17 @@ class MainScreenViewController : UIViewController  { //HealthKitDataRetrieverPro
             self.acceptGoalButton.isHidden = true
             self.denyGoalButton.isHidden = true
             self.okButton.isHidden = false
+            
+            //self.trialStatus = 1
         }
             self.instructionsTextField.isHidden = false
             
-            
-//            self.instructionsTextField.text = "Tu promedio diario de pasos es \(Int(self.averageDailySteps)). \n ¿Te gustaría incrementarlo en un 5%? \n Eso es caminar \((Int(self.averageDailySteps * 0.05))) pasos adicionales o alrededor de \((self.averageDailySteps *  0.05 * 0.013).truncate(places: 2)) minutos caminando."
-
             })
     }
 
     
     
-    /// Displays on screen the instructions based on the experimental condition
-    /// The conditions are autonomy, autonomy+competence, autonomy+competence+relatedness
-    func forkBasedOnExperimentalCondition(){
-        
-        /// Request user experimental condition
-        let realm = try! Realm()
-        let userExperimentalCondition = Int((realm.objects(RealmUserModel.self).last?.expCondition)!)!
-        
-        /// Requests average steps
-        healthkitSetupAssistant.getDailyAverageStepCount(completion: {averageSteps in
-        
-            self.averageDailySteps = averageSteps.truncate(places: 0)
-            
-            /// based on experimental condition set instructions text
-            
-            switch userExperimentalCondition {
-            case 1: /// individual
-                if(!self.averageDailyStepsFlag){
-                self.instructionsTextField.text = "Tu promedio diario de pasos es \(Int(self.averageDailySteps)). \n ¿Te gustaría incrementarlo en un 5%? \n Eso es caminar \((Int(self.averageDailySteps * 0.05))) pasos adicionales o alrededor de \((self.averageDailySteps *  0.05 * 0.013).truncate(places: 2)) minutos caminando."
-                }else{
-                     self.instructionsTextField.text = "No tenemos datos suficientes para calcular tu promedio diario de pasos. Pero te sugerimos \(Int(self.averageDailySteps)). \n ¿Te gustaría definirlo como objetivo?"
-                }
-                
-           
-                
-            case 2: /// group
-                self.instructionsTextField.text = "The system should never get me here"
-                self.instructionsTextField.isHidden = false
-//                self.soloButton.isHidden = false
-//                self.groupButton.isHidden = false
-            default:
-                print( "There was error in the experimental group.")
-                }
-            
-        })
-        }
+    
     
     
     /// Action for the accept button
@@ -174,7 +163,7 @@ class MainScreenViewController : UIViewController  { //HealthKitDataRetrieverPro
         instructionsTextField.text = "Tu objetivo esta semana será de alcanzar \(Int(weeklyGoal)) pasos. \n\n Esto es aproximadamente \(Int(weeklyGoal / 7)) pasos en un día."
         
         self.weeklyGoal = weeklyGoal
-        self.trialStatus = 1
+        //self.trialStatus = 1
         self.endTimeStamp = Date.today().next(.monday)
         print(Date.today().next(.monday))
         
@@ -212,12 +201,14 @@ class MainScreenViewController : UIViewController  { //HealthKitDataRetrieverPro
             weeklyGoal = (self.averageDailySteps * 7)
         }
         self.weeklyGoal = weeklyGoal
+        self.trialStatus = 1
+        self.endTimeStamp = Date.today().next(.monday)
         
         //Save trial status (goal) in the realm
         trialController.storeTrialObjectLocally(weeklyGoal: self.weeklyGoal, status : self.trialStatus, endTimeStamp: self.endTimeStamp,  completion: { success in
             print("Competition Status succesfully inserted in local realm")
-            print("Weekly Goal: \(weeklyGoal)")
-            print("Trial Status: \(trialStatus)")
+            print("Weekly Goal: \(self.weeklyGoal)")
+            print("Trial Status: \(self.trialStatus)")
         })
         
         // Hide ok Button
@@ -269,5 +260,405 @@ class MainScreenViewController : UIViewController  { //HealthKitDataRetrieverPro
         okButton.setTitleColor(.white, for: .normal)
         
     }
+    
+    /// BEGINS CODE FROM POW THAT EXTRACTS THE BASELINE FOR NUMBER OF STEPS
+    
+    //MARK: Push Unsync Steps to Server
+    
+    private func pushUnsyncStepsToServer(){
+        let lastDaySync = synchronizationModel.getLastSyncTimestamp()
+        let unsyncDays = getDifferenceInDays(start: lastDaySync, end: Date())
+        getNStepsBack(daysBack: unsyncDays)
+    }
+    
+//    private func getLastDaySync() -> Date{
+//        let realm = try! Realm()
+//        if (realm.objects(Sync.self).isEmpty){
+//            return getSpecificDate(year: 1999, month: 1, day: 1, hour: 0, minute: 0, second: 0)
+//        }
+//        else{
+//            let lastDaySync = realm.objects(Sync.self).last?.timestamp
+//            print("Last Sync Date: ", lastDaySync!)
+//            return lastDaySync!
+//        }
+//    }
+    
+    private func getNStepsBack(daysBack : Int){
+        for i in 0 ..< daysBack{
+            
+            let yesterdayStartOfDay = getNDaysBackStartOfDay(numberOfDaysBack: i)
+            let yesterdayEndOfDay = getNDaysBackEndOfDay(numberOfDaysBack: i)
+            
+            requestStepsToHKWithCompletion(start: yesterdayStartOfDay, end: yesterdayEndOfDay, completion: {steps in
+                print("YESTERDAY START: ", yesterdayStartOfDay)
+                print("YESTERDAY END: ", yesterdayEndOfDay)
+                self.internetConnection = Reachability().isInternetAvailable()
+                if(self.internetConnection){
+                    self.submitSteps(steps: steps,
+                                     userId: self.getUserId(),
+                                     timestamp: self.convertDateToString(date: yesterdayEndOfDay),
+                                     completion: {result in
+                                        print(result)
+                                        
+                                        if(result == "done"){
+                                            self.createStepObject(userId: self.getUserId(), steps: steps, timestamp: self.convertDateToString(date: yesterdayEndOfDay))
+                                            self.insertNewSyncDate()
+                                        }
+                                        else if(result == "Code=-1001"){ // The request timed out.
+                                            self.createFailedStepObject(userId: self.getUserId(),
+                                                                        steps: steps,
+                                                                        timestamp: self.convertDateToString(date: yesterdayEndOfDay))
+                                        }
+                    })
+                }
+                else{
+                    //self.storeStepsOnDisk(steps: steps, timestamp: self.convertDateToString(date: yesterdayEndOfDay))
+                    self.createStepObject(userId: self.getUserId(), steps: steps, timestamp: self.convertDateToString(date: yesterdayEndOfDay))
+                }
+            })
+        }
+    }
+    
+    private func getNDaysBackStartOfDay(numberOfDaysBack : Int)->Date{
+        var calendar = Calendar.current
+        //calendar.timeZone = TimeZone(abbreviation: "UTC")! //OR NSTimeZone.localTimeZone()
+        calendar.timeZone = NSTimeZone.local
+        let dateAtMidnight = calendar.startOfDay(for: Date())
+        
+        let components = NSDateComponents()
+        components.day = -numberOfDaysBack - 1
+        
+        let yesterDayStartofDay = calendar.date(byAdding: components as DateComponents, to: dateAtMidnight)
+        
+        return yesterDayStartofDay!
+        
+    }
+    
+    private func getNDaysBackEndOfDay(numberOfDaysBack : Int)->Date{
+        var calendar = Calendar.current
+        //calendar.timeZone = TimeZone(abbreviation: "UTC")! //OR NSTimeZone.localTimeZone()
+        calendar.timeZone = NSTimeZone.local
+        let dateAtMidnight = calendar.startOfDay(for: Date())
+        
+        
+        let components = NSDateComponents()
+        components.day = -numberOfDaysBack //tenía 0
+        components.second = -1
+        
+        let yesterDayStartofDay = calendar.date(byAdding: components as DateComponents, to: dateAtMidnight)
+        
+        return yesterDayStartofDay!
+        
+    }
+    
+    //MARK: Calculations
+    
+    private func getDifferenceInDays(start : Date, end : Date) -> Int{
+        
+        //let startLocalString = UTCToLocal(date: start)
+        //let endLocalString = UTCToLocal(date: end)
+        
+        let startLocalString = getJustDate(date: start)
+        let endLocalString = getJustDate(date: end)
+        
+        print(start)
+        print(end)
+        let components = Calendar.current.dateComponents([.day], from: start, to: end)
+        print(startLocalString)
+        print(endLocalString)
+        let components2 = Calendar.current.dateComponents([.day], from: startLocalString, to: endLocalString)
+        
+        print("difference is \(components.day ?? 0) days")
+        
+        print("difference is \(components2.day ?? 0) days")
+        
+        return components2.day ?? 0
+    }
+    
+    private func getJustDate(date: Date)->Date{
+        let formatter = DateFormatter()
+        // initially set the format based on your datepicker date
+        formatter.dateFormat = "yyyy-MM-dd H:mm:ss a"
+        //formatter.timeZone = TimeZone(identifier: "UTC")!
+        formatter.timeZone = NSTimeZone.local
+        let myString = formatter.string(from: date)
+        // convert your string to date
+        let yourDate = formatter.date(from: myString)
+        formatter.locale = Locale(identifier: "en_US_POSIX") //ARG
+        //then again set the date format whhich type of output you need
+        formatter.dateFormat = "yyyy-MM-dd"
+        // again convert your date to string
+        var myStringafd = formatter.string(from: yourDate!)
+        
+        var dt = formatter.date(from: myStringafd)
+        
+        return dt!
+        
+    }
+    
+    func getSpecificDate(year: Int, month: Int, day: Int, hour: Int, minute: Int, second: Int) -> Date{
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd hh:mm:ss"
+        dateFormatter.locale = Locale.init(identifier: "en_GB")
+        dateFormatter.timeZone = NSTimeZone.local //just added 22.08.17
+        
+        let dateComponents:NSDateComponents = NSDateComponents()
+        dateComponents.timeZone = NSTimeZone.local //just added 22.08.17
+        dateComponents.year = year
+        dateComponents.month = month
+        dateComponents.day = day
+        dateComponents.hour = hour // Because Date() return GMT * check *
+        dateComponents.minute = minute
+        dateComponents.second = second
+        
+        let calendar:NSCalendar = NSCalendar(calendarIdentifier: NSCalendar.Identifier.gregorian)!
+        let date:NSDate = calendar.date(from: dateComponents as DateComponents)! as NSDate
+        return date as Date
+        
+    }
+    
+    private func requestStepsToHKWithCompletion(start : Date , end : Date, completion:@escaping (Double) -> Void){
+        
+        let timePredicate : NSPredicate = HKQuery.predicateForSamples(withStart: start as Date, end: end as Date, options: .strictStartDate)
+        // Get only steps which were NOT user entered. HKMetadataKeyWasUserEntered == true
+        let notManuallyInputPredicate: NSPredicate = HKQuery.predicateForObjects(withMetadataKey: HKMetadataKeyWasUserEntered, operatorType: .notEqualTo, value: true)
+        // Builds a compound predicate with time and notManually input steps
+        let predicate: NSCompoundPredicate = NSCompoundPredicate(andPredicateWithSubpredicates: [timePredicate, notManuallyInputPredicate])
+        
+        let stepsQuantityType = HKQuantityType.quantityType(forIdentifier: HKQuantityTypeIdentifier.stepCount)!
+        let query = HKStatisticsQuery(quantityType: stepsQuantityType,
+                                      quantitySamplePredicate: predicate,
+                                      options: .cumulativeSum) { (_, result, error) in
+                                        var resultCount = 0.0
+                                        
+                                        guard let result = result else{
+                                            print ("Failed to fetch steps = \(error?.localizedDescription ?? "N/A")")
+                                            completion(resultCount)
+                                            return
+                                        }
+                                        
+                                        if let sum = result.sumQuantity() {
+                                            resultCount = sum.doubleValue(for: HKUnit.count())
+                                            //print ("Start: ", start)
+                                            //print ("End: ", end)
+                                            //print ("Steps: ", resultCount)
+                                            //self.stepsNumber = resultCount
+                                        }
+                                        
+                                        DispatchQueue.main.async {
+                                            completion(resultCount)
+                                        }
+        }
+        healthStore.execute(query)
+    }
+    
+    private func convertDateToString(date : Date) -> String{
+        var myStringafd : String
+        
+        let locale = NSLocale.current
+        let f : String = DateFormatter.dateFormat(fromTemplate: "j", options:0, locale:locale)!
+        if f.contains("a") {
+            //phone is set to 12 hours
+            print("12hr")
+            let formatter = DateFormatter()
+            // initially set the format based on your datepicker date
+            formatter.dateFormat = "yyyy-MM-dd H:mm:ss a"
+            //formatter.timeZone = TimeZone(identifier: "UTC")!
+            formatter.timeZone = NSTimeZone.local
+            let myString = formatter.string(from: date)
+            // convert your string to date
+            let yourDate = formatter.date(from: myString)
+            formatter.locale = Locale(identifier: "en_US_POSIX") //ARG
+            //then again set the date format whhich type of output you need
+            formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+            // again convert your date to string
+            myStringafd = formatter.string(from: yourDate!)
+            
+            
+        } else {
+            //phone is set to 24 hours
+            print("24hr")
+            let formatter = DateFormatter()
+            // initially set the format based on your datepicker date
+            formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+            //formatter.timeZone = TimeZone(identifier: "UTC")!
+            formatter.timeZone = NSTimeZone.local
+            let myString = formatter.string(from: date)
+            // convert your string to date
+            let yourDate = formatter.date(from: myString)
+            //then again set the date format whhich type of output you need
+            formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+            // again convert your date to string
+            myStringafd = formatter.string(from: yourDate!)
+            
+            //print(myStringafd)
+        }
+        
+        return myStringafd
+    }
+    
+    
+    /// Inserts into steps table the number of steps given
+    ///
+    /// - Parameter steps: number of steps retrieved
+    func submitSteps(steps: Double, userId: String, timestamp: String, completion:@escaping (String) -> Void){
+        let request = NSMutableURLRequest(url: NSURL (string: "https://pow.unil.ch/agon/phpScripts/storeSteps.php")! as URL)
+        request.httpMethod = "POST"
+        
+        // Convert Date to String
+        let a = String(describing: timestamp)
+        let backSlash = "\'"
+        let timeString = backSlash + a + backSlash
+        // End Convert Date to String
+        
+        let postString = "a=\(steps)&b=\(userId)&c=\(timeString)"
+        print(postString)
+        
+        request.httpBody = postString.data(using: String.Encoding.utf8)
+        
+        let task = URLSession.shared.dataTask(with: request as URLRequest){
+            data, response, error in
+            
+            if error != nil {
+                print("error=\(error!)")
+                var splitString = [String]()
+                splitString = (String(describing: error).components(separatedBy: " "))
+                completion(splitString[2])
+                return
+            }
+            
+            //print("response = \(response!)")
+            
+            let responseString =  String(data: data!, encoding: .utf8)
+            
+            print("respnseString = \(responseString!)")
+            
+            var splitString = [String]()
+            splitString = (responseString?.components(separatedBy: "."))!
+            completion(splitString[0])
+        }
+        task.resume()
+    }
+    
+    private func pushFailedStepsToServer(){
+        let failedStepsArray = getFailedSyncSteps()
+        
+        for failedStep in failedStepsArray{
+            
+            let steps = failedStep.steps
+            let userId = failedStep.userId
+            let timestamp = failedStep.timestamp
+            
+            if(self.internetConnection){
+                self.submitSteps(steps: steps,
+                                 userId: userId,
+                                 timestamp: timestamp,
+                                 completion: {result in
+                                    print(result)
+                                    
+                                    if(result == "done"){
+                                        self.createStepObject(userId: userId, steps: steps, timestamp: timestamp)
+                                        let realm = try! Realm()
+                                        try! realm.write {
+                                            realm.delete(realm.objects(FailedStep.self).filter("timestamp=%@",timestamp))
+                                        }
+                                        
+                                        self.insertNewSyncDate()
+                                    }
+                                    else if(result == "Code=-1001"){ // The request timed out.
+                                        self.createFailedStepObject(userId: userId,
+                                                                    steps: steps,
+                                                                    timestamp: timestamp)
+                                    }
+                })
+            }
+        }
+    }
+    
+    private func insertNewSyncDate(){
+        let sync = Sync()
+        sync.timestamp = getCurrentDate() // Tenía Date()
+        //let dateString = self.convertDateToString(date: Date())
+        //sync.timestamp = Date()
+        print("LAST SYNC: ", sync.timestamp)
+        let realm = try! Realm()
+        
+        try! realm.write{
+            realm.add(sync)
+        }
+        
+    }
+    
+    private func getCurrentDate()->Date{
+        // Este código verdaderamente le da el now o tiempo actual,
+        var calendar = Calendar.current
+        //calendar.timeZone = TimeZone(abbreviation: "UTC")! //OR NSTimeZone.localTimeZone() FIXED 24.08.17
+        calendar.timeZone = NSTimeZone.local
+        let components = NSDateComponents()
+        // Está agregando, sin el day = 0 le agrega un día del componente anterior
+        components.day = 0
+        components.hour = 0
+        components.second = 0
+        components.timeZone = NSTimeZone.local
+        
+        let now = calendar.date(byAdding: components as DateComponents, to: Date())
+        //
+        return now!
+    }
+    
+    func getFailedSyncSteps()->Results<FailedStep>{
+        let realm = try! Realm()
+        let failedSyncStepsArray = realm.objects(FailedStep.self)
+        return failedSyncStepsArray
+    }
+    
+    //MARK: Realm
+    
+    /// Stores on disk the step object
+    ///
+    /// - Parameter email:
+    
+    func createStepObject(userId: String, steps: Double, timestamp: String)-> Void{
+        let step = Step()
+        step.userId = userId
+        step.steps = steps
+        step.timestamp = timestamp
+        
+        let realm = try! Realm()
+        
+        try! realm.write{
+            realm.add(step)
+            //print("[ Step Object Created ] Steps: ", steps, "User Id: ", userId, "Timestamp: ", timestamp)
+        }
+    }
+    
+    func getUserId() -> String{
+        let realm = try! Realm()
+        let userId = realm.objects(RealmUserModel.self).first?.id // Check as I am getting the first one
+        
+        return userId!
+    }
+    
+    /// Stores on disk the failed step object
+    ///
+    /// - Parameter email:
+    
+    func createFailedStepObject(userId: String, steps: Double, timestamp: String)-> Void{
+        let failedStep = FailedStep()
+        failedStep.userId = userId
+        failedStep.steps = steps
+        failedStep.timestamp = timestamp
+        
+        let realm = try! Realm()
+        
+        try! realm.write{
+            realm.add(failedStep)
+            //print("[ Failed Step Object Created ] Steps: ", steps, "User Id: ", userId, "Timestamp: ", timestamp)
+        }
+    }
+    
+    /// ENDS CODE FROM POW THAT EXTRACTS THE BASELINE FOR NUMBER OF STEPS
+    
     
 }

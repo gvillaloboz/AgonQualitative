@@ -32,14 +32,6 @@ class DashboardViewController: UIViewController, HealthKitSetupAssistantProtocol
     let dashboardController = DashboardController()
     var leaderboardArray = [LeaderboardRecord]()
     
-    
-//    var leaderboardArray = [
-//        LeaderboardRecord(userName : "Fred Durst", stepsNumber : "4432", kudo : "0"),
-//        LeaderboardRecord(userName : "Sandra Cohen", stepsNumber : "14563", kudo : "1"),
-//        LeaderboardRecord(userName : "Christina Aguilera", stepsNumber : "21", kudo : "1"),
-//        LeaderboardRecord(userName : "Stephanie Dupont", stepsNumber : "3000", kudo : "0")
-//    ]
-    
     // Functions
     
     override func viewDidLoad() {
@@ -63,16 +55,10 @@ class DashboardViewController: UIViewController, HealthKitSetupAssistantProtocol
             styleUI()
             dashboardController.downloadUsersListPerCondition(expCondition: "3")
             
-
-        
-        //loadLeaderboard()
         default:
              print( "There was error in the experimental group.")
         }
        
-        
-        
-        
         // Request today step counts to HK and display
         healthKitSetupAssistant.getTodayStepCount(completion: {dailySteps in
             print("Steps requested from Dashboard: \(dailySteps)")
@@ -81,13 +67,6 @@ class DashboardViewController: UIViewController, HealthKitSetupAssistantProtocol
             // Store steps in the Agon DB Server
             self.dashboardController.storeStepsInWebServer(steps : dailySteps)
         })
-    
-//        guard  let mainScreenViewController = self.storyboard?.instantiateViewController(withIdentifier: "MainScreenViewController")
-//            as? MainScreenViewController else {
-//            fatalError("View Controller not found")
-//        }
-        //var mainScreenViewController = MainScreenViewController()
-        //mainScreenViewController.delegate = self //Protocol conformation here
         
         /// request to realm the daily goal
         //let realm = try! Realm()
@@ -95,18 +74,6 @@ class DashboardViewController: UIViewController, HealthKitSetupAssistantProtocol
             self.dailyGoalLabel.text = "Objetivo Diario: \(Int(trialInfo.weeklyGoal / 7))"
             self.weeklyGoalLabel.text = "Objetivo Semanal: \(Int (trialInfo.weeklyGoal))"
         }
-        
-//        ring = Ring()
-//        ring.draw(CGRect.zero)
-//        self.view.addSubview(ring)
-        
-        
-        // set delegates and initialize controllers
-        //dashboardController.delegate = self
-
-
-//        healthkitSetupAssistant.delegate = self
-//        stepCountLabel.text = String(healthkitSetupAssistant.stepsFromBackground)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -118,7 +85,7 @@ class DashboardViewController: UIViewController, HealthKitSetupAssistantProtocol
             print("Steps requested from Dashboard: \(dailySteps)")
             self.dailyStepsLabel.text = "Pasos de hoy: \r \(Int(dailySteps))"
             
-            // Store steps in the Agon DB Server
+            // Store steps in the Agon DB Server -> commented this line because was causing duple entries in DB
             self.dashboardController.storeStepsInWebServer(steps : dailySteps)
         })
     }
@@ -200,10 +167,6 @@ class DashboardViewController: UIViewController, HealthKitSetupAssistantProtocol
     
     func loadLiderboard(){
         tableView.isHidden = false
-    }
-    
-    func refreshLeaderboard(){
-        
     }
 
 }

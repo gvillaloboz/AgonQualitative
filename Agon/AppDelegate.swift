@@ -20,7 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         // Initializes in Realm the Last Sync Timestamp -> This determines the starting day of the baseline
-        SynchronizationModel().initializeLastDaySync(year: 2018, month: 12, day: 1, hour: 0, minute: 0, second: 0)
+        SynchronizationModel().initializeLastDaySync(year: 2018, month: 7, day: 1, hour: 0, minute: 0, second: 0)
         
         // Override point for customization after application launch.
         //print("application did finish launching with options")
@@ -32,33 +32,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 print("Error requesting access to HealthKit: \(error)")
             }
         }
-
         return true
-        
-//        healthKitSetupAssistant.authorizeHealthKit { (authorized , error) in
-//            guard authorized else {
-//
-//            let baseMessage = "HealthKit Authorization Failed from App Delegate"
-//
-//            if let error = error {
-//                print("\(baseMessage). Reason: \(error.localizedDescription)")
-//            } else {
-//                print(baseMessage)
-//            }
-//            return
-//            }
-//
-//            print("HealthKit Successfully Authorized from App Delegate.")
-//
-//        // Setting the observer query on the app delegate
-//        let readDataTypes = self.healthKitSetupAssistant.dataTypesToRead()
-//            self.healthKitSetupAssistant.setUpBackgroundDeliveryForDataTypes(types: readDataTypes, completion: {steps in
-//
-//            })
-//
-//        }
-//
-//        return true
     }
     
 
