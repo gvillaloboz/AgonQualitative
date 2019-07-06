@@ -271,17 +271,6 @@ class MainScreenViewController : UIViewController  { //HealthKitDataRetrieverPro
         getNStepsBack(daysBack: unsyncDays)
     }
     
-//    private func getLastDaySync() -> Date{
-//        let realm = try! Realm()
-//        if (realm.objects(Sync.self).isEmpty){
-//            return getSpecificDate(year: 1999, month: 1, day: 1, hour: 0, minute: 0, second: 0)
-//        }
-//        else{
-//            let lastDaySync = realm.objects(Sync.self).last?.timestamp
-//            print("Last Sync Date: ", lastDaySync!)
-//            return lastDaySync!
-//        }
-//    }
     
     private func getNStepsBack(daysBack : Int){
         for i in 0 ..< daysBack{
@@ -303,6 +292,8 @@ class MainScreenViewController : UIViewController  { //HealthKitDataRetrieverPro
                                         if(result == "done"){
                                             self.createStepObject(userId: self.getUserId(), steps: steps, timestamp: self.convertDateToString(date: yesterdayEndOfDay))
                                             self.insertNewSyncDate()
+                                       //this is for the new syncronization model
+                                        self.synchronizationModel.updateLastSyncTimestampAndSteps(steps: steps)
                                         }
                                         else if(result == "Code=-1001"){ // The request timed out.
                                             self.createFailedStepObject(userId: self.getUserId(),

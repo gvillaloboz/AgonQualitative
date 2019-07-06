@@ -54,6 +54,17 @@ class HistoryViewController : UITableViewController, HistoryContollerProtocol{
     }
     
     
+    /// <#Description#>
+    ///
+    /// - Parameters:
+    ///   - tableView: history table view
+    ///   - section: header of the table view
+    /// - Returns: the header title
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return "Número de pasos \t\t\t\t Fecha"
+    }
+    
+    
     /// Returns a title according to the section number
     ///
     /// - Parameters: 

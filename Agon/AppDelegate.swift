@@ -15,6 +15,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
     let healthKitSetupAssistant = HealthKitSetupAssistant()
+    var dashboardViewController : DashboardViewController?
+    var dashboardController = DashboardController()
+    
 
     // MARK: - Functions
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
@@ -50,6 +53,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillEnterForeground(_ application: UIApplication) {
         // Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.
         print("applicationWillEnterForeground")
+        dashboardViewController?.updateStepsLabelFunc(
+            steps: healthKitSetupAssistant.stepsCollectedFromBackground)
+        dashboardViewController?.viewDidLoad()
+        //dashboardController.downloadUsersListPerCondition(expCondition: "3")
+        
     }
 
     func applicationDidBecomeActive(_ application: UIApplication) {

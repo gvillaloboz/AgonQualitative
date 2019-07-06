@@ -23,6 +23,9 @@ class HealthKitSetupAssistant {
     var internetConnection = false
     weak var delegate : HealthKitSetupAssistantProtocol?
     let dashboardController = DashboardController()
+    var stepsCollectedFromBackground = Double()
+    
+    var dashboardViewController : DashboardViewController?
     
     
     // MARK: - Functions
@@ -50,9 +53,17 @@ class HealthKitSetupAssistant {
                 strongSelf.setUpBackgroundDeliveryForDataTypes(types: readDataTypes, completion: { steps in
                     ///  review how to send data from here to the dashboard view controller
                     print("Steps from background: \(steps)")
-                    strongSelf.delegate?.updateStepsNumberLabel(steps: steps)
+                    
+                    //strongSelf.delegate?.updateStepsNumberLabel(steps: steps)
                     strongSelf.dashboardController.storeStepsInWebServer(steps: steps)
-                    strongSelf.dashboardController.updateStepsLabel(steps: steps)
+                    //strongSelf.dashboardController.updateStepsLabel(steps: steps)
+                    
+                    
+                    strongSelf.stepsCollectedFromBackground = steps
+                    // Refresh dashboard controller with steps from background
+                    strongSelf.dashboardViewController?.updateStepsNumberLabel(
+                        steps: steps)
+                    
                 })
             }
             else{

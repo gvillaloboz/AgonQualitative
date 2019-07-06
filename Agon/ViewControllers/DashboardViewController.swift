@@ -39,6 +39,10 @@ class DashboardViewController: UIViewController, HealthKitSetupAssistantProtocol
         dashboardController.delegate = self
         healthKitSetupAssistant.delegate = self
         
+        // To refresh background steps
+        let appDelegate:AppDelegate = UIApplication.shared.delegate! as! AppDelegate
+        appDelegate.dashboardViewController = self
+        
         // Do any additional setup after loading the view, typically from a nib.
         // Check experimental condition to show/hide History button and Ranking
         /// Request user experimental condition
@@ -62,11 +66,12 @@ class DashboardViewController: UIViewController, HealthKitSetupAssistantProtocol
         // Request today step counts to HK and display
         healthKitSetupAssistant.getTodayStepCount(completion: {dailySteps in
             print("Steps requested from Dashboard: \(dailySteps)")
-            self.dailyStepsLabel.text = "Pasos de hoy: \n\n \(Int(dailySteps))"
+            self.dailyStepsLabel.text = "Pasos de hoy: \r \(Int(dailySteps))"
             
             // Store steps in the Agon DB Server
             self.dashboardController.storeStepsInWebServer(steps : dailySteps)
         })
+        
         
         /// request to realm the daily goal
         //let realm = try! Realm()
@@ -85,8 +90,6 @@ class DashboardViewController: UIViewController, HealthKitSetupAssistantProtocol
             print("Steps requested from Dashboard: \(dailySteps)")
             self.dailyStepsLabel.text = "Pasos de hoy: \r \(Int(dailySteps))"
             
-            // Store steps in the Agon DB Server -> commented this line because was causing duple entries in DB
-            self.dashboardController.storeStepsInWebServer(steps : dailySteps)
         })
     }
 
@@ -108,6 +111,9 @@ class DashboardViewController: UIViewController, HealthKitSetupAssistantProtocol
     /// - Parameter steps: <#steps description#>
     func updateStepsNumberLabel(steps: Double) {
         self.dailyStepsLabel.text = "bg Pasos de hoy: \r \(Int(steps))"
+        self.viewWillAppear(true)
+        //dismiss(animated: true, completion: nil)
+        
     }
     
     
@@ -115,19 +121,19 @@ class DashboardViewController: UIViewController, HealthKitSetupAssistantProtocol
     /// Attempt to update steps label when backgroud mode
     ///
     /// - Parameter steps: <#steps description#>
-    func updateStepsLabelFunc(steps: String) {
-        self.dailyStepsLabel.text = "Steps2 for today: \r \(Int(steps) ?? 99999)"
+    func updateStepsLabelFunc(steps: Double) {
+        self.dailyStepsLabel.text = "Steps de hoy: \r \(Int(steps))"
+        self.viewWillAppear(true)
     }
     
     func userListPerConditionDataDownloaded(jsonArray: [[String:Any]]) {
+        leaderboardArray.removeAll()
         for dic in jsonArray{
             guard let name = dic["name"] as? String else { return }
             guard let numSteps = dic["numSteps"] as? String else { return }
             print(name)
-            
             leaderboardArray.append(LeaderboardRecord(userName : name, stepsNumber : numSteps, kudo : "0"))
             self.tableView.reloadData()
-            //self.refresher.endRefreshing()
         }
     }
     
@@ -157,16 +163,13 @@ class DashboardViewController: UIViewController, HealthKitSetupAssistantProtocol
         return cell
     }
     
-//    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-//        return 1
-//    }
-//    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return TableData.count
-//    }
-    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return "Participante \t\t\t\t\t Pasos diarios"
+    }
     
     func loadLiderboard(){
         tableView.isHidden = false
     }
+    
 
 }

@@ -10,7 +10,7 @@ import Foundation
 
 
 protocol DashboardContollerProtocol: class {
-    func updateStepsLabelFunc(steps : String)
+    func updateStepsLabelFunc(steps : Double)
     func userListPerConditionDataDownloaded(jsonArray : [[String:Any]])
 }
 
@@ -23,9 +23,10 @@ class DashboardController : NSObject, URLSessionDataDelegate {
     var synchronizationModel = SynchronizationModel()
     let urlPath : String = "https://pow.unil.ch/agon/phpScripts/selectUsersListPerCondition.php"
     
+    
     // Functions
     func updateStepsLabel(steps: Double){
-         self.delegate?.updateStepsLabelFunc(steps: String(steps))
+         self.delegate?.updateStepsLabelFunc(steps: steps)
     }
     
     // Funtion to store past unsync steps on the server and today's steps until current time
@@ -84,8 +85,6 @@ class DashboardController : NSObject, URLSessionDataDelegate {
                 return
             }
             
-            //print("response = \(response!)")
-            
             let responseString =  String(data: data!, encoding: .utf8)
             
             print("respnseString = \(responseString!)")
@@ -135,7 +134,7 @@ class DashboardController : NSObject, URLSessionDataDelegate {
                 // Sends user list per condition data to the delegate function on the DashboardView Controller
                 DispatchQueue.main.async(execute: { () -> Void  in
                     
-                    self.delegate.userListPerConditionDataDownloaded(jsonArray: jsonArray)
+                    self.delegate?.userListPerConditionDataDownloaded(jsonArray: jsonArray)
                 })
                 //print(jsonArray)
             }

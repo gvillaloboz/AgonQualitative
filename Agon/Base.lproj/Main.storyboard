@@ -51,7 +51,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" text="kavizu@gmail.com" borderStyle="roundedRect" placeholder="Escriba su correo electrónico" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="77H-qx-oEi">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Escriba su correo electrónico" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="77H-qx-oEi">
                                 <rect key="frame" x="16" y="297" width="343" height="31"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="31" id="GLY-d7-kmv"/>
@@ -70,9 +70,8 @@
                                 <color key="textColor" red="0.93725001809999997" green="0.20000000300000001" blue="0.25097998980000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.94999999999999996" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Agon - Inicio" textAlignment="center" lineBreakMode="clip" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iSe-aN-csZ">
-                                <rect key="frame" x="85.666666666666686" y="157" width="204" height="43"/>
-                                <color key="backgroundColor" red="0.58188301320000002" green="0.21569153669999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.94999999999999996" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Estudio &quot;Agon&quot;" textAlignment="center" lineBreakMode="clip" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iSe-aN-csZ">
+                                <rect key="frame" x="64.333333333333329" y="157" width="246.33333333333337" height="43"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="35"/>
                                 <color key="textColor" red="1" green="0.57810515169999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -178,14 +177,14 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GRp-HH-CWr">
-                                                    <rect key="frame" x="7" y="12" width="191" height="21"/>
+                                                    <rect key="frame" x="18" y="12" width="191" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sCL-Dq-Sb7">
-                                                    <rect key="frame" x="267" y="12" width="42" height="21"/>
+                                                    <rect key="frame" x="250" y="12" width="111" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -265,10 +264,10 @@
             </objects>
             <point key="canvasLocation" x="3322.4000000000001" y="42.857142857142861"/>
         </scene>
-        <!--History-->
+        <!--Historial-->
         <scene sceneID="i6r-uz-5gU">
             <objects>
-                <tableViewController title="History" id="KQ2-jq-N7a" customClass="HistoryViewController" customModule="Agon" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController title="Historial" id="KQ2-jq-N7a" customClass="HistoryViewController" customModule="Agon" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="nNT-YO-w82" customClass="HistoryViewController">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
