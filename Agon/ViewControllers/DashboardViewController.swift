@@ -27,6 +27,7 @@ class DashboardViewController: UIViewController, HealthKitSetupAssistantProtocol
     @IBOutlet weak var dailyStepsLabel: UILabel!
     @IBOutlet weak var historyButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var otherParticipantsLabel: UILabel!
     
     let healthKitSetupAssistant = HealthKitSetupAssistant()
     let dashboardController = DashboardController()
@@ -51,9 +52,11 @@ class DashboardViewController: UIViewController, HealthKitSetupAssistantProtocol
         switch userExperimentalCondition {
         case 1:
             historyButton.isHidden = true
+            otherParticipantsLabel.isHidden = true
             tableView.isHidden = true
         case 2:
             styleUI()
+            otherParticipantsLabel.isHidden = true
             tableView.isHidden = true
         case 3:
             styleUI()
